@@ -6,6 +6,8 @@ const navProfileImg = document.querySelector(".navBar__profile__img");
 const hideAsideIcon = document.querySelector("#aside__top__icon");
 const asideBar = document.querySelector("aside");
 const showAsideIcon = document.querySelector("#navBar__toggle__icon");
+const showCategory = document.querySelector('.category_name');
+const chooseCategory = document.querySelectorAll('.category_btn');
 
 const closeLoginModal = () => {
   modalSection.classList.remove("modal__show");
@@ -44,3 +46,11 @@ hideAsideIcon.addEventListener("click", hideAsideBar);
 showAsideIcon.addEventListener("click", showAsideBar);
 
 isLogin();
+
+
+for (let i = 0; i < chooseCategory.length; i++){
+  chooseCategory[i].addEventListener("click", function(e){
+    showCategory.innerHTML = chooseCategory[i].innerHTML;
+  });
+} //
+
