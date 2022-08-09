@@ -7,21 +7,6 @@ const hideAsideIcon = document.querySelector("#aside__top__icon");
 const asideBar = document.querySelector("aside");
 const showAsideIcon = document.querySelector("#navBar__toggle__icon");
 
-const closeLoginModal = () => {
-  modalSection.classList.remove("modal__show");
-  modalSection.style.visibility = "hidden";
-  darkBg.style.display = "none";
-};
-
-const openLoginModal = () => {
-  modalSection.classList.add("modal__show");
-  modalSection.style.visibility = "visible";
-  darkBg.style.display = "block";
-};
-
-navBarLoginBtn.addEventListener("click", openLoginModal);
-modalClose.addEventListener("click", closeLoginModal);
-
 const isLogin = () => {
   let profileLocal = localStorage.getItem("profile");
 
@@ -34,34 +19,38 @@ const isLogin = () => {
 
 const hideAsideBar = () => {
   asideBar.classList.remove("show_aside");
-  setTimeout(() => {
-    asideBar.style.visibility = "hidden";
-  }, 500);
+  asideBar.style.display = "none";
+  myPageMain.style.width = "100%";
 };
+const myPageMain = document.querySelector(".myPage__main");
+
+hideAsideIcon.addEventListener("click", hideAsideBar);
 
 const showAsideBar = () => {
-  asideBar.style.visibility = "visible";
+  asideBar.style.display = "block";
   asideBar.classList.add("show_aside");
 };
 
-hideAsideIcon.addEventListener("click", hideAsideBar);
 showAsideIcon.addEventListener("click", showAsideBar);
 
-const asideMenuList = document.querySelectorAll(".dropDn");
+let asideMenuList = document.getElementsByClassName("dropDn");
 
 // 어사이드 바 밑에 노션처럼 세부 페이지 토글
 const toggleAsideMenu = (e) => {
-  let childList = e.target.children[0];
-  childList.style.display =
-    childList.style.display == "" || childList.style.display == "none"
+  let childList = e.target.parentNode.getElementsByClassName(
+    "aside__list__myCafe"
+  );
+  childList[0].style.display =
+    childList[0].style.display == "" || childList[0].style.display == "none"
       ? "block"
       : "none";
 };
-
-asideMenuList.forEach((li) => {
-  li.addEventListener("click", toggleAsideMenu);
+Array.from(asideMenuList).forEach((p) => {
+  p.addEventListener("click", toggleAsideMenu);
 });
 //
+
+//input이 활성화 되었을 때 텍스트 입력 시 리스트 추가
 
 const addListIfTyped = (e) => {
   if (e.key == "Enter") {

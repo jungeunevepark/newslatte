@@ -41,7 +41,8 @@ function loginWithKakao() {
           let user_email = res.kakao_account.email;
           let user_profile = res.properties.profile_image;
           afterLogin(user_profile);
-          window.location.href = "http://127.0.0.1:5500/index.html";
+          window.location.href =
+            "http://127.0.0.1:5500/likelion_final/header+aside/index.html";
         },
       });
     },

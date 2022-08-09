@@ -29,10 +29,11 @@
             <div class="navBar__searchLogin">
               <i class="fa-solid fa-magnifying-glass"></i>
               <button class="navBar__login__btn">로그인</button>
-              <img class="navBar__profile__img" src="" alt="" />
+              <a href="mypage.html"
+                ><img class="navBar__profile__img" src="" alt=""
+              /></a>
             </div>
           </div>
-          <hr class="navBar__line" />
         </nav>
       </header>
     </div>
@@ -61,20 +62,42 @@
       </div>
       <div class="aside__list">
         <ul>
-          <li>&#9749; 내 컬렉션</li>
-          <li>&#9749; 내 카페</li>
-          <li>&#9749; 오늘의 컬렉션</li>
-          <li>&#9749; organization</li>
-        </ul>
-        <ul>
-          <li>&#9749; 문의사항 및 질문</li>
+          <li><p class="dropDn">&#9749; 내 컬렉션</p></li>
+          <li>
+            <p class="dropDn">&#9749; 내 카페</p>
+            <ul class="aside__list__myCafe">
+              <li>
+                <p class="dropDn">시사</p>
+              </li>
+              <li>
+                <p class="dropDn">경제</p>
+              </li>
+              <li>
+                <p class="list__mycafe__add">&#43;</p>
+                <input class="list__mycafe__input" type="text" />
+              </li>
+            </ul>
+          </li>
+          <li><p class="dropDn">&#9749; 오늘의 컬렉션</p></li>
+          <li><p class="dropDn">&#9749; organization</p></li>
+          <li><p class="dropDn">&#9749; 문의사항 및 질문</p></li>
         </ul>
       </div>
     </aside>
     <div class="main__container">
       <main>
-        <section>
+        <section class="main__slide">
           <img id="main__bgImg" src="./resources/main_background.PNG" alt="" />
+          <div class="main__slide__text">
+            <p>
+              카피&nbsp;카피<br />라떼 한잔<br />
+              이용 가이드
+            </p>
+            <button id="main__slide__btn">
+              <p>바로가기</p>
+              <p>></p>
+            </button>
+          </div>
         </section>
         <section>
           <!-- recommend collection -->

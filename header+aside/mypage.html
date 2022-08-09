@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSLATTE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="mypage.css" />
+  </head>
+  <body>
+    <div class="bg__dark"></div>
+    <div class="mypage__container">
+      <div class="aside__container">
+        <aside>
+          <div class="aside__top">
+            <i id="aside__top__icon" class="fa-solid fa-angles-left"></i>
+          </div>
+          <div class="aside__list">
+            <ul>
+              <li><p class="dropDn">&#9749; 내 컬렉션</p></li>
+              <li>
+                <p class="dropDn">&#9749; 내 카페</p>
+                <ul class="aside__list__myCafe">
+                  <li>
+                    <p class="dropDn">시사</p>
+                  </li>
+                  <li>
+                    <p class="dropDn">경제</p>
+                  </li>
+                  <li>
+                    <p class="list__mycafe__add">&#43;</p>
+                    <input class="list__mycafe__input" type="text" />
+                  </li>
+                </ul>
+              </li>
+              <li><p class="dropDn">&#9749; 오늘의 컬렉션</p></li>
+              <li><p class="dropDn">&#9749; organization</p></li>
+              <li><p class="dropDn">&#9749; 문의사항 및 질문</p></li>
+            </ul>
+          </div>
+        </aside>
+      </div>
+      <div class="myPage__main">
+        <div class="header__container">
+          <header>
+            <nav>
+              <div class="navBar__container">
+                <div class="navBar__toggle">
+                  <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+                </div>
+                <div class="navBar__name">
+                  <h1 class="navBar__name__h1">NEWSLATTE</h1>
+                </div>
+                <div class="navBar__searchLogin">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                  <button class="navBar__login__btn">로그인</button>
+                  <img class="navBar__profile__img" src="" alt="" />
+                </div>
+              </div>
+            </nav>
+          </header>
+        </div>
+        <main>
+          <section class="main__myPage">
+            <div class="main__wrtie">
+              <div class="aside__main__profile">
+                <img
+                  class="main__profile__img"
+                  src="./resources/coffee_icon.png"
+                  alt=""
+                />
+                <p id="profile__userName">user name</p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Inventore ratione architecto, nulla id repellat assumenda.
+                  Atque, consectetur id quam doloribus, eveniet numquam
+                  assumenda, animi tempora facilis non tempore optio. Earum?
+                </p>
+              </div>
+              <div class="main__profile__write">
+                <button class="profile__write__btn">글 작성하기</button>
+              </div>
+            </div>
+            <div class="main__list">
+              <hr class="main__divide" />
+              <div class="main__list__choose">
+                <p>내 카페</p>
+                <p>내 컬렉션</p>
+              </div>
+              <div class="main__search">
+                <input type="text" id="main__search__input" />
+                <i
+                  class="fa-solid fa-magnifying-glass"
+                  id="main__search__icon"
+                ></i>
+              </div>
+              <div class="main__hashTags"></div>
+              <div class="main__articles">
+                <article>
+                  <div class="main__article__img">
+                    <img
+                      class="article__img"
+                      src="./resources/dummy.png"
+                      alt="thumbnail"
+                    />
+                  </div>
+                  <div class="main__article__text">
+                    <div class="article__text__title">
+                      <p class="">"솔방울은 영양학적으로 가치가 있는가"</p>
+                    </div>
+                    <div class="article__text__content">
+                      <p>
+                        솔방울은 영양학적으로 가치가 있는가솔방울은 영양학적으로
+                        가치가 있는가솔방울은 영양학적으로 가치가 있는가솔방울은
+                        영양학적으로 가치가 있는가솔방울은 영양학적으로 가치가
+                        있는가솔방울은 영양학적으로 가치가 있는가
+                      </p>
+                    </div>
+                    <div class="article__text__metaData">
+                      <div class="text__metadata__author">
+                        <img
+                          class="metadata__author__img"
+                          src="./resources/dummy_profile.jpg"
+                          alt=""
+                        />
+                        <p class="metadata__author__name">Wooseok Han</p>
+                        <div class="text__metadata__hashTag">
+                          <div class="metadata__hashTag__container">
+                            <p>경제학</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text__metadata__recommended">
+                        <p>&#43;32 recommended</p>
+                      </div>
+                    </div>
+                    <p></p>
+                  </div>
+                </article>
+                <article>
+                  <div class="main__article__img">
+                    <img
+                      class="article__img"
+                      src="./resources/dummy.png"
+                      alt="thumbnail"
+                    />
+                  </div>
+                  <div class="main__article__text">
+                    <div class="article__text__title">
+                      <p class="">"솔방울은 영양학적으로 가치가 있는가"</p>
+                    </div>
+                    <div class="article__text__content">
+                      <p>
+                        솔방울은 영양학적으로 가치가 있는가솔방울은 영양학적으로
+                        가치가 있는가솔방울은 영양학적으로 가치가 있는가솔방울은
+                        영양학적으로 가치가 있는가솔방울은 영양학적으로 가치가
+                        있는가솔방울은 영양학적으로 가치가 있는가
+                      </p>
+                    </div>
+                    <div class="article__text__metaData">
+                      <div class="text__metadata__author">
+                        <img
+                          class="metadata__author__img"
+                          src="./resources/dummy_profile.jpg"
+                          alt=""
+                        />
+                        <p class="metadata__author__name">Wooseok Han</p>
+                        <div class="text__metadata__hashTag">
+                          <div class="metadata__hashTag__container">
+                            <p>경제학</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text__metadata__recommended">
+                        <p>&#43;32 recommended</p>
+                      </div>
+                    </div>
+                    <p></p>
+                  </div>
+                </article>
+                <article>
+                  <div class="main__article__img">
+                    <img
+                      class="article__img"
+                      src="./resources/dummy.png"
+                      alt="thumbnail"
+                    />
+                  </div>
+                  <div class="main__article__text">
+                    <div class="article__text__title">
+                      <p class="">"솔방울은 영양학적으로 가치가 있는가"</p>
+                    </div>
+                    <div class="article__text__content">
+                      <p>
+                        솔방울은 영양학적으로 가치가 있는가솔방울은 영양학적으로
+                        가치가 있는가솔방울은 영양학적으로 가치가 있는가솔방울은
+                        영양학적으로 가치가 있는가솔방울은 영양학적으로 가치가
+                        있는가솔방울은 영양학적으로 가치가 있는가
+                      </p>
+                    </div>
+                    <div class="article__text__metaData">
+                      <div class="text__metadata__author">
+                        <img
+                          class="metadata__author__img"
+                          src="./resources/dummy_profile.jpg"
+                          alt=""
+                        />
+                        <p class="metadata__author__name">Wooseok Han</p>
+                        <div class="text__metadata__hashTag">
+                          <div class="metadata__hashTag__container">
+                            <p>경제학</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text__metadata__recommended">
+                        <p>&#43;32 recommended</p>
+                      </div>
+                    </div>
+                    <p></p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+          <section>
+            <!-- recommended insigts -->
+          </section>
+          <!-- <section id="modal">
+                    <div class="modal__wrap">
+                      <div class="modal__top">뉴스와 커피 한 모금, 뉴스라떼</div>
+                      <form class="modal__login__form" method="post" onsubmit="false">
+                        <input type="text" name="id" placeholder=" ID" />
+                        <input type="password" name="password" placeholder=" Password" />
+                        <input type="submit" id="login__submit__btn" value="로그인" />
+                      </form>
+                      <p>
+                        혹은
+                        <a href="signUp.html" class="modal__signUp">회원가입</a>하러가기
+                      </p>
+                      <i id="modal__close" class="fa-solid fa-xmark"></i>
+                    </div>
+                  </section> -->
+        </main>
+        <footer></footer>
+      </div>
+    </div>
+    <script type="module" src="mypage.js"></script>
+  </body>
+</html>
