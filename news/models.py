@@ -1,18 +1,30 @@
 from unicodedata import category
 from django.db import models
-from django.forms import ImageField, URLField
+from django.forms import URLField
+
+
+
+
+class NewsImage(models.Model):
+    image = models.URLField()
+
 
 class News(models.Model) :
+    journalist = models.CharField(max_length=10, null=True)
+    press= models.CharField(max_length=10, null=True)
+    date = models.DateTimeField()
+    section = models.CharField(max_length=10)
+    link = models.URLField()
+    image = models.ForeignKey(NewsImage, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
-    body = models.TextField()
-    date = models.DateTimeField(auto_now_add = True)
-    link = URLField()
-    category = models.IntegerField()
-    image = ForeignField()
+    main_content = models.TextField()
+    summary = models.TextField(null=True)
+    views = models.IntegerField(default=0)
+
 
 
     def __str__(self):
         return self.title
 
-class Image(models.Model) :
-    image = ImageField()
+
+    
