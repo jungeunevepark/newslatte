@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     # providers
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
 
 ]
 
