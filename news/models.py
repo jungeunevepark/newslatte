@@ -8,7 +8,7 @@ class News(models.Model) :
     date = models.DateTimeField(auto_now_add = True)
     link = URLField()
     category = models.IntegerField()
-    image = ForeignField()
+
 
 
     def __str__(self):
