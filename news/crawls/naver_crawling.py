@@ -160,8 +160,8 @@ def extract_news_data_from_naver(url):
                 img = element.find("img")
                 imgurl = img.attrs['data-src']
                 ImageAlreadyIncluded = True 
-                newsImage = NewsImage.objects.create(imgurl)
-
+                newsImage = NewsImage.objects.create(image=imgurl)
+                    
             elif element.name == 'b':           # 요약글이 저장되어 있는 태그 
                 summary = '\n\n'.join(line for line in element.contents if type(line) is not bs4.element.Tag)
             elif element.name == 'br':          

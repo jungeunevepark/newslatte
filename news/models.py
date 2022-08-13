@@ -12,7 +12,7 @@ class NewsImage(models.Model):
 class News(models.Model) :
     journalist = models.CharField(max_length=10, null=True)
     press= models.CharField(max_length=10, null=True)
-    date = models.DateField()
+    date = models.DateField(null=True)
     section = models.CharField(max_length=10)
     link = models.URLField()
     image = models.ForeignKey(NewsImage, on_delete=models.SET_NULL, null=True)

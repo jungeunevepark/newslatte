@@ -1,0 +1,23 @@
+
+
+{% if collections.2 %}
+
+{% endif %}
+{% for collection in collections %}
+
+    {{ collection.name }} 
+    
+    
+    {% for news in collection.news.all %}
+        <p>{{ news }}</p>
+
+        <h2>{{news.title}}</h2>
+        {% if news.image.image %}
+        <img src="{{news.image.image}}">
+        {% endif %}
+
+        <pre>{{news.main_content}}</pre>
+    {% endfor %}
+
+
+{% endfor %}
