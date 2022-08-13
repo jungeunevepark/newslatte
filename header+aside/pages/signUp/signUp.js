@@ -1,6 +1,6 @@
 const navBarLoginBtn = document.querySelector(".navBar__login__btn");
 const navProfileImg = document.querySelector(".navBar__profile__img");
-const kakaoLogo = document.querySelector("#kakao__login");
+const kakaoLogo = document.querySelector(".kakao");
 
 const afterLogin = (profile) => {
   navBarLoginBtn.style.display = "none";
@@ -32,7 +32,6 @@ function loginWithKakao() {
   window.Kakao.Auth.login({
     scope: "profile_image, account_email",
     success: function (authobj) {
-      console.log(authobj);
       Kakao.Auth.setAccessToken(authobj.access_token);
       window.Kakao.API.request({
         url: "/v2/user/me",
@@ -42,7 +41,7 @@ function loginWithKakao() {
           let user_profile = res.properties.profile_image;
           afterLogin(user_profile);
           window.location.href =
-            "http://127.0.0.1:5500/likelion_final/header+aside/index.html";
+            "http://127.0.0.1:5500/likelion_final/header+aside/pages/mainPage/index.html";
         },
       });
     },
