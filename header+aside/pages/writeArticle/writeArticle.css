@@ -175,12 +175,13 @@ body * {
 }
 
 header {
-  padding: 20px 0px;
+  padding: 20px;
   font-size: 25px;
   position: fixed;
-  width: 85%;
+  width: 100%;
   background-color: white;
   z-index: 3;
+  border-bottom: 1px solid lightgray;
 }
 
 .navBar__container {
@@ -197,17 +198,21 @@ header {
   z-index: 999;
 }
 
-.navBar__toggle,
-.navBar__searchLogin {
-  width: 120px;
+.navBar__left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
-.navBar__searchLogin {
+
+.navBar__right {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
-.navBar__login__btn {
+.navBar__right__save {
   background-color: transparent;
   border: 1px solid gray;
   border-radius: 8px;
@@ -215,15 +220,8 @@ header {
   color: gray;
 }
 
-.navBar__login__btn:hover {
+.navBar__right__temporal:hover {
   background-color: lightgray;
-}
-
-.navBar__profile__img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: none;
 }
 
 .navBar__line {
@@ -402,10 +400,11 @@ aside {
 }
 
 main {
-  width: 85%;
+  width: 78%;
   padding-top: 70px;
   height: 100%;
   text-align: center;
+  display: flex;
 }
 
 /* signUp 페이지 */
@@ -446,18 +445,6 @@ main {
 }
 
 /* article lists */
-
-#article__list__container {
-  width: 50%;
-  background-color: rgba(239, 237, 234, 0.6);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 4;
-  display: flex;
-  align-items: flex-end;
-}
 
 .article__list {
   overflow: auto;
@@ -618,10 +605,19 @@ main {
 #article__write__container {
   width: 50%;
   height: 100%;
-  margin-left: 50%;
   text-align: justify;
   display: flex;
   justify-content: center;
+}
+
+/* article__list__container */
+
+#article__list__container {
+  width: 50%;
+  height: 100%;
+  z-index: 4;
+  display: flex;
+  align-items: flex-end;
 }
 
 .article__write {

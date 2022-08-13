@@ -20,18 +20,19 @@
       <header>
         <nav>
           <div class="navBar__container">
-            <div class="navBar__toggle">
+            <div class="navBar__left">
               <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+              <div class="navBar__name">
+                <h1 class="navBar__name__h1">NEWSLATTE</h1>
+              </div>
             </div>
-            <div class="navBar__name">
-              <h1 class="navBar__name__h1">NEWSLATTE</h1>
-            </div>
-            <div class="navBar__searchLogin">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <button class="navBar__login__btn">로그인</button>
-              <a href="../myPage/mypage.html"
-                ><img class="navBar__profile__img" src="" alt=""
-              /></a>
+            <div class="navBar__right">
+              <button class="navBar__right__save temporal">
+                임시저장
+              </button>
+              <button class="navBar__right__save direct">
+                저장
+              </button>
             </div>
           </div>
         </nav>
@@ -87,6 +88,18 @@
     <div class="main__container">
       <main>
         <section id="article__list__container">
+          <div class="aritcle__list__popUp">
+            <div class="list__popUp__container">
+              <div class="popUp__profile">
+                <div class="popUp__profile__img"></div>
+                <div class="popUp__profile__names"></div>
+              </div>
+              <div class="popUp__myCart"></div>
+              <div class="popUp__myCart__list"></div>
+              <div class="popUp__pagination"></div>
+            </div>
+          </div>
+          <!-- 
             <div class="article__list">
                 <article class="article__container__min">
                     <div class="article__toggle first">
@@ -235,7 +248,7 @@
                         </div>
                     </div>
                 </article>
-            </div>
+            </div> -->
         </section>
         
         <section id="article__write__container">
