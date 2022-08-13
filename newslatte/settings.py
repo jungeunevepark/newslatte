@@ -41,7 +41,19 @@ INSTALLED_APPS = [
     'news',
     'collection',
     'post',
-    'ui'
+    'ui',
+    'accounts',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # providers
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
+
 ]
 
 MIDDLEWARE = [
@@ -131,3 +143,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile', 
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online'
+#         }
+#     }
+# }
