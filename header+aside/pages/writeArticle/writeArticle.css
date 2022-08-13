@@ -175,7 +175,7 @@ body * {
 }
 
 header {
-  padding: 20px;
+  padding: 10px;
   font-size: 25px;
   position: fixed;
   width: 100%;
@@ -192,10 +192,6 @@ header {
 
 .navBar__name__h1 {
   font-weight: bold;
-}
-
-#navBar__toggle__icon {
-  z-index: 999;
 }
 
 .navBar__left {
@@ -400,8 +396,8 @@ aside {
 }
 
 main {
-  width: 78%;
-  padding-top: 70px;
+  width: 100%;
+  padding: 50px 120px;
   height: 100%;
   text-align: center;
   display: flex;
@@ -474,18 +470,6 @@ main {
   font-size: 10px;
   width: 40px;
   height: 100%;
-}
-
-.first {
-  background-color: #d97a7a;
-}
-
-.second {
-  background-color: #7aaedd;
-}
-
-.third {
-  background-color: #86dd5d;
 }
 
 .article__contents__container {
@@ -615,10 +599,172 @@ main {
 #article__list__container {
   width: 50%;
   height: 100%;
-  z-index: 4;
-  display: flex;
-  align-items: flex-end;
+  overflow: hidden auto;
+  border-right: 2px solid lightgray;
+  position: relative;
 }
+
+.aritcle__list__popUp {
+  margin-top: 20px;
+  width: 300px;
+  height: 390px;
+  background-color: #f5f5f5;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.popUp__toggle {
+  position: relative;
+}
+
+#popUp__toggle__btn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  margin: 8px 8px 0px 0px;
+}
+
+.popUp__profile {
+  height: 17%;
+  display: flex;
+  padding: 20px 25px 10px 25px;
+}
+
+.popUp__profile__img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popUp__profile__img img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.popUp__profile__names {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 10px;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.profile__id {
+  font-size: 15px;
+}
+
+.profile__pos {
+  font-size: 12px;
+}
+
+.popUp__myCart {
+  width: 100%;
+  padding: 10px;
+  background-color: #d9d9d9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+}
+
+.popUp__myCart__list {
+  width: 100%;
+  padding: 20px 30px 5px 30px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.myCart__each__list {
+  height: 70px;
+  display: flex;
+  gap: 12px;
+}
+
+.collection__container {
+  height: 100%;
+  width: 15%;
+  position: relative;
+}
+
+.each__list__container {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 2;
+}
+
+.list__main__title {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.list__main__author {
+  font-size: 10px;
+}
+
+.list__main__hashtags {
+  display: flex;
+  justify-content: end;
+  font-size: 11px;
+  gap: 5px;
+}
+
+.each__list__trash {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+}
+
+.collection__template {
+  width: 40px;
+  height: 52px;
+  position: absolute;
+}
+
+.first {
+  right: 0px;
+  top: 0px;
+  background-color: #ffffff;
+  z-index: 3;
+}
+
+.second {
+  top: 5px;
+  right: 8px;
+  background-color: rgba(217, 217, 217, 1);
+  z-index: 2;
+}
+
+.third {
+  top: 10px;
+  right: 4px;
+  background-color: #d97a7a;
+  z-index: 1;
+}
+
+.popUp__pagination {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+}
+
+.article__list__controller {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 10px;
+  cursor: pointer;
+}
+
+/* article__write */
 
 .article__write {
   width: 90%;

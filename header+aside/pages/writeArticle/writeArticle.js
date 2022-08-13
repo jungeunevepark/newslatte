@@ -21,18 +21,18 @@ const openLoginModal = () => {
   darkBg.style.display = "block";
 };
 
-navBarLoginBtn.addEventListener("click", openLoginModal);
-modalClose.addEventListener("click", closeLoginModal);
+// navBarLoginBtn.addEventListener("click", openLoginModal);
+// modalClose.addEventListener("click", closeLoginModal);
 
-const isLogin = () => {
-  let profileLocal = localStorage.getItem("profile");
+// const isLogin = () => {
+//   let profileLocal = localStorage.getItem("profile");
 
-  if (profileLocal) {
-    navBarLoginBtn.style.display = "none";
-    navProfileImg.src = profileLocal;
-    navProfileImg.style.display = "block";
-  }
-};
+//   if (profileLocal) {
+//     navBarLoginBtn.style.display = "none";
+//     navProfileImg.src = profileLocal;
+//     navProfileImg.style.display = "block";
+//   }
+// };
 
 const hideAsideBar = () => {
   asideBar.classList.remove("show_aside");
@@ -171,5 +171,33 @@ writeSpanList.forEach((writeSpan) => {
   writeSpan.addEventListener("click", removeAllSpanText);
 });
 
+// article controller 누르는 것에 따라 width resizing
+
+const articleList = document.getElementById("article__list__container");
+
+const articleListController = [
+  ...document.getElementsByClassName("article__list__controller"),
+];
+
+function changeWidthSize(event) {
+  let screenX = event.screenX + 5;
+  let curWidth = screenX - 120;
+  articleList.style.width = `${curWidth}px`;
+}
+
+let isResizing = false;
+
+function removeResizeEvent() {
+  console.log("hi");
+  articleListController[0].removeEventListener("mousemove", changeWidthSize);
+}
+
+function changeSizeHandler() {
+  articleListController[0].addEventListener("mousemove", changeWidthSize);
+  document.addEventListener("mouseup", removeResizeEvent);
+}
+
+articleListController[0].addEventListener("mousedown", changeSizeHandler);
+
 //login 체크, local memory 가져와서 확인
-isLogin();
+// isLogin();
