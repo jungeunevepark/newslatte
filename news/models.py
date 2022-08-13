@@ -12,7 +12,7 @@ class NewsImage(models.Model):
 class News(models.Model) :
     journalist = models.CharField(max_length=10, null=True)
     press= models.CharField(max_length=10, null=True)
-    date = models.DateTimeField()
+    date = models.DateField()
     section = models.CharField(max_length=10)
     link = models.URLField()
     image = models.ForeignKey(NewsImage, on_delete=models.SET_NULL, null=True)
@@ -20,8 +20,6 @@ class News(models.Model) :
     main_content = models.TextField()
     summary = models.TextField(null=True)
     views = models.IntegerField(default=0)
-
-
 
     def __str__(self):
         return self.title
