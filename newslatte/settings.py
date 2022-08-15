@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from pickle import TRUE
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,9 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news',
-    'accounts',
     'django.contrib.sites',
+
+    'news',
+    'collection',
+    'post',
+    'ui',
+    'accounts',
 
     'allauth',
     'allauth.account',
@@ -53,6 +58,10 @@ INSTALLED_APPS = [
 
     # 이메일 인증
     'six',
+    
+    
+    'django_summernote' # app for text editor(summernote)
+
 
 ]
 
@@ -134,10 +143,27 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'collection', 'static'),
+    os.path.join(BASE_DIR, 'news', 'static'),
+    os.path.join(BASE_DIR, 'post', 'static'),
+    os.path.join(BASE_DIR, 'ui', 'static'),
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -157,6 +183,7 @@ SITE_ID = 1
 #         }
 #     }
 # }
+
 
 AUTH_USER_MODEL = "accounts.User"          # (appname.User) 재설정 언급
 
