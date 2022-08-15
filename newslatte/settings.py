@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from pickle import TRUE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -153,3 +154,17 @@ SITE_ID = 1
 #         }
 #     }
 # }
+
+AUTH_USER_MODEL = "accounts.User"          # (appname.User) 재설정 언급
+
+
+ACCOUNT_SESSION_REMEMBER = True            # 브라우저를 닫아도 세션 기록 유지(로그인 계속 되게)
+SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
+
+
+# ACCOUNT_SIGNUP_FORM_CLASS = 'coplate.forms.SignupForm'
+
+
+# 이떄 만료된 쿠키는 서버 session에 계속 남아있음!
+# python manage.py clearsessions로 삭제해주기.
+# 자동화하거나 수동으로
