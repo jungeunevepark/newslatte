@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
 
+    'django_summernote' # app for text editor(summernote)
+
 ]
 
 MIDDLEWARE = [
