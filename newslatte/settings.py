@@ -38,12 +38,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     'news',
     'collection',
     'post',
     'ui',
     'accounts',
-    'django.contrib.sites',
 
     'allauth',
     'allauth.account',
@@ -135,6 +136,19 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'collection', 'static'),
+    os.path.join(BASE_DIR, 'news', 'static'),
+    os.path.join(BASE_DIR, 'post', 'static'),
+    os.path.join(BASE_DIR, 'ui', 'static'),
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
