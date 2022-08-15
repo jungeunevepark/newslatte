@@ -51,6 +51,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
 
+    # 이메일 인증
+    'six',
+
 ]
 
 MIDDLEWARE = [
@@ -164,6 +167,14 @@ SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
 
 # ACCOUNT_SIGNUP_FORM_CLASS = 'coplate.forms.SignupForm'
 
+
+# 이메일 인증 관련
+EMAIL_HOST = 'smtp.gmail.com' 		         # 메일 호스트 서버
+EMAIL_PORT = '587' 			                 # 서버 포트
+EMAIL_HOST_USER = 'newslattee@gmail.com' 	 # 우리가 사용할 Gmail
+EMAIL_HOST_PASSWORD = 'ybwwhxfuripmjhxj'		     # 우리가 사용할 Gmail pw
+EMAIL_USE_TLS = True			             # TLS 보안 설정
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER	     # 응답 메일 관련 설정
 
 # 이떄 만료된 쿠키는 서버 session에 계속 남아있음!
 # python manage.py clearsessions로 삭제해주기.
