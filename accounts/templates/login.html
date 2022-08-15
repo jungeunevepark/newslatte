@@ -3,7 +3,7 @@
 
 <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
-    username: <input type="text" name="username"> <br>
+    email: <input type="text" name="email"> <br>
     password: <input type="password" name="password">
     <br>
     <input type="submit" value="로그인">
