@@ -1,0 +1,18 @@
+<h1>{{ collection.title }}</h1>
+<p>{{ collection.user.username }} </p>
+<p>Likes: {{ collection.likes }} </p>
+<p>Referenced: {{ collection.refCount }} </p>
+<p>tag</p>
+
+
+{% for news in collection.news.all %}
+
+<h2>{{ news.title }} </h2>
+<p>summary</p>
+<p>{{news.press}} | {{ news.date}}  </p>
+<h2>{{news.title}}</h2>
+<img src="{{news.image.image}}"></img>
+<pre>{{news.main_content}}</pre>
+
+{% endfor %}
+
