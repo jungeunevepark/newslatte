@@ -1,0 +1,10 @@
+<form action="{% url 'signup' %}" method="POST">
+    {% csrf_token %}
+    email: <input type="text" name="email"> <br>
+    password: <input type="password" name="password"><br>
+    repeat: <input type="password" name="repeat"><br>
+    nickname : <input type="text" name="nickname"><br>
+    intro : <input type="text" name="intro">
+    <br>
+    <input type="submit" value="회원가입">
+</form>

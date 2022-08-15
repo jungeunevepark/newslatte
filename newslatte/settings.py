@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+from pickle import TRUE
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +39,30 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
     'news',
+    'collection',
+    'post',
+    'ui',
+    'accounts',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # providers
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.naver',
+    'allauth.socialaccount.providers.kakao',
+
+    # 이메일 인증
+    'six',
+    
+    
+    'django_summernote' # app for text editor(summernote)
+
+
 ]
 
 MIDDLEWARE = [
@@ -118,7 +143,66 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'accounts', 'static'),
+    os.path.join(BASE_DIR, 'collection', 'static'),
+    os.path.join(BASE_DIR, 'news', 'static'),
+    os.path.join(BASE_DIR, 'post', 'static'),
+    os.path.join(BASE_DIR, 'ui', 'static'),
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+]
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+SITE_ID = 1
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile', 
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online'
+#         }
+#     }
+# }
+
+
+AUTH_USER_MODEL = "accounts.User"          # (appname.User) 재설정 언급
+
+
+ACCOUNT_SESSION_REMEMBER = True            # 브라우저를 닫아도 세션 기록 유지(로그인 계속 되게)
+SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
+
+
+# ACCOUNT_SIGNUP_FORM_CLASS = 'coplate.forms.SignupForm'
+
+
+# 이메일 인증 관련
+EMAIL_HOST = 'smtp.gmail.com' 		         # 메일 호스트 서버
+EMAIL_PORT = '587' 			                 # 서버 포트
+EMAIL_HOST_USER = 'newslattee@gmail.com' 	 # 우리가 사용할 Gmail
+EMAIL_HOST_PASSWORD = 'ybwwhxfuripmjhxj'		     # 우리가 사용할 Gmail pw
+EMAIL_USE_TLS = True			             # TLS 보안 설정
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER	     # 응답 메일 관련 설정
+
+# 이떄 만료된 쿠키는 서버 session에 계속 남아있음!
+# python manage.py clearsessions로 삭제해주기.
+# 자동화하거나 수동으로
