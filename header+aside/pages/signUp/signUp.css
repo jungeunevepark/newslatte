@@ -1,0 +1,686 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+/* reset.css */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* reset.css */
+
+/* header */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0px;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  position: relative;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+.bg__dark {
+  width: 100vw;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.6;
+  position: absolute;
+  z-index: 4;
+  display: none;
+}
+
+.header__container {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+header {
+  padding: 20px 0px;
+  font-size: 25px;
+  position: fixed;
+  width: 85%;
+  background-color: white;
+  z-index: 3;
+}
+
+.navBar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBar__name__h1 {
+  font-weight: bold;
+}
+
+#navBar__toggle__icon {
+  z-index: 999;
+}
+
+.navBar__toggle,
+.navBar__searchLogin {
+  width: 120px;
+}
+.navBar__searchLogin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBar__login__btn {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 5px 17px;
+  color: gray;
+}
+
+.navBar__login__btn:hover {
+  background-color: lightgray;
+}
+
+.navBar__profile__img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: none;
+}
+
+.navBar__line {
+  width: 100%;
+}
+
+/* asdie 창 */
+
+aside {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: 18px;
+  box-shadow: 1px 1px 3px gray;
+  visibility: hidden;
+  transform: translateX(-400px);
+  z-index: 4;
+  overflow: auto;
+}
+
+.aside__top {
+  height: 10%;
+  display: flex;
+  background-color: #efedea;
+}
+
+.aside__top i {
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.aside__main {
+  height: 40%;
+  text-align: center;
+  background-color: #efedea;
+}
+
+.aside__main * {
+  padding: 6px;
+}
+
+.aside__main__profile {
+  height: 80%;
+  font-size: 13px;
+}
+
+.main__profile__img {
+  width: 90px;
+  height: 80px;
+}
+
+#profile__userName {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.main__profile__write {
+  height: 20%;
+}
+
+.profile__write__btn {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.aside__list {
+  font-size: 15px;
+  background-color: white;
+  padding: 30px 0px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 28px;
+  height: 45%;
+}
+
+.aside__list li {
+  cursor: pointer;
+}
+
+.list__mycafe__input {
+  display: none;
+}
+
+.aside__list__myCafe {
+  padding-left: 35px;
+  font-size: 13px;
+  line-height: 20px;
+  color: gray;
+}
+
+.aside__list .dropDn ul {
+  display: none;
+}
+
+.show_list {
+  display: block;
+}
+
+.show_aside {
+  transition: all ease 0.4s;
+  transform: translateX(0px);
+}
+
+/* modal 창 */
+
+#modal {
+  position: fixed;
+  width: 85%;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  top: -30px;
+  z-index: 4;
+}
+
+.modal__show {
+  transition: all ease 0.5s;
+  transform: translateY(70px);
+}
+
+.modal__wrap {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal__login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: centers;
+  align-items: center;
+}
+
+.modal__login__form * {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 40px;
+  margin: 1vh 0;
+  border-radius: 10px;
+}
+
+#login__submit__btn {
+  background-color: white;
+}
+
+#modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+/* main 페이지 */
+.main__container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 85%;
+  padding-top: 90px;
+  height: 2000px;
+  text-align: center;
+}
+
+.main__slide {
+  position: relative;
+}
+
+#main__bgImg {
+  width: 100%;
+  height: 25vw;
+}
+
+.main__slide__text {
+  position: absolute;
+  top: 30%;
+  left: 3%;
+  font-size: 3vw;
+  font-weight: bolder;
+}
+
+#main__slide__btn {
+  margin-top: 15px;
+  width: 130px;
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* signUp 페이지 */
+
+#signUp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp__container {
+  padding: 100px;
+  width: 900px;
+}
+
+.signUp__social__login {
+  height: 140px;
+}
+
+.signUp__social__login * {
+  line-height: 50px;
+}
+
+.signUp__normal__login * {
+  line-height: 20px;
+}
+
+.signUp__normal__login input {
+  border-radius: 20px;
+  font-size: 20px;
+  padding: 15px;
+  border: 1px solid gray;
+}
+
+#singUp__submit__btn {
+  background-color: #8e7676;
+  color: white;
+}
+
+.modal__signUp__form {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__signUp__form * {
+  margin: 10px 0px;
+}
+
+.social__login {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px;
+}
+
+.social__login__imgs {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+/* 추천 컬렉션 */
+.collection_box {
+  width: 100%;
+  min-height: 400px;
+  max-height: 400px;
+  background-color: #efedea;
+  margin-top: 30px;
+  display: flex;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.recommend_category {
+  width: 30%;
+  height: 400px;
+  text-align: center;
+  margin-left: 40px;
+}
+
+.recommend_collection {
+  width: 100%;
+  font-size: 34px;
+  position: relative;
+  top: 20%;
+  color: #8e7676;
+}
+
+.category_name {
+  font-size: 24px;
+  height: 30px;
+  color: #8e7676;
+  width: 80px;
+  border-bottom: 2px solid #8e7676;
+  margin-bottom: 10px;
+}
+
+.category_show {
+  position: relative;
+  font-size: 24px;
+  top: 30%;
+  color: #8e7676;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btns {
+  position: relative;
+  top: 130px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.category_btn {
+  margin-left: 7px;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 15px;
+  border-color: transparent;
+  width: 60px;
+  height: 24px;
+}
+
+.recommend_post {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.img_container {
+  margin-left: 70px;
+  display: inline-block;
+}
+
+.collection_title,
+.collection_collector {
+  position: relative;
+  top: 320px;
+  left: 30px;
+  text-decoration: none;
+  color: black;
+}
+
+.first_img {
+  width: 130px;
+  height: 190px;
+  position: relative;
+  left: 20px;
+  top: 20px;
+  background-color: #d97a7a;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.second_img {
+  width: 130px;
+  height: 190px;
+  position: relative;
+  left: -20px;
+  top: -255px;
+  background-color: #d9d9d9;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+.third_img {
+  width: 130px;
+  height: 190px;
+  position: relative;
+  left: 50px;
+  top: -520px;
+  background-color: #ffffff;
+  margin-left: 50px;
+  margin-top: 50px;
+}
+
+/* 추천 인사이트 */
+.insights_box {
+  margin-top: 40px;
+  width: 80%;
+  height: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insights_header {
+  font-size: 30px;
+  text-align: left;
+}
+
+.post_box {
+  text-align: center;
+}
+
+.post_container {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+
+.post_img {
+  background-color: #d9d9d9;
+  width: 240px;
+  height: 120px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.post_contents {
+  width: 100%;
+  text-align: left;
+}
+
+.post_title {
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+}
+
+.post_body {
+  font-size: 12px;
+  margin-top: 10px;
+  text-decoration: none;
+  display: inline-block;
+  color: black;
+}
+
+.profile_pic {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  top: 40px;
+}
+
+.post_author {
+  text-decoration: none;
+  color: black;
+  font-size: 14px;
+  color: #bcbcbc;
+  position: relative;
+  top: 30px;
+  left: 10px;
+}
+
+.post_category {
+  position: relative;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  height: 22px;
+  left: 147px;
+  top: 12px;
+  border-radius: 14px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+}
