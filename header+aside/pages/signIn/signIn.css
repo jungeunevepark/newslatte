@@ -1,0 +1,514 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+
+/* reset.css */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* reset.css */
+
+/* header */
+
+* {
+  box-sizing: border-box;
+}
+
+iframe {
+  display: none;
+}
+
+html {
+  margin: 0px;
+  width: 100%;
+}
+
+body {
+  width: 100%;
+  position: relative;
+  font-family: "Noto Sans KR", sans-serif;
+}
+
+input {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 100%;
+}
+
+.bg__dark {
+  width: 100vw;
+  height: 100%;
+  background-color: gray;
+  opacity: 0.6;
+  position: absolute;
+  z-index: 4;
+  display: none;
+}
+
+.header__container {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+header {
+  padding: 10px;
+  font-size: 25px;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  z-index: 3;
+  border-bottom: 1px solid lightgray;
+}
+
+.navBar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navBar__name__h1 {
+  font-weight: bold;
+}
+
+.navBar__left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBar__right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.navBar__right__save {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: 8px;
+  padding: 5px 17px;
+  color: gray;
+}
+
+.navBar__right__temporal:hover {
+  background-color: lightgray;
+}
+
+.navBar__line {
+  width: 100%;
+}
+
+/* asdie 창 */
+
+aside {
+  width: 300px;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  font-size: 18px;
+  box-shadow: 1px 1px 3px gray;
+  visibility: hidden;
+  transform: translateX(-400px);
+  z-index: 4;
+  overflow: auto;
+}
+
+.aside__top {
+  height: 10%;
+  display: flex;
+  background-color: #efedea;
+}
+
+.aside__top i {
+  margin-left: auto;
+  margin-right: 15px;
+  margin-top: 15px;
+}
+
+.aside__main {
+  height: 40%;
+  text-align: center;
+  background-color: #efedea;
+}
+
+.aside__main * {
+  padding: 6px;
+}
+
+.aside__main__profile {
+  height: 80%;
+  font-size: 13px;
+}
+
+.main__profile__img {
+  width: 90px;
+  height: 80px;
+}
+
+#profile__userName {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.main__profile__write {
+  height: 20%;
+}
+
+.profile__write__btn {
+  border-radius: 10px;
+  border: 1px solid gray;
+}
+
+.aside__list {
+  font-size: 15px;
+  background-color: white;
+  padding: 30px 0px 0px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: 28px;
+  height: 45%;
+}
+
+.aside__list li {
+  cursor: pointer;
+}
+
+.list__mycafe__input {
+  display: none;
+}
+
+.aside__list__myCafe {
+  padding-left: 35px;
+  font-size: 13px;
+  line-height: 20px;
+  color: gray;
+}
+
+.aside__list .dropDn ul {
+  display: none;
+}
+
+.show_list {
+  display: block;
+}
+
+.show_aside {
+  transition: all ease 0.4s;
+  transform: translateX(0px);
+}
+
+/* modal 창 */
+
+#modal {
+  position: fixed;
+  width: 85%;
+  display: flex;
+  visibility: hidden;
+  justify-content: center;
+  top: -30px;
+  z-index: 4;
+}
+
+.modal__show {
+  transition: all ease 0.5s;
+  transform: translateY(70px);
+}
+
+.modal__wrap {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 50px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal__login__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: centers;
+  align-items: center;
+}
+
+.modal__login__form * {
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  height: 40px;
+  margin: 1vh 0;
+  border-radius: 10px;
+}
+
+#login__submit__btn {
+  background-color: white;
+}
+
+#modal__close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+/* main 페이지 */
+.main__container {
+  display: flex;
+  justify-content: center;
+}
+
+main {
+  width: 85%;
+  padding-top: 90px;
+  height: 2000px;
+  text-align: center;
+}
+
+.main__slide {
+  position: relative;
+}
+
+#main__bgImg {
+  width: 100%;
+  height: 25vw;
+}
+
+.main__slide__text {
+  position: absolute;
+  top: 30%;
+  left: 3%;
+  font-size: 3vw;
+  font-weight: bolder;
+}
+
+#main__slide__btn {
+  margin-top: 15px;
+  width: 130px;
+  border: 1px gray solid;
+  border-radius: 10px;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* signUp 페이지 */
+
+#signUp {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp__container {
+  padding: 100px 70px;
+  width: 550px;
+}
+
+.signUp__first__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.signUp__social__login {
+  margin-top: 40px;
+}
+
+.signUp__logo {
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.signUp__normal__login {
+  margin-top: 20px;
+}
+
+.signUp__normal__login * {
+  line-height: 20px;
+}
+
+.signUp__normal__login input {
+  padding: 10px;
+  border: 1px solid lightgray;
+}
+
+.signUp__normal__login input::placeholder {
+  font-size: 13px;
+  font-weight: 300;
+  color: lightgray;
+}
+
+#signUp__first__btn,
+#signUp__second__btn {
+  background-color: black;
+  font-size: 15px;
+  font-weight: 400;
+  color: white;
+}
+
+.modal__signUp__form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__signUp__form * {
+  margin: 5px 0px;
+}
+
+.social__login {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 5px;
+}
+
+.social__login__imgs {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0px;
+  border-bottom: 1px solid lightgray;
+}
+
+.signUp__anchor {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+footer {
+  width: 100%;
+  position: fixed;
+}

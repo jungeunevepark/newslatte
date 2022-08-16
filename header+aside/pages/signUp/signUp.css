@@ -146,6 +146,15 @@ body {
   font-family: "Noto Sans KR", sans-serif;
 }
 
+iframe {
+  display: none;
+}
+
+input {
+  font-family: "Noto Sans KR", sans-serif;
+  width: 100%;
+}
+
 .bg__dark {
   width: 100vw;
   height: 100%;
@@ -164,12 +173,13 @@ body {
 }
 
 header {
-  padding: 20px 0px;
+  padding: 10px;
   font-size: 25px;
   position: fixed;
-  width: 85%;
+  width: 100%;
   background-color: white;
   z-index: 3;
+  border-bottom: 1px solid lightgray;
 }
 
 .navBar__container {
@@ -182,21 +192,21 @@ header {
   font-weight: bold;
 }
 
-#navBar__toggle__icon {
-  z-index: 999;
+.navBar__left {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
 }
 
-.navBar__toggle,
-.navBar__searchLogin {
-  width: 120px;
-}
-.navBar__searchLogin {
+.navBar__right {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
-.navBar__login__btn {
+.navBar__right__save {
   background-color: transparent;
   border: 1px solid gray;
   border-radius: 8px;
@@ -204,15 +214,8 @@ header {
   color: gray;
 }
 
-.navBar__login__btn:hover {
+.navBar__right__temporal:hover {
   background-color: lightgray;
-}
-
-.navBar__profile__img {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: none;
 }
 
 .navBar__line {
@@ -427,16 +430,22 @@ main {
 }
 
 .signUp__container {
-  padding: 100px;
-  width: 900px;
+  padding: 80px 70px;
+  width: 550px;
 }
 
 .signUp__social__login {
-  height: 140px;
+  margin-top: 40px;
 }
 
-.signUp__social__login * {
-  line-height: 50px;
+.signUp__logo {
+  text-align: center;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+.signUp__normal__login {
+  margin-top: 20px;
 }
 
 .signUp__normal__login * {
@@ -444,25 +453,33 @@ main {
 }
 
 .signUp__normal__login input {
-  border-radius: 20px;
-  font-size: 20px;
-  padding: 15px;
-  border: 1px solid gray;
+  padding: 10px;
+  border: 1px solid lightgray;
 }
 
-#singUp__submit__btn {
-  background-color: #8e7676;
+.signUp__normal__login input::placeholder {
+  font-size: 13px;
+  font-weight: 300;
+  color: lightgray;
+}
+
+#signUp__first__btn,
+#signUp__second__btn {
+  background-color: black;
+  font-size: 15px;
+  font-weight: 400;
   color: white;
 }
 
 .modal__signUp__form {
+  margin-top: 15px;
   height: 300px;
   display: flex;
   flex-direction: column;
 }
 
 .modal__signUp__form * {
-  margin: 10px 0px;
+  margin: 5px 0px;
 }
 
 .social__login {
@@ -475,209 +492,40 @@ main {
 .social__login__imgs {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 15px;
+  padding: 20px 0px;
+  border-bottom: 1px solid lightgray;
 }
 
-/* 추천 컬렉션 */
-.collection_box {
-  width: 100%;
-  min-height: 400px;
-  max-height: 400px;
-  background-color: #efedea;
-  margin-top: 30px;
-  display: flex;
-  white-space: nowrap;
-  overflow-x: scroll;
-}
+/* second signUp page */
 
-.recommend_category {
-  width: 30%;
-  height: 400px;
-  text-align: center;
-  margin-left: 40px;
-}
-
-.recommend_collection {
-  width: 100%;
-  font-size: 34px;
-  position: relative;
-  top: 20%;
-  color: #8e7676;
-}
-
-.category_name {
-  font-size: 24px;
-  height: 30px;
-  color: #8e7676;
-  width: 80px;
-  border-bottom: 2px solid #8e7676;
-  margin-bottom: 10px;
-}
-
-.category_show {
-  position: relative;
-  font-size: 24px;
-  top: 30%;
-  color: #8e7676;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.btns {
-  position: relative;
-  top: 130px;
-  width: 100%;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.category_btn {
-  margin-left: 7px;
-  margin-top: 20px;
-  background-color: white;
-  border-radius: 15px;
-  border-color: transparent;
-  width: 60px;
-  height: 24px;
-}
-
-.recommend_post {
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-.img_container {
-  margin-left: 70px;
-  display: inline-block;
-}
-
-.collection_title,
-.collection_collector {
-  position: relative;
-  top: 320px;
-  left: 30px;
-  text-decoration: none;
-  color: black;
-}
-
-.first_img {
-  width: 130px;
-  height: 190px;
-  position: relative;
-  left: 20px;
-  top: 20px;
-  background-color: #d97a7a;
-  margin-left: 50px;
-  margin-top: 50px;
-}
-
-.second_img {
-  width: 130px;
-  height: 190px;
-  position: relative;
-  left: -20px;
-  top: -255px;
-  background-color: #d9d9d9;
-  margin-left: 50px;
-  margin-top: 50px;
-}
-
-.third_img {
-  width: 130px;
-  height: 190px;
-  position: relative;
-  left: 50px;
-  top: -520px;
-  background-color: #ffffff;
-  margin-left: 50px;
-  margin-top: 50px;
-}
-
-/* 추천 인사이트 */
-.insights_box {
+.signUp__second__container {
+  display: none;
   margin-top: 40px;
-  width: 80%;
-  height: 1000px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.insights_header {
-  font-size: 30px;
-  text-align: left;
+.modal__signUp__guide {
+  font-size: 11px;
+  font-weight: 300;
+  margin: 0px;
 }
 
-.post_box {
-  text-align: center;
+.modal__signUp__guide p {
+  margin: 0px;
 }
 
-.post_container {
-  width: 90%;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
-
-.post_img {
-  background-color: #d9d9d9;
-  width: 240px;
-  height: 120px;
-  margin-left: 20px;
-  margin-right: 20px;
-}
-
-.post_contents {
-  width: 100%;
-  text-align: left;
-}
-
-.post_title {
-  text-decoration: none;
+#password__check__guide {
   font-size: 15px;
-  color: black;
-}
-
-.post_body {
-  font-size: 12px;
-  margin-top: 10px;
-  text-decoration: none;
-  display: inline-block;
-  color: black;
-}
-
-.profile_pic {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  top: 40px;
-}
-
-.post_author {
-  text-decoration: none;
-  color: black;
-  font-size: 14px;
-  color: #bcbcbc;
-  position: relative;
-  top: 30px;
-  left: 10px;
-}
-
-.post_category {
-  position: relative;
-  width: 80px;
+  font-weight: 300;
+  height: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 14px;
-  height: 22px;
-  left: 147px;
-  top: 12px;
-  border-radius: 14px;
-  box-sizing: border-box;
-  border: 1px solid #cccccc;
+  margin: 0px;
+}
+
+#password__check__guide p {
+  height: 100%;
 }
 
 footer {

@@ -112,13 +112,15 @@ const maxArticleList = [
 ];
 
 function showMaxArticle(event) {
-  let targetedIdx = minToggleList.indexOf(event.target);
-  let targetedArticle = event.target.parentNode;
+  let eventTarget =
+    event.target.nodeName == "I" ? event.target.parentNode : event.target;
+  let targetedIdx = minToggleList.indexOf(eventTarget);
+  let targetedArticle = eventTarget.parentNode;
   targetedArticle.style.display = "none";
-  maxArticleList[targetedIdx].style.display = "block";
+  maxArticleList[targetedIdx].style.display = "flex";
 }
 
-Array.from(minToggleList).forEach((minArticle) => {
+minToggleList.forEach((minArticle) => {
   minArticle.addEventListener("click", showMaxArticle);
 });
 
@@ -130,9 +132,10 @@ const toggleMinIcons = [
 
 function showMinArticle(event) {
   let targetedNode =
-    event.target.nodeName == "P" ? event.path[2] : event.path[1];
+    event.target.nodeName == "I"
+      ? event.target.parentNode.parentNode
+      : event.target.parentNode;
   let targetedIdx = maxArticleList.indexOf(targetedNode);
-  console.log(targetedNode);
   targetedNode.style.display = "none";
   minToggleList[targetedIdx].parentNode.style.display = "flex";
 }
@@ -148,56 +151,139 @@ const writeTitleContainer = document.getElementsByClassName(
   "write__title__container"
 );
 
-function checkIfBlank() {
-  writeSpanList.forEach((span) => {
-    if (span.innerHTML == "") {
-      if (span.parentNode.classList[0] == "big") {
-        span.innerHTML = "제목을 입력하세요.";
-      } else if (span.parentNode.classList[0] == "regular") {
-        span.innerHTML = "소제목을 입력하세요.";
-      } else {
-        span.innerHTML = "00번째 라떼의 글을 꾸며봐요.";
-      }
+function checkIfBlank(e) {
+  let span = e.target;
+  if (span.innerHTML == "") {
+    span.style.color = "lightgray";
+    if (span.parentNode.classList[0] == "big") {
+      span.innerHTML = "제목을 입력하세요.";
+    } else if (span.parentNode.classList[0] == "regular") {
+      span.innerHTML = "소제목을 입력하세요.";
+    } else {
+      span.innerHTML = "00번째 라떼의 글을 꾸며봐요.";
     }
-  });
+  } else {
+  }
 }
 
 function removeAllSpanText(e) {
   e.target.innerText = "";
+  e.target.style.color = "black";
 }
 
 writeSpanList.forEach((writeSpan) => {
-  writeSpan.addEventListener("click", checkIfBlank);
+  writeSpan.addEventListener("focusout", checkIfBlank);
   writeSpan.addEventListener("click", removeAllSpanText);
 });
+
+// article__write에 focus 되어 있을 때 enter 누르면 줄 추가
+
+const articleWriteArea = [
+  ...document.getElementsByClassName("write__contents__container"),
+][0];
+const articleWriteSpan = [...articleWriteArea.getElementsByTagName("span")];
+const articleWriteParagraph = [...articleWriteArea.getElementsByTagName("p")];
+
+function addParagraphIfEnter(event) {
+  if (event.key == "Enter") {
+    event.preventDefault();
+    const p = document.createElement("p");
+    p.classList.add("small");
+    const span = document.createElement("span");
+    span.classList.add("write__title");
+    span.setAttribute("contenteditable", "true");
+    span.setAttribute("spellcheck", "false");
+    p.appendChild(span);
+    p.style.color = "black";
+    articleWriteArea.appendChild(p);
+  } else if (event.key == "Backspace" && event.target.innerHTML == "") {
+    event.preventDefault();
+    const deleteTarget = event.target.parentNode;
+    deleteTarget.parentNode.removeChild(deleteTarget);
+  }
+}
+
+function writeHandler(event) {
+  event.target.addEventListener("keydown", addParagraphIfEnter);
+}
+
+function init() {
+  articleWriteSpan.forEach((span) => {
+    span.addEventListener("focus", writeHandler);
+  });
+}
+
+const observer = new MutationObserver((mutations) => {
+  mutations.forEach((mutation) => {
+    let addElement;
+    if (mutation.addedNodes[0]) {
+      addElement = mutation.addedNodes[0];
+      articleWriteParagraph.push(addElement);
+      articleWriteSpan.push(addElement.childNodes[0]);
+      init();
+      addElement.childNodes[0].focus();
+    } else {
+      const previousIndex =
+        articleWriteParagraph.indexOf(mutation.removedNodes[0]) - 1;
+      articleWriteParagraph.splice(previousIndex + 1, 1);
+      init();
+      let targetFocus = [...articleWriteArea.getElementsByTagName("span")][
+        previousIndex
+      ];
+      targetFocus.focus();
+      //set a new range object
+      let caret = document.createRange();
+      //return the text selected or that will be appended to eventually
+      let sel = window.getSelection();
+      //get the node you wish to set range to
+      caret.selectNodeContents(targetFocus);
+      //set collapse to null or false to set at end of node
+      caret.collapse(null);
+      //make sure all ranges are removed from the selection object
+      sel.removeAllRanges();
+      //set all ranges to null and append it to the new range object
+      sel.addRange(caret);
+    }
+  });
+});
+
+const config = { childList: true };
+
+observer.observe(articleWriteArea, config);
 
 // article controller 누르는 것에 따라 width resizing
 
 const articleList = document.getElementById("article__list__container");
-
+const articleWrite = document.getElementById("article__write__container");
 const articleListController = [
   ...document.getElementsByClassName("article__list__controller"),
-];
+][0];
+
+const leftSide = articleList.getBoundingClientRect().x;
+const rightSide = articleListController.getBoundingClientRect().x;
 
 function changeWidthSize(event) {
-  let screenX = event.screenX + 5;
-  let curWidth = screenX - 120;
-  articleList.style.width = `${curWidth}px`;
+  let controller = event.screenX;
+  let curWidth = controller - leftSide;
+  if (curWidth >= 310 && rightSide - controller > -10) {
+    articleList.style.width = `${curWidth}px`;
+  }
 }
 
 let isResizing = false;
 
 function removeResizeEvent() {
-  console.log("hi");
-  articleListController[0].removeEventListener("mousemove", changeWidthSize);
+  document.removeEventListener("mousemove", changeWidthSize);
 }
 
 function changeSizeHandler() {
-  articleListController[0].addEventListener("mousemove", changeWidthSize);
+  document.addEventListener("mousemove", changeWidthSize);
   document.addEventListener("mouseup", removeResizeEvent);
 }
 
-articleListController[0].addEventListener("mousedown", changeSizeHandler);
+articleListController.addEventListener("mousedown", changeSizeHandler);
 
 //login 체크, local memory 가져와서 확인
 // isLogin();
+
+init();

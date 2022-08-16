@@ -397,9 +397,14 @@ aside {
 
 main {
   width: 100%;
-  padding: 50px 120px;
+  padding: 50px 120px 0px 120px;
   height: 100%;
   text-align: center;
+  display: flex;
+}
+
+.article__container {
+  width: 100%;
   display: flex;
 }
 
@@ -443,9 +448,9 @@ main {
 /* article lists */
 
 .article__list {
-  overflow: auto;
-  padding: 0px 50px;
+  margin-top: 40px;
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: column;
   gap: 10px;
   height: 90%;
@@ -466,8 +471,8 @@ main {
   align-items: center;
   border-radius: 10px 0px 0px 10px;
   justify-content: center;
-  color: white;
-  font-size: 10px;
+  color: black;
+  font-size: 20px;
   width: 40px;
   height: 100%;
 }
@@ -478,6 +483,7 @@ main {
   gap: 15px;
   align-items: center;
   align-self: stretch;
+  border-bottom: 1px solid lightgray;
 }
 
 .contents__thumbNail__imgs {
@@ -514,6 +520,8 @@ main {
 .article__container__max {
   display: none;
   border-radius: 10px;
+  gap: 20px;
+  width: 600px;
   background-color: white;
 }
 
@@ -521,8 +529,9 @@ main {
   cursor: pointer;
   height: 14px;
   border-radius: 5px 5px 0px 0px;
-  font-size: 10px;
-  color: white;
+  font-size: 20px;
+  color: black;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: right;
@@ -534,7 +543,7 @@ main {
 
 .article__contents__max {
   text-align: justify;
-  padding: 20px 30px;
+  padding: 20px 20px 20px 0px;
   display: flex;
   flex-direction: column;
   gap: 15px;
@@ -602,6 +611,17 @@ main {
   overflow: hidden auto;
   border-right: 2px solid lightgray;
   position: relative;
+}
+
+#article__list__container::-webkit-scrollbar {
+  background-color: lightgray;
+  width: 7px;
+}
+
+#article__list__container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  width: 7px;
+  border-radius: 5px;
 }
 
 .aritcle__list__popUp {
@@ -756,19 +776,23 @@ main {
 }
 
 .article__list__controller {
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  margin-left: -6px;
   height: 100%;
-  width: 10px;
-  cursor: pointer;
+  width: 12px;
+  cursor: col-resize;
+  background-color: white;
 }
 
 /* article__write */
 
 .article__write {
-  width: 90%;
+  width: 100%;
+  padding: 50px;
   color: lightgray;
+}
+
+.article__write p {
+  width: 100%;
 }
 
 .article__write span:focus {
@@ -799,6 +823,10 @@ main {
 .write__title__container hr {
   width: 100%;
   border: 1px lightgray solid;
+}
+
+.write__title {
+  width: 100%;
 }
 
 .write__contents__container {
