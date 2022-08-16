@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="Ko">
   <head>
@@ -12,7 +14,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="writeArticle.css" />
+    <link rel="stylesheet" href="{% static '/post/css/writeArticle.css' %}" />
   </head>
   <body>
     <div class="bg__dark"></div>
@@ -98,13 +100,16 @@
                     <img src="../../resources/dummy.png" alt="">
                   </div>
                   <div class="popUp__profile__names">
-                    <p class="profile__id">아이디(이름)</p>
+                    <p class="profile__id">{{ user.nickname }}</p>
                     <p class="profile__pos">초보 바리스타</p>
                   </div>
                 </div>
                 <div class="popUp__myCart">저장한 컬렉션</div>
                 <div class="popUp__myCart__list">
-                  <div class="myCart__each__list">
+
+                  <!-- 컬렉션 리스트  -->
+                  {% for collection in collections %}
+                  <div id="{{ collection.id }}" class="myCart__each__list" onclick="showArticles(id)">
                     <div class="collection__container">
                       <div class="collection__template first"></div>
                       <div class="collection__template second"></div>
@@ -112,7 +117,32 @@
                     </div>
                     <div class="each__list__container">
                       <div class="list__main__title">
-                        <h3>솔방울의 영양학적 가치</h3>
+                        <h3>{{ collection.title }}</h3>
+                      </div>
+                      <div class="list__main__author">
+                        <p>{{ collection.user.nickname}} </p>
+                      </div>
+                      <div class="list__main__hashtags">
+                        {% for tag in collection.tag.all %}
+                        <p># {{ tag.name }} </p>
+                        {% endfor %}
+                      </div>
+                    </div>
+                    <div class="each__list__trash">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </div>
+                  {% endfor %}
+
+                  <!-- <div class="myCart__each__list">
+                    <div class="collection__container">
+                      <div class="collection__template first"></div>
+                      <div class="collection__template second"></div>
+                      <div class="collection__template third"></div>
+                    </div>
+                    <div class="each__list__container">
+                      <div class="list__main__title">
+                        <h3>컬렉션2</h3>
                       </div>
                       <div class="list__main__author">
                         <p>솔방울맨 한우석</p>
@@ -126,6 +156,7 @@
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </div>
+
                   <div class="myCart__each__list">
                     <div class="collection__container">
                       <div class="collection__template first"></div>
@@ -134,7 +165,7 @@
                     </div>
                     <div class="each__list__container">
                       <div class="list__main__title">
-                        <h3>솔방울의 영양학적 가치</h3>
+                        <h3>컬렉션3</h3>
                       </div>
                       <div class="list__main__author">
                         <p>솔방울맨 한우석</p>
@@ -148,29 +179,10 @@
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </div>
-                  <div class="myCart__each__list">
-                    <div class="collection__container">
-                      <div class="collection__template first"></div>
-                      <div class="collection__template second"></div>
-                      <div class="collection__template third"></div>
-                    </div>
-                    <div class="each__list__container">
-                      <div class="list__main__title">
-                        <h3>솔방울의 영양학적 가치</h3>
-                      </div>
-                      <div class="list__main__author">
-                        <p>솔방울맨 한우석</p>
-                      </div>
-                      <div class="list__main__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                    </div>
-                    <div class="each__list__trash">
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
+                </div> -->
+
+
+
                 <div class="popUp__pagination">
                   <p>&#8249;</p>
                   <p>1</p>
@@ -181,7 +193,10 @@
                   <p>&#8250;</p>
                 </div>
             </div>
+
               <div class="article__list">
+
+
                   <article class="article__container__min">
                       <div class="article__toggle">
                         <i class="fa-solid fa-circle-chevron-right"></i>
@@ -192,7 +207,7 @@
                           </div>
                           <div class="article__contents__texts">
                               <div class="contents__title">
-                                  <p>기사의 제목입니다.</p>
+                                  <p>기사1.</p>
                               </div>
                               <div class="contents__paragraph">
                                   <p>하여도 하였으며, 크고 것은 같으며, 예가 아니다. 따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은 아니다. 인생에 때에, 영락과 어디 대한 할지라도 붙잡아 있으며, 풀이 약동하다.</p>
@@ -231,6 +246,9 @@
                           </div>
                       </div>
                   </article>
+
+
+
                   <article class="article__container__min">
                       <div class="article__toggle">
                         <i class="fa-solid fa-circle-chevron-right"></i>
@@ -241,7 +259,7 @@
                           </div>
                           <div class="article__contents__texts">
                               <div class="contents__title">
-                                  <p>기사의 제목입니다.</p>
+                                  <p>기사2.</p>
                               </div>
                               <div class="contents__paragraph">
                                   <p>하여도 하였으며, 크고 것은 같으며, 예가 아니다. 따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은 아니다. 인생에 때에, 영락과 어디 대한 할지라도 붙잡아 있으며, 풀이 약동하다.</p>
@@ -280,6 +298,8 @@
                           </div>
                       </div>
                   </article>
+
+
                   <article class="article__container__min">
                       <div class="article__toggle">
                         <i class="fa-solid fa-circle-chevron-right"></i>
@@ -290,7 +310,7 @@
                           </div>
                           <div class="article__contents__texts">
                               <div class="contents__title">
-                                  <p>기사의 제목입니다.</p>
+                                  <p>기사3.</p>
                               </div>
                               <div class="contents__paragraph">
                                   <p>하여도 하였으며, 크고 것은 같으며, 예가 아니다. 따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은 아니다. 인생에 때에, 영락과 어디 대한 할지라도 붙잡아 있으며, 풀이 약동하다.</p>
@@ -329,6 +349,8 @@
                           </div>
                       </div>
                   </article>
+
+
               </div>
           </section>
           <div class="article__list__controller"></div>
@@ -386,6 +408,7 @@
       </main>
       <footer></footer>
     </div>
-    <script type="module" src="writeArticle.js"></script>
+    <script src="{% static '/js/csrf_token.js' %}"></script>
+    <script type="module" src="{% static '/post/js/writeArticle.js' %}"></script>
   </body>
 </html>

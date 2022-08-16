@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 
+
 class UserManager(BaseUserManager):
     def create_user(self, email, nickname, intro, password=None):
         if not email:
@@ -40,6 +41,9 @@ class User(AbstractBaseUser):
     nickname = models.CharField(max_length=18, verbose_name="닉네임", unique=True)#, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
+    
+    collectionScrapped = models.ManyToManyField(to='collection.Collection', related_name='refUser') 
+
 
     objects = UserManager()
 

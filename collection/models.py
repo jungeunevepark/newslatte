@@ -1,7 +1,9 @@
 from django.db import models
- 
+
 from accounts.models import User
-from news.models import News 
+from news.models import News
+# from post.models import Tag
+
 # Create your models here.
 
 class Collection(models.Model):
@@ -13,8 +15,9 @@ class Collection(models.Model):
     likes = models.IntegerField(default=0)
     views = models.IntegerField(default=0)
     refCount = models.IntegerField(default=0)
+    tag = models.ManyToManyField(to='post.Tag', null=True)
 
+    def __str__(self):
+        return self.title 
+    
     # TODO: image, editor_comment, tag, category  필드 추가 
-
-
-

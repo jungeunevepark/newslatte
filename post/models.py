@@ -1,10 +1,10 @@
-from re import L
 from ssl import create_default_context
 from django.db import models
 from accounts.models import User
-
-
+from typing import TYPE_CHECKING 
 from collection.models import Collection
+
+
 # Create your models here.
 
 
@@ -12,13 +12,15 @@ from collection.models import Collection
 class Tag(models.Model): # this model should be referenced by Post and Collection 
     name = models.CharField(max_length=128)
 
+    def __str__(self):
+        return self.name
+
 
 
 class Folder(models.Model):
     name = models.CharField(max_length=120)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     parentFolder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True)
-
 
 
 class Post(models.Model):
