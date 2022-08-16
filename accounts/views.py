@@ -54,9 +54,6 @@ def signup(request):
                 '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
                 '</div>'
             )
-
-            # auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
-            # return redirect('home')
     return render(request, 'signUp.html')
 
 def active(request, uidb64, token):

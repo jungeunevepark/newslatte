@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="Ko">
   <head>
@@ -12,7 +14,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="signUp.css" />
+    <link rel="stylesheet" href="{% static '/accounts/css/signUp.css' %}" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   </head>
   <body>
@@ -102,7 +104,7 @@
         <div class="signUp__normal__login">
           <p>이메일로 회원가입</p>
           <form class="modal__signUp__form" method="post" onsubmit="false">
-            <input type="text" name="id" placeholder="아이디" />
+            <input type="text" name="email" placeholder="아이디" />
             <input type="password" name="password" placeholder="비밀번호" />
             <input type="password" name="nickname" placeholder="닉네임" />
             <input type="submit" id="singUp__submit__btn" value="회원가입" />
@@ -111,6 +113,6 @@
       </div>
     </section>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script type="module" src="signUp.js"></script>
+    <script type="module" src="{% static '/accounts/js/signUp.js' %}"></script>
   </body>
 </html>

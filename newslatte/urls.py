@@ -15,11 +15,8 @@ urlpatterns = [
     path('post/', include('post.urls')),
     path('collection/', include('collection.urls')),
     path('news/', include('news.urls')),
-    path('accounts/', include('allauth.urls')),
-    path('login/', accounts_views.login, name='login'),
-    path('logout/', accounts_views.logout, name='logout'),
-    path('signup/', accounts_views.signup, name='signup'),
-    path('active/<str:uidb64>/<str:token>/', accounts_views.active, name='active'),
+    path('auth/', include('allauth.urls')),
+    path('accounts/', include('accounts.urls')),
     path('summernote/', include('django_summernote.urls')), 
 ] 
 
