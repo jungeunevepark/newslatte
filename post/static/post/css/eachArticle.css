@@ -565,11 +565,9 @@ main {
   margin-top: 20px;
   font-size: 13px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 26px;
   word-spacing: 2px;
 }
-
-/* eachArticle__contents__container */
 
 .eachArticle__contents__container {
   width: 100%;
