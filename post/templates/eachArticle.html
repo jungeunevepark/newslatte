@@ -1,472 +1,299 @@
 {% load static %}
 
+
 <!DOCTYPE html>
 <html lang="Ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEWSLATTE</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="{% static '/post/css/eachArticle.css' %}" />
-  </head>
-  <body>
-    <div class="bg__dark"></div>
-    <div class="mypage__container">
-      <div class="eachArticle__main">
-        <div class="header__container">
-          <header>
-            <nav>
-              <div class="navBar__container">
-                <div class="navBar__left">
-                  <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
-                  <div class="navBar__name">
-                    <h1 class="navBar__name__h1">NEWSLATTE</h1>
-                  </div>
-                </div>
-                <div class="navBar__right">
-                  <div class="navBar__right__search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </div>
-                  <div class="navBar__right__profile">
-                    <img
-                      class="right__profile__img"
-                      src="{% static '/post/img/dummy.png' %}"
-                      alt=""
-                    />
-                  </div>
-                  <button class="navBar__right__write">글쓰기</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEWSLATTE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static '/post/css/eachArticle.css' %}" />
+</head>
+
+<body>
+  <div class="bg__dark"></div>
+  <div class="mypage__container">
+    <div class="eachArticle__main">
+      <div class="header__container">
+        <header>
+          <nav>
+            <div class="navBar__container">
+              <div class="navBar__left">
+                <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+                <div class="navBar__name">
+                  <h1 class="navBar__name__h1">NEWSLATTE</h1>
                 </div>
               </div>
-            </nav>
-          </header>
-        </div>
-        <main>
-          <section class="main__eachArticle">
-            <div class="eachArticle__container">
-              <div class="eachArticle__metaData__container">
-                <div class="metadata__hashtags">
-                  <p>&#35;{{post_detail.tag.name}}</p>
-                  <p>&#35;과학</p>
+              <div class="navBar__right">
+                <div class="navBar__right__search">
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <div class="metadata__mainTitle">
-                  <h2>
-                    {{post_detail.title}}
-                  </h2>
+                <div class="navBar__right__profile">
+                  <img class="right__profile__img" src="{% static '/post/img/dummy.png' %}" alt="" />
                 </div>
-                <div class="metadata__smallTitle">
-                  <h3>
-                    {{post_detail.subtitle}}
-                  </h3>
+                <button class="navBar__right__write">글쓰기</button>
+              </div>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <main>
+        <section class="main__eachArticle">
+          <div class="eachArticle__container">
+            <div class="eachArticle__metaData__container">
+              <div class="metadata__hashtags">
+                {% for tag in tags %}
+                <p>&#35;{{tag.name}}&nbsp;</p>
+                {% endfor %}
+              </div>
+              <div class="metadata__mainTitle">
+                <h2>
+                  {{post_detail.title}}
+                </h2>
+              </div>
+              <div class="metadata__smallTitle">
+                <h3>
+                  {{post_detail.subtitle}}
+                </h3>
+              </div>
+              <div class="metadata__author__when">
+                <div class="metadata__author">
+                  <p>{{post_detail.author.nickname}}</p>
                 </div>
-                <div class="metadata__author__when">
-                  <div class="metadata__author">
-                    <p>{{post_detail.user.nickname}}</p>
-                  </div>
-                  <div class="metadata__when">
-                    {{ post_detail.created_at | date:'Y-m-d H:i' }}
-                  </div>
+                <div class="metadata__when">
+                  {{ post_detail.created_at|date:'Y-m-d H:i' }}
                 </div>
               </div>
+            </div>
+            <hr />
+            <article class="eachArticle__contents__container">
+              <div class="article__list__container">
+                <div class="article__list__toggle">
+                  <div id="list__toggle__min">
+                    <i class="fa-solid fa-circle-chevron-right"></i>
+                  </div>
+                  <div id="list__toggle__max">
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                  </div>
+                  <div class="list__toggle__intro">
+                    <p>참고 컬렉션</p>
+                  </div>
+                </div>
+                <div class="list__line__container">
+                  <div class="toggle__line"></div>
+                  <div class="article__list">
+
+                    {% for new in news %}
+                    <article class="article__container__min">
+                      <div class="article__toggle">
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                      </div>
+                      <div class="article__contents__container">
+                        <div class="article__contents__thumbNail">
+                          <img class="contents__thumbNail__imgs" src="{{ new.image.image }}" alt="" />
+                        </div>
+                        <div class="article__contents__texts">
+                          <div class="contents__title">
+                            <p>{{ new.title }}</p>
+                          </div>
+                          <div class="contents__paragraph">
+                            <p>
+                              {{ new.summary }}
+                            </p>
+                          </div>
+                          <div class="contents__source">
+                            <p>{{ new.press }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                    <article class="article__container__max">
+                      <div class="article__toggle__max">
+                        <i class="fa-solid fa-circle-chevron-down"></i>
+                      </div>
+                      <div class="article__contents__max">
+                        <div class="contents__texts__max">
+                          <div class="texts__source__max">
+                            <p>{{ new.press }}</p>
+                          </div>
+                          <div class="texts__title__max">
+                            <p>{{new.title}}</p>
+                          </div>
+                          <div class="texts__when__max">
+                            <p>
+                              {{ new.date }}
+                              
+                            </p>
+                          </div>
+                        </div>
+                        <div class="contents__original">
+                          <div class="contents__original__img">
+                            <img src="{{ new.image.image }}" alt="" />
+                          </div>
+                          <div class="contents__original__text">
+                            {{ new.main_content }}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  {% endfor %}
+                  </div>
+                </div>
+
+                <div class="article__paragraph__container">
+                  <p>
+                    {{post_detail.content}}
+                  <!--  </p>
+                  <p> 
+                    {{post_detail.content}} -->
+                  </p>
+                </div>
+              </div>
+            </article>
+            <div class="eachArticle__informations">
+              <div class="eachArticle__informations__recommend">👍(10)</div>
+              <div class="eachArticle__informations__comment">🗨(10)</div>
+              <div class="eachArticle__informations__myCart">🛒(10)</div>
+            </div>
+            <div class="eachArticle__author">
+              <p>Written by {{post_detail.author.nickname}}</p>
+              <img class="eachArticle__author__img" src="{% static '/post/img/dummy.png' %}" alt="" />
+            </div>
+            <div class="eachArticle__list">
               <hr />
-              <article class="eachArticle__contents__container">
-                <div class="article__list__container">
-                  <div class="article__list__toggle">
-                    <div id="list__toggle__min">
-                      <i class="fa-solid fa-circle-chevron-right"></i>
-                    </div>
-                    <div id="list__toggle__max">
-                      <i class="fa-solid fa-circle-chevron-down"></i>
-                    </div>
-                    <div class="list__toggle__intro">
-                      <p>참고 컬렉션</p>
-                    </div>
-                  </div>
-                  <div class="list__line__container">
-                    <div class="toggle__line"></div>
-                    <div class="article__list">
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="{% static '/post/dummy.png' %}"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="{% static '/post/dummy.png' %}"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="{% static '/post/dummy.png' %}"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                  <div class="article__paragraph__container">
-                    <p>
-                      {{post_detail.content}}
-                    </p>
-                    <p>
-                      {{post_detail.content}}
-                    </p>
-                  </div>
+              <ul class="list__articles">
+                {% for post in posts %}
+                {% if post == post_detail %}
+                <div class="list__article__container">
+                  <li><a style="color: red;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                  <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
                 </div>
-              </article>
-              <div class="eachArticle__informations">
-                <div class="eachArticle__informations__recommend">👍(10)</div>
-                <div class="eachArticle__informations__comment">🗨(10)</div>
-                <div class="eachArticle__informations__myCart">🛒(10)</div>
-              </div>
-              <div class="eachArticle__author">
-                <p>Written by {{post_detail.user.nickname}}</p>
-                <img
-                  class="eachArticle__author__img"
-                  src="{% static '/post/img/dummy.png' %}"
-                  alt=""
-                />
-              </div>
-              <div class="eachArticle__list">
-                <hr />
-                <ul class="list__articles">
-                  {% for post in posts %}
-                  {% if post == post_detail %}
-                  <div class="list__article__container">
-                    <li><a style="color: red;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
-                    <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
-                  </div>
-                  {% else %}
-                  <div class="list__article__container">
-                    <li><a style ="color: black;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
-                    <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
-                  </div>
-                  {% endif %}
-                  {% endfor %}
-                </ul>
-              </div>
-              <div class="page__navigator__container">
-                <div class="eachArticle__page__navigator">
-                  {% if posts.has_other_pages %}<!-- page가 1개일 때 숫자표시 없애기 -->
-
-                  {% if posts.has_previous %}         
-                  <p class="navigator__controll left"><a style="color:black;" href="?page={{posts.previous_page_number}}">&#8249;</a></p>
-                  {% endif %}
-
-                  {% for page in custom_range %}
-                  {% if page == posts.number %}
-                    <a style ="color: red;" href="?page={{page}}">{{page}}</a>
-                  {% else %}
-                   <a style ="color:black;" href="?page={{page}}">{{page}}</a>  
-                  {% endif %}
-                  {% endfor %}
-
-                  {% if posts.has_next %}
-                  <p class="navigator__controll right"><a style ="color:black;" href="?page={{posts.next_page_number}}">&#8250;</a></p>
-                  {% endif %}
-                  {% endif %}
+                {% else %}
+                <div class="list__article__container">
+                  <li><a style="color: black;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                  <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
                 </div>
-              </div>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="page__navigator__container">
+              <div class="eachArticle__page__navigator">
+                {% if posts.has_other_pages %}
+                <!-- page가 1개일 때 숫자표시 없애기 -->
 
-<!-- 로그인한 사람만 댓글 폼 보이게 -->
-              {% if user.is_authenticated %}
-              <form method = "POST" action="{% url 'new_comment' post_detail.id %}">
+                {% if posts.has_previous %}
+                <p class="navigator__controll left"><a style="color:black;"
+                    href="?page1={{posts.previous_page_number}}">&#8249;</a></p>
+                {% endif %}
+
+
+
+                <div class="navigator__controll__number">
+                {% for page1 in custom_post_range %}
+                {% if page1 == posts.number %}
+                <a style="color: red;" href="?page1={{page1}}">{{page1}}</a>
+                {% else %}
+                <a style="color:black;" href="?page1={{page1}}">{{page1}}</a>
+                {% endif %}
+                {% endfor %}
+                </div>
+
+
+                {% if posts.has_next %}
+                <p class="navigator__controll right"><a style="color:black;"
+                    href="?page1={{posts.next_page_number}}">&#8250;</a></p>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- 로그인한 사람만 댓글 폼 보이게 -->
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'new_comment' post_detail.id %}">
               <div class="eachArticle__comments">
                 <div class="eachArticle__comments__write">
                   <p>댓글(10)</p>
-                    {% csrf_token %}
-                    <div class="eachArticle__comments__textArea">
-                    <textarea
-                      name="comment"
-                      id=""
-                      placeholder="댓글을 입력해주세요"
-                    ></textarea>
+                  {% csrf_token %}
+                  <div class="eachArticle__comments__textArea">
+                    <textarea name="comment" id="" placeholder="댓글을 입력해주세요"></textarea>
                   </div>
                   <div class="comments__submit__container">
-                    <input type = "submit" class="eachArticle__comments__submit" value = "확인">
+                    <input type="submit" class="eachArticle__comments__submit" value="확인">
                   </div>
                 </div>
-              </form>
-              {% endif %}
+            </form>
+            {% endif %}
 
-                <div class="eachArticle__comments__list">
-                  {% for comment in post_detail.comment_set.all %}
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="{% static 'post/img/coffee_icon.png' %}"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">{{ comment.user.nickname }}</p>
-                        <p class="profile__metadata__when">
-                          {{ comment.date|date:'Y-m-d H:i' }}
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        {{ comment.comment }}
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
-                    </div>
+            <div class="eachArticle__comments__list">
+              {% for comment in comments %}
+              <div class="eachArticle__eachComment">
+                <div class="eachComment__profile">
+                  <img class="eachComment__profile__img" src="{% static 'post/img/coffee_icon.png' %}" alt="" />
+                  <div class="eachComment__profile__metadata">
+                    <p class="profile__metadata__writer">{{ comment.author.nickname }}</p>
+                    <p class="profile__metadata__when">
+                      {{ comment.date|date:'Y-m-d H:i' }}
+                    </p>
                   </div>
-                      {% endfor %}
-                    </div>
+                </div>
+                <div class="eachComment__contents">
+                  <p>
+                    {{ comment.comment }}
+                  </p>
+                  <div class="eachArticle__divide">
+                    <hr />
                   </div>
                 </div>
               </div>
-
+              {% endfor %}
             </div>
-          </section>
-        </main>
-        <footer></footer>
-      </div>
+
+            <!-- comment pagination -->
+            <div class="page__navigator__container">
+              <div class="eachArticle__page__navigator">
+                {% if comments.has_other_pages %}
+
+                {% if comments.has_previous %}
+                <p class="navigator__controll left"><a style="color:black;"
+                    href="?page2={{comments.previous_page_number}}">&#8249;</a></p>
+                {% endif %}
+                
+                <div class="navigator__controll__number">
+                  {% for page2 in custom_comment_range %}
+                  {% if page2 == comments.number %}
+                  <a style="color: red;" href="?page2={{page2}}">{{page2}}</a>
+                  {% else %}
+                  <a style="color:black;" href="?page2={{page2}}">{{page2}}</a>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+
+
+                {% if comments.has_next %}
+                <p class="navigator__controll right"><a style="color:black;"
+                    href="?page2={{comments.next_page_number}}">&#8250;</a></p>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
     </div>
-    <script type="text/javascript" src="{% static '/post/js/eachArticle.js' %}"></script>
-  </body>
+  </div>
+
+  </div>
+  </section>
+  </main>
+  <footer></footer>
+  </div>
+  </div>
+  <script type="text/javascript" src="{% static '/post/js/eachArticle.js' %}"></script>
+</body>
+
 </html>
