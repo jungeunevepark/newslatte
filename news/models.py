@@ -1,12 +1,12 @@
 from unicodedata import category
 from django.db import models
-from django.forms import URLField
+# from django.forms import URLField
 
 
 
 
 class NewsImage(models.Model):
-    image = models.URLField()
+    image = models.URLField(null=True)
 
 
 class News(models.Model) :

@@ -33,7 +33,7 @@ def logout(request):
 def signup(request):
     if request.method == 'POST':
         if request.POST['password'] == request.POST['repeat']:
-            new_user = User.objects.create_user(email=request.POST['email'], password=request.POST['password'], nickname=request.POST['nickname'], intro=request.POST['intro'])
+            new_user = User.objects.create_user(email=request.POST['email'], password=request.POST['password'])
             new_user.is_active = False
             new_user.save()
 
