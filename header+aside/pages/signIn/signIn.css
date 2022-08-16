@@ -135,6 +135,10 @@ table {
   box-sizing: border-box;
 }
 
+iframe {
+  display: none;
+}
+
 html {
   margin: 0px;
   width: 100%;
@@ -144,10 +148,6 @@ body {
   width: 100%;
   position: relative;
   font-family: "Noto Sans KR", sans-serif;
-}
-
-iframe {
-  display: none;
 }
 
 input {
@@ -430,8 +430,13 @@ main {
 }
 
 .signUp__container {
-  padding: 80px 70px;
+  padding: 100px 70px;
   width: 550px;
+}
+
+.signUp__first__container {
+  display: flex;
+  flex-direction: column;
 }
 
 .signUp__social__login {
@@ -473,7 +478,6 @@ main {
 
 .modal__signUp__form {
   margin-top: 15px;
-  height: 300px;
   display: flex;
   flex-direction: column;
 }
@@ -498,34 +502,10 @@ main {
   border-bottom: 1px solid lightgray;
 }
 
-/* second signUp page */
-
-.signUp__second__container {
-  display: none;
-  margin-top: 40px;
-}
-
-.modal__signUp__guide {
-  font-size: 11px;
-  font-weight: 300;
-  margin: 0px;
-}
-
-.modal__signUp__guide p {
-  margin: 0px;
-}
-
-#password__check__guide {
-  font-size: 15px;
-  font-weight: 300;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  margin: 0px;
-}
-
-#password__check__guide p {
-  height: 100%;
+.signUp__anchor {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
 }
 
 footer {

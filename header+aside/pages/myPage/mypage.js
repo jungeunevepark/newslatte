@@ -92,3 +92,51 @@ asideInputIcon[0].addEventListener("keyup", addListIfTyped);
 
 //login 체크, local memory 가져와서 확인
 isLogin();
+
+const writtensaveBtn = document.querySelector(".written__and__saved__choose");
+const insightcollectionBtn = document.querySelector(".insights__collection__choose");
+const writtenList = document.querySelector(".written__articles__list");
+const savedinsightsList = document.querySelector(".saved__insights__list");
+
+const writtensaveChoose = (e) => {
+  if (e.target.innerHTML == writtensaveBtn.children[0].innerHTML){
+    writtensaveBtn.children[0].style.color = "#d97a7a";
+    writtensaveBtn.children[0].style.borderBottom = "2px solid #d97a7a";
+    writtensaveBtn.children[1].style.color = "#636363";
+    writtensaveBtn.children[1].style.border = "none";
+    writtenList.style.display = "inline-block";
+    insightcollectionBtn.style.display = "none";
+    savedinsightsList.style.display = "none";
+  } else {
+    writtensaveBtn.children[0].style.color = "#636363";
+    writtensaveBtn.children[0].style.borderBottom = "none";
+    writtensaveBtn.children[1].style.color = "#d97a7a";
+    writtensaveBtn.children[1].style.borderBottom = "2px solid #d97a7a";
+    writtenList.style.display = "inline-block";
+    insightcollectionBtn.style.display = "flex";
+    savedinsightsList.style.display = "inline";
+    writtenList.style.display = "none";
+  }
+};
+
+writtensaveBtn.children[0].addEventListener("click", writtensaveChoose);
+writtensaveBtn.children[1].addEventListener("click", writtensaveChoose);
+
+const insightcollectionChoose = (e) => {
+  if (e.target.innerHTML == insightcollectionBtn.children[0].innerHTML){
+    insightcollectionBtn.children[0].style.color  = "#d97a7a7a";
+    insightcollectionBtn.children[0].style.borderBottom  = "2px solid #d97a7a7a";
+    insightcollectionBtn.children[1].style.color  = "#636363";
+    insightcollectionBtn.children[1].style.borderBottom  = "none";
+    savedinsightsList.style.display = "inline";
+  } else {
+    insightcollectionBtn.children[0].style.color  = "#636363";
+    insightcollectionBtn.children[0].style.borderBottom  = "none";
+    insightcollectionBtn.children[1].style.color  = "#d97a7a7a";
+    insightcollectionBtn.children[1].style.borderBottom  = "2px solid #d97a7a7a";
+    savedinsightsList.style.display = "none";
+  }
+};
+
+insightcollectionBtn.children[0].addEventListener("click", insightcollectionChoose);
+insightcollectionBtn.children[1].addEventListener("click", insightcollectionChoose);
