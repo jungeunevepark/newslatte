@@ -880,7 +880,7 @@ a {
 .aritcle__list__popUp {
   margin-top: 20px;
   width: 300px;
-  height: 390px;
+  height: 450px;
   background-color: #f5f5f5;
   border: 1px solid lightgray;
   border-radius: 10px;
@@ -937,18 +937,43 @@ a {
   padding: 10px;
   background-color: #d9d9d9;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   font-size: 13px;
 }
 
+.popUp__myCart__Btn {
+  color: #5f5a5a;
+}
+
+.Btn__divider {
+  color: #5f5a5a;
+}
+
+.choose__between__saved {
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 13px;
+  display: none;
+  
+}
+
 .popUp__myCart__list {
+  display: inline;
+}
+
+.collection__whole {
   width: 100%;
   padding: 20px 30px 5px 30px;
   display: flex;
   gap: 10px;
   flex-direction: column;
+  display: none;
 }
+
 
 .myCart__each__list {
   height: 70px;
@@ -990,6 +1015,75 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: end;
+}
+
+.insights__whole {
+  width: 100%;
+  padding: 20px 20px 5px 15px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  display: none;
+}
+
+.written__insights__whole {
+  width: 100%;
+  padding: 20px 20px 5px 15px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.insights__each__list {
+  height: 70px;
+  display: flex;
+  gap: 12px;
+}
+
+.insights__img {
+  width: 88px;
+  height: 70px;
+  background-color: #d9d9d9;
+}
+
+.insights__title {
+  width: 100%;
+  font-size: 13px;
+  text-align: left;
+  display: flex;
+  color: #5f5a5a;
+  line-height: 140%;
+}
+
+.insights__wrapping {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  width: 100%;
+  height: 100%;
+  align-items: flex-end;
+}
+
+.insights__hashtags {
+  display: flex;
+  justify-content: end;
+  font-size: 11px;
+  gap: 5px;
+  margin-right: 10px;
+  color: #828282;
+}
+
+.insights__trash {
+  display: flex;
+  justify-content: end;
+  margin-left: 14px;
+}
+
+.insights__others {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(100% - 88px);
 }
 
 .collection__template {
@@ -1035,4 +1129,10 @@ a {
   height: 100%;
   width: 10px;
   cursor: pointer;
+}
+.write__btn {
+  text-align: right;
+  margin-right: 13px;
+  color: #5f5a5a;
+  font-size: 13px;
 }
