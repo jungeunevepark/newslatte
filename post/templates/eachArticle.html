@@ -1,526 +1,300 @@
+{% load static %}
+
+
 <!DOCTYPE html>
 <html lang="Ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NEWSLATTE</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <link rel="stylesheet" href="eachArticle.css" />
-  </head> 
-  <body>
-    <div class="bg__dark"></div>
-    <div class="mypage__container">
-      <div class="eachArticle__main">
-        <div class="header__container">
-          <header>
-            <nav>
-              <div class="navBar__container">
-                <div class="navBar__left">
-                  <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
-                  <div class="navBar__name">
-                    <h1 class="navBar__name__h1">NEWSLATTE</h1>
-                  </div>
-                </div>
-                <div class="navBar__right">
-                  <div class="navBar__right__search">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                  </div>
-                  <div class="navBar__right__profile">
-                    <img
-                      class="right__profile__img"
-                      src="../../resources/dummy.png"
-                      alt=""
-                    />
-                  </div>
-                  <button class="navBar__right__write">글쓰기</button>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NEWSLATTE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{% static '/post/css/eachArticle.css' %}" />
+</head>
+
+<body>
+  <div class="bg__dark"></div>
+  <div class="mypage__container">
+    <div class="eachArticle__main">
+      <div class="header__container">
+        <header>
+          <nav>
+            <div class="navBar__container">
+              <div class="navBar__left">
+                <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+                <div class="navBar__name">
+                  <h1 class="navBar__name__h1">NEWSLATTE</h1>
                 </div>
               </div>
-            </nav>
-          </header>
-        </div>
-        <main>
-          <section class="main__eachArticle">
-            <div class="eachArticle__container">
-              <div class="eachArticle__metaData__container">
-                <div class="metadata__hashtags">
-                  <p>&#35;경제학</p>
-                  <p>&#35;과학</p>
+              <div class="navBar__right">
+                <div class="navBar__right__search">
+                  <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-                <div class="metadata__mainTitle">
-                  <h2>
-                    글 제목 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게
-                  </h2>
+                <div class="navBar__right__profile">
+                  <img class="right__profile__img" src="{% static '/post/img/dummy.png' %}" alt="" />
                 </div>
-                <div class="metadata__smallTitle">
-                  <h3>
-                    소제목어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을
-                    하여도 열매를 힘있다. 힘차게 그들의 이상은 얼마나 그들은
-                    할지라도 열락의 심장의 약동하다.
-                  </h3>
-                </div>
-                <div class="metadata__author__when">
-                  <div class="metadata__author">
-                    <p>작성자 이름</p>
-                  </div>
-                  <div class="metadata__when">
-                    <p>2022-08-13</p>
-                  </div>
-                </div>
+                <button class="navBar__right__write">글쓰기</button>
               </div>
-              <hr />
-              <article class="eachArticle__contents__container">
-                <div class="article__list__container">
-                  <div class="article__list__toggle">
-                    <div id="list__toggle__min">
-                      <i class="fa-solid fa-circle-chevron-right"></i>
-                    </div>
-                    <div id="list__toggle__max">
-                      <i class="fa-solid fa-circle-chevron-down"></i>
-                    </div>
-                    <div class="list__toggle__intro">
-                      <p>참고 컬렉션</p>
-                    </div>
-                  </div>
-                  <div class="list__line__container">
-                    <div class="toggle__line"></div>
-                    <div class="article__list">
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__min">
-                        <div class="article__toggle">
-                          <i class="fa-solid fa-circle-chevron-right"></i>
-                        </div>
-                        <div class="article__contents__container">
-                          <div class="article__contents__thumbNail">
-                            <img
-                              class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
-                              alt=""
-                            />
-                          </div>
-                          <div class="article__contents__texts">
-                            <div class="contents__title">
-                              <p>기사의 제목입니다.</p>
-                            </div>
-                            <div class="contents__paragraph">
-                              <p>
-                                하여도 하였으며, 크고 것은 같으며, 예가 아니다.
-                                따뜻한 위하여서 창공에 끝에 그들은 곳이 그들은
-                                아니다. 인생에 때에, 영락과 어디 대한 할지라도
-                                붙잡아 있으며, 풀이 약동하다.
-                              </p>
-                            </div>
-                            <div class="contents__source">
-                              <p>OO 신문</p>
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                      <article class="article__container__max">
-                        <div class="article__toggle__max">
-                          <i class="fa-solid fa-circle-chevron-down"></i>
-                        </div>
-                        <div class="article__contents__max">
-                          <div class="contents__texts__max">
-                            <div class="texts__source__max">
-                              <p>OO 일보</p>
-                            </div>
-                            <div class="texts__title__max">
-                              <p>'물폭탄'맞은 식탁물가...추석이 두렵다</p>
-                            </div>
-                            <div class="texts__when__max">
-                              <p>
-                                입력 2022.08.11 오전 11:56 수정 2022.08.11 오후
-                                12:11 기사원문
-                              </p>
-                            </div>
-                          </div>
-                          <div class="contents__original">
-                            <div class="contents__original__img">
-                              <img
-                                src="../../resources/contents__original__img.png"
-                                alt=""
-                              />
-                            </div>
-                            <div class="contents__original__text">
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 |풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                              <br />
-                              장식하는 아니더면, 얼음이 따뜻한 보라. 되는 하는
-                              못하다 황금시대의 있는 꽃이 관현악이며, 거선의
-                              얼마나 칼이다. 얼음이 바로 인간의 힘차게 것은
-                              자신과 온갖 듣기만 사막이다. 뛰노는 청춘 청춘을
-                              것이다. 웅대한 그들의 때에, 설산에서 청춘 풀이
-                              군영과 것이다. 청춘에서만 얼마나 이 아름다우냐?
-                              청춘에서만 새가 동력은 끓는 인간의 풀이 것은 있는
-                              얼마나 것이다. 자신과 간에 있음으로써 뜨고,
-                              풍부하게 끓는 붙잡아 인류의 말이다. 바이며, 든
-                              사랑의 찾아다녀도, 쓸쓸한 그와 더운지라 오아이스도
-                              있다.
-                            </div>
-                          </div>
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-                  <div class="article__paragraph__container">
-                    <p>
-                      여기는 본문이다. 있는 가는 거친 거선의 갑 이상의 꽃 기관과
-                      것이다. 예가 열락의 어디 힘차게 피다. 설레는 인간의 붙잡아
-                      작고 갑 앞이 피부가 때문이다. 되는 싸인 같으며, 운다.
-                      일월과 예수는 모래뿐일 인생에 듣는다. 인간은 실로 가는
-                      이상이 힘있다. 용감하고 열락의 것은 그들의 인류의 있으랴?
-                      무엇이 물방아 힘차게 하는 피고, 부패뿐이다. 앞이 힘차게
-                      살았으며, 이 있다. 봄날의 하였으며, 인간에 그들은 그들에게
-                      있음으로써 생생하며, 것이다.보라, 것이다. 천하를 돋고,
-                      장식하는 그들은 무엇을 것이다.
-                    </p>
-                    <p>
-                      여기는 본문이다. 있는 가는 거친 거선의 갑 이상의 꽃 기관과
-                      것이다. 예가 열락의 어디 힘차게 피다. 설레는 인간의 붙잡아
-                      작고 갑 앞이 피부가 때문이다. 되는 싸인 같으며, 운다.
-                      일월과 예수는 모래뿐일 인생에 듣는다. 인간은 실로 가는
-                      이상이 힘있다. 용감하고 열락의 것은 그들의 인류의 있으랴?
-                      무엇이 물방아 힘차게 하는 피고, 부패뿐이다. 앞이 힘차게
-                      살았으며, 이 있다. 봄날의 하였으며, 인간에 그들은 그들에게
-                      있음으로써 생생하며, 것이다.보라, 것이다. 천하를 돋고,
-                      장식하는 그들은 무엇을 것이다. 봄날의 그들은 날카로우나
-                      피가 석가는 그들의 있는 봄바람이다. 쓸쓸한 평화스러운
-                      우리의 힘차게 품었기 가장 구하기 인도하겠다는 천고에
-                      이것이다. 같이, 가슴이 청춘은 열매를 않는 이상은 어디
-                      보라. 인생의 이상 가진 힘차게 우리의 사막이다. 것은 대중을
-                      예가 얼음과 인간에 별과 할지니, 봄바람이다. 트고, 인류의
-                      때에, 청춘은 원대하고, 그들의 바로 피고 천지는 봄바람이다.
-                      같지 예수는 없으면, 부패를 우리는 앞이 웅대한 안고,
-                      이것이다. 끓는 인류의 든 찬미를 지혜는 못할 투명하되
-                      바이며, 가는 것이다. 청춘은 바로 산야에 밝은 그것을
-                      이것이다.
-                    </p>
-                  </div>
+            </div>
+          </nav>
+        </header>
+      </div>
+      <main>
+        <section class="main__eachArticle">
+          <div class="eachArticle__container">
+            <div class="eachArticle__metaData__container">
+              <div class="metadata__hashtags">
+                {% for tag in tags %}
+                <p>&#35;{{tag.name}}&nbsp;</p>
+                {% endfor %}
+              </div>
+              <div class="metadata__mainTitle">
+                <h2>
+                  {{post_detail.title}}
+                </h2>
+              </div>
+              <div class="metadata__smallTitle">
+                <h3>
+                  {{post_detail.subtitle}}
+                </h3>
+              </div>
+              <div class="metadata__author__when">
+                <div class="metadata__author">
+                  <p>{{post_detail.author.nickname}}</p>
                 </div>
-              </article>
-              <div class="eachArticle__informations">
-                <div class="eachArticle__informations__recommend">👍(10)</div>
-                <div class="eachArticle__informations__comment">🗨(10)</div>
-                <div class="eachArticle__informations__myCart">🛒(10)</div>
-              </div>
-              <div class="eachArticle__author">
-                <p>Written by 솔방울</p>
-                <img
-                  class="eachArticle__author__img"
-                  src="../../resources/dummy.png"
-                  alt=""
-                />
-              </div>
-              <div class="eachArticle__list">
-                <hr />
-                <ul class="list__articles">
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
-                </ul>
-              </div>
-              <div class="page__navigator__container">
-                <div class="eachArticle__page__navigator">
-                  <p class="navigator__controll left">&#8249;</p>
-                  <p>1</p>
-                  <p>2</p>
-                  <p>3</p>
-                  <p>4</p>
-                  <p>5</p>
-                  <p class="navigator__controll right">&#8250;</p>
-                </div>
-              </div>
-              <div class="eachArticle__comments">
-                <div class="eachArticle__comments__write">
-                  <p>댓글(10)</p>
-                  <div class="eachArticle__comments__textArea">
-                    <textarea
-                      name=""
-                      id=""
-                      placeholder="댓글을 입력해주세요"
-                    ></textarea>
-                  </div>
-                  <div class="comments__submit__container">
-                    <button class="eachArticle__comments__submit">확인</button>
-                  </div>
-                </div>
-                <div class="eachArticle__comments__list">
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
-                        <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
-                        <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
-                        <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
-                    </div>
-                  </div>
+                <div class="metadata__when">
+                  {{ post_detail.created_at|date:'Y-m-d H:i' }}
                 </div>
               </div>
             </div>
-          </section>
-        </main>
-        <footer></footer>
-      </div>
+            <hr />
+            <article class="eachArticle__contents__container">
+              <div class="article__list__container">
+                <div class="article__list__toggle">
+                  <div id="list__toggle__min">
+                    <i class="fa-solid fa-circle-chevron-right"></i>
+                  </div>
+                  <div id="list__toggle__max">
+                    <i class="fa-solid fa-circle-chevron-down"></i>
+                  </div>
+                  <div class="list__toggle__intro">
+                    <p>참고 컬렉션</p>
+                  </div>
+                </div>
+                <div class="list__line__container">
+                  <div class="toggle__line"></div>
+                  <div class="article__list">
+
+                    {% for new in news %}
+                    <article class="article__container__min">
+                      <div class="article__toggle">
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                      </div>
+                      <div class="article__contents__container">
+                        <div class="article__contents__thumbNail">
+                          <img class="contents__thumbNail__imgs" src="{{ new.image.image }}" alt="" />
+                        </div>
+                        <div class="article__contents__texts">
+                          <div class="contents__title">
+                            <p>{{ new.title }}</p>
+                          </div>
+                          <div class="contents__paragraph">
+                            <p>
+                              {{ new.summary }}
+                            </p>
+                          </div>
+                          <div class="contents__source">
+                            <p>{{ new.press }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                    <article class="article__container__max">
+                      <div class="article__toggle__max">
+                        <i class="fa-solid fa-circle-chevron-down"></i>
+                      </div>
+                      <div class="article__contents__max">
+                        <div class="contents__texts__max">
+                          <div class="texts__source__max">
+                            <p>{{ new.press }}</p>
+                          </div>
+                          <div class="texts__title__max">
+                            <p>{{new.title}}</p>
+                          </div>
+                          <div class="texts__when__max">
+                            <p>
+                              {{ new.date }}
+                              
+                            </p>
+                          </div>
+                        </div>
+                        <div class="contents__original">
+                          <div class="contents__original__img">
+                            <img src="{{ new.image.image }}" alt="" />
+                          </div>
+                          <div class="contents__original__text">
+                            {{ new.main_content }}
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  {% endfor %}
+                  </div>
+                </div>
+
+                <div class="article__paragraph__container">
+                  <p>
+                    {{post_detail.content}}
+                  <!--  </p>
+                  <p> 
+                    {{post_detail.content}} -->
+                  </p>
+                </div>
+              </div>
+
+            </article>
+            <div class="eachArticle__informations">
+              <div class="eachArticle__informations__recommend">👍(10)</div>
+              <div class="eachArticle__informations__comment">🗨(10)</div>
+              <div class="eachArticle__informations__myCart">🛒(10)</div>
+            </div>
+            <div class="eachArticle__author">
+              <p>Written by {{post_detail.author.nickname}}</p>
+              <img class="eachArticle__author__img" src="{% static '/post/img/dummy.png' %}" alt="" />
+            </div>
+            <div class="eachArticle__list">
+              <hr />
+              <ul class="list__articles">
+                {% for post in posts %}
+                {% if post == post_detail %}
+                <div class="list__article__container">
+                  <li><a style="color: red;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                  <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
+                </div>
+                {% else %}
+                <div class="list__article__container">
+                  <li><a style="color: black;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                  <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
+                </div>
+                {% endif %}
+                {% endfor %}
+              </ul>
+            </div>
+            <div class="page__navigator__container">
+              <div class="eachArticle__page__navigator">
+                {% if posts.has_other_pages %}
+                <!-- page가 1개일 때 숫자표시 없애기 -->
+
+
+                {% if posts.has_previous %}
+                <p class="navigator__controll left"><a style="color:black;"
+                    href="?page1={{posts.previous_page_number}}">&#8249;</a></p>
+                {% endif %}
+
+
+                <div class="navigator__controll__number">
+                {% for page1 in custom_post_range %}
+                {% if page1 == posts.number %}
+                <a style="color: red;" href="?page1={{page1}}">{{page1}}</a>
+                {% else %}
+                <a style="color:black;" href="?page1={{page1}}">{{page1}}</a>
+                {% endif %}
+                {% endfor %}
+                </div>
+
+
+                {% if posts.has_next %}
+                <p class="navigator__controll right"><a style="color:black;"
+                    href="?page1={{posts.next_page_number}}">&#8250;</a></p>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+
+            <!-- 로그인한 사람만 댓글 폼 보이게 -->
+            {% if user.is_authenticated %}
+            <form method="POST" action="{% url 'new_comment' post_detail.id %}">
+              <div class="eachArticle__comments">
+                <div class="eachArticle__comments__write">
+                  <p>댓글(10)</p>
+                  {% csrf_token %}
+                  <div class="eachArticle__comments__textArea">
+                    <textarea name="comment" id="" placeholder="댓글을 입력해주세요"></textarea>
+                  </div>
+                  <div class="comments__submit__container">
+                    <input type="submit" class="eachArticle__comments__submit" value="확인">
+                  </div>
+                </div>
+            </form>
+            {% endif %}
+
+            <div class="eachArticle__comments__list">
+              {% for comment in comments %}
+              <div class="eachArticle__eachComment">
+                <div class="eachComment__profile">
+                  <img class="eachComment__profile__img" src="{% static 'post/img/coffee_icon.png' %}" alt="" />
+                  <div class="eachComment__profile__metadata">
+                    <p class="profile__metadata__writer">{{ comment.author.nickname }}</p>
+                    <p class="profile__metadata__when">
+                      {{ comment.date|date:'Y-m-d H:i' }}
+                    </p>
+                  </div>
+                </div>
+                <div class="eachComment__contents">
+                  <p>
+                    {{ comment.comment }}
+                  </p>
+                  <div class="eachArticle__divide">
+                    <hr />
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+
+            <!-- comment pagination -->
+            <div class="page__navigator__container">
+              <div class="eachArticle__page__navigator">
+                {% if comments.has_other_pages %}
+
+                {% if comments.has_previous %}
+                <p class="navigator__controll left"><a style="color:black;"
+                    href="?page2={{comments.previous_page_number}}">&#8249;</a></p>
+                {% endif %}
+                
+                <div class="navigator__controll__number">
+                  {% for page2 in custom_comment_range %}
+                  {% if page2 == comments.number %}
+                  <a style="color: red;" href="?page2={{page2}}">{{page2}}</a>
+                  {% else %}
+                  <a style="color:black;" href="?page2={{page2}}">{{page2}}</a>
+                  {% endif %}
+                  {% endfor %}
+                </div>
+
+
+                {% if comments.has_next %}
+                <p class="navigator__controll right"><a style="color:black;"
+                    href="?page2={{comments.next_page_number}}">&#8250;</a></p>
+                {% endif %}
+                {% endif %}
+              </div>
+            </div>
+
+          </div>
     </div>
-    <script type="module" src="eachArticle.js"></script>
-  </body>
+  </div>
+
+  </div>
+  </section>
+  </main>
+  <footer></footer>
+  </div>
+  </div>
+  <script type="text/javascript" src="{% static '/post/js/eachArticle.js' %}"></script>
+</body>
+
 </html>

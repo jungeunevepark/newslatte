@@ -464,7 +464,8 @@ main {
 
 .metadata__hashtags {
   display: flex;
-  font-size: 12px;
+  gap: 5px;
+  font-size: 14px;
 }
 
 .metadata__mainTitle {
@@ -478,7 +479,10 @@ main {
 }
 
 .metadata__author__when {
-  font-size: 12px;
+  display: flex;
+  gap: 3px;
+  flex-direction: column;
+  font-size: 13px;
   font-weight: 300;
 }
 
@@ -487,6 +491,7 @@ main {
   border-radius: 15px;
   padding: 7px 35px;
   height: 100%;
+  width: 100%;
 }
 
 .article__list__toggle {
@@ -510,6 +515,7 @@ main {
 }
 
 .list__line__container {
+  width: 100%;
   display: none;
   height: 100%;
   max-height: 500px;
@@ -559,17 +565,20 @@ main {
   margin-top: 20px;
   font-size: 13px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 26px;
   word-spacing: 2px;
 }
 
-/* eachArticle__contents__container */
+.eachArticle__contents__container {
+  width: 100%;
+}
 
 .article__list {
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }
 
 .article__container__min {
@@ -579,6 +588,7 @@ main {
   justify-content: center;
   border-radius: 10px;
   height: 100px;
+  width: 100%;
 }
 
 .article__toggle {
@@ -594,6 +604,7 @@ main {
 }
 
 .article__contents__container {
+  width: 100%;
   display: flex;
   padding: 15px;
   gap: 15px;
@@ -609,6 +620,7 @@ main {
 }
 
 .article__contents__texts {
+  width: 100%;
   text-align: justify;
   display: flex;
   flex-direction: column;
@@ -715,7 +727,7 @@ main {
   width: 100%;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  padding: 30px 0px 50px 0px;
   font-size: 13px;
   font-weight: 500;
   align-items: center;
@@ -723,7 +735,7 @@ main {
 }
 
 .eachArticle__page__navigator {
-  width: 25%;
+  width: 30%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -733,6 +745,12 @@ main {
   font-size: 25px;
   position: relative;
   top: -3px;
+}
+
+.navigator__controll__number {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
 }
 
 /* article__container__max */
@@ -769,7 +787,6 @@ main {
 
 .eachArticle__comments {
   margin-top: 15px;
-  padding-bottom: 100px;
   width: 100%;
 }
 

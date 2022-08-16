@@ -1,14 +1,13 @@
 from django.db import models
 
-from accounts.models import User
+from accounts.models import User, Profile
 from news.models import News
-# from post.models import Tag
 
 # Create your models here.
 
 class Collection(models.Model):
     
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True)
     news = models.ManyToManyField(News)
     title = models.CharField(max_length=120)
     created_at = models.DateTimeField(auto_now_add=True)

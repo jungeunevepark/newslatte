@@ -58,8 +58,6 @@ INSTALLED_APPS = [
 
     # 이메일 인증
     'six',
-    
-    
     'django_summernote' # app for text editor(summernote)
 
 
@@ -131,11 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# 한국 시간으로 수정 위해
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+# 한국시간으로 수정 위해
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -172,18 +172,6 @@ AUTHENTICATION_BACKENDS = [
 
 SITE_ID = 1
 
-# SOCIALACCOUNT_PROVIDERS = {
-#     'google': {
-#         'SCOPE': [
-#             'profile', 
-#             'email',
-#         ],
-#         'AUTH_PARAMS': {
-#             'access_type': 'online'
-#         }
-#     }
-# }
-
 
 AUTH_USER_MODEL = "accounts.User"          # (appname.User) 재설정 언급
 
@@ -192,7 +180,6 @@ ACCOUNT_SESSION_REMEMBER = True            # 브라우저를 닫아도 세션 �
 SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
 
 
-# ACCOUNT_SIGNUP_FORM_CLASS = 'coplate.forms.SignupForm'
 
 
 # 이메일 인증 관련
