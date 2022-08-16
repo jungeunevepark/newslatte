@@ -491,7 +491,7 @@ main {
   border-radius: 15px;
   padding: 7px 35px;
   height: 100%;
-  width: 100%
+  width: 100%;
 }
 
 .article__list__toggle {
@@ -565,7 +565,7 @@ main {
   margin-top: 20px;
   font-size: 13px;
   font-weight: 300;
-  line-height: 25px;
+  line-height: 26px;
   word-spacing: 2px;
 }
 
@@ -573,7 +573,6 @@ main {
 .eachArticle__contents__container {
   width: 100%;
 }
-
 
 .eachArticle__contents__container {
   width: 100%;
