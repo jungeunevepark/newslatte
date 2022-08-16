@@ -1,7 +1,7 @@
 from re import L
 from ssl import create_default_context
 from django.db import models
-from accounts.models import User
+from accounts.models import Profile
 
 
 from collection.models import Collection
@@ -12,17 +12,20 @@ from collection.models import Collection
 class Tag(models.Model): # this model should be referenced by Post and Collection 
     name = models.CharField(max_length=128)
 
+    def __str__(self):
+        return self.name
+
 
 
 class Folder(models.Model):
     name = models.CharField(max_length=120)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
     parentFolder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
 
 
 class Post(models.Model):
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) 
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True) 
     collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True, blank=True)
     folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -31,7 +34,7 @@ class Post(models.Model):
     title = models.CharField(max_length=120)
     subtitle=models.CharField(max_length=200, null=True)
     content = models.TextField()
-    tag = models.ForeignKey(Tag, on_delete=models.SET_NULL, null=True)
+    tag = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
@@ -40,7 +43,7 @@ class Comment(models.Model):
     comment = models.TextField(max_length=200)
     date = models.DateTimeField(auto_now_add = True)
     post = models.ForeignKey(Post, null=True, blank=True, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self) :
         return self.comment

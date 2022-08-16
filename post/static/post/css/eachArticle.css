@@ -491,7 +491,7 @@ main {
   border-radius: 15px;
   padding: 7px 35px;
   height: 100%;
-  width: 100%;
+  width: 100%
 }
 
 .article__list__toggle {
@@ -570,6 +570,10 @@ main {
 }
 
 /* eachArticle__contents__container */
+.eachArticle__contents__container {
+  width: 100%;
+}
+
 
 .eachArticle__contents__container {
   width: 100%;
@@ -613,6 +617,7 @@ main {
   align-items: center;
   align-self: stretch;
   border-bottom: 1px solid lightgray;
+  width: 100%;
 }
 
 .contents__thumbNail__imgs {
