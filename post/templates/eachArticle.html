@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="Ko">
   <head>
@@ -12,7 +14,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="eachArticle.css" />
+    <link rel="stylesheet" href="{% static '/post/css/eachArticle.css' %}" />
   </head>
   <body>
     <div class="bg__dark"></div>
@@ -35,7 +37,7 @@
                   <div class="navBar__right__profile">
                     <img
                       class="right__profile__img"
-                      src="../../resources/dummy.png"
+                      src="{% static '/post/img/dummy.png' %}"
                       alt=""
                     />
                   </div>
@@ -50,27 +52,25 @@
             <div class="eachArticle__container">
               <div class="eachArticle__metaData__container">
                 <div class="metadata__hashtags">
-                  <p>&#35;경제학</p>
+                  <p>&#35;{{post_detail.tag.name}}</p>
                   <p>&#35;과학</p>
                 </div>
                 <div class="metadata__mainTitle">
                   <h2>
-                    글 제목 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게
+                    {{post_detail.title}}
                   </h2>
                 </div>
                 <div class="metadata__smallTitle">
                   <h3>
-                    소제목어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을
-                    하여도 열매를 힘있다. 힘차게 그들의 이상은 얼마나 그들은
-                    할지라도 열락의 심장의 약동하다.
+                    {{post_detail.subtitle}}
                   </h3>
                 </div>
                 <div class="metadata__author__when">
                   <div class="metadata__author">
-                    <p>작성자 이름</p>
+                    <p>{{post_detail.user.nickname}}</p>
                   </div>
                   <div class="metadata__when">
-                    <p>2022-08-13</p>
+                    {{ post_detail.created_at | date:'Y-m-d H:i' }}
                   </div>
                 </div>
               </div>
@@ -99,7 +99,7 @@
                           <div class="article__contents__thumbNail">
                             <img
                               class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
+                              src="{% static '/post/dummy.png' %}"
                               alt=""
                             />
                           </div>
@@ -183,7 +183,7 @@
                           <div class="article__contents__thumbNail">
                             <img
                               class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
+                              src="{% static '/post/dummy.png' %}"
                               alt=""
                             />
                           </div>
@@ -267,7 +267,7 @@
                           <div class="article__contents__thumbNail">
                             <img
                               class="contents__thumbNail__imgs"
-                              src="../../resources/dummy.png"
+                              src="{% static '/post/dummy.png' %}"
                               alt=""
                             />
                           </div>
@@ -347,36 +347,10 @@
                   </div>
                   <div class="article__paragraph__container">
                     <p>
-                      여기는 본문이다. 있는 가는 거친 거선의 갑 이상의 꽃 기관과
-                      것이다. 예가 열락의 어디 힘차게 피다. 설레는 인간의 붙잡아
-                      작고 갑 앞이 피부가 때문이다. 되는 싸인 같으며, 운다.
-                      일월과 예수는 모래뿐일 인생에 듣는다. 인간은 실로 가는
-                      이상이 힘있다. 용감하고 열락의 것은 그들의 인류의 있으랴?
-                      무엇이 물방아 힘차게 하는 피고, 부패뿐이다. 앞이 힘차게
-                      살았으며, 이 있다. 봄날의 하였으며, 인간에 그들은 그들에게
-                      있음으로써 생생하며, 것이다.보라, 것이다. 천하를 돋고,
-                      장식하는 그들은 무엇을 것이다.
+                      {{post_detail.content}}
                     </p>
                     <p>
-                      여기는 본문이다. 있는 가는 거친 거선의 갑 이상의 꽃 기관과
-                      것이다. 예가 열락의 어디 힘차게 피다. 설레는 인간의 붙잡아
-                      작고 갑 앞이 피부가 때문이다. 되는 싸인 같으며, 운다.
-                      일월과 예수는 모래뿐일 인생에 듣는다. 인간은 실로 가는
-                      이상이 힘있다. 용감하고 열락의 것은 그들의 인류의 있으랴?
-                      무엇이 물방아 힘차게 하는 피고, 부패뿐이다. 앞이 힘차게
-                      살았으며, 이 있다. 봄날의 하였으며, 인간에 그들은 그들에게
-                      있음으로써 생생하며, 것이다.보라, 것이다. 천하를 돋고,
-                      장식하는 그들은 무엇을 것이다. 봄날의 그들은 날카로우나
-                      피가 석가는 그들의 있는 봄바람이다. 쓸쓸한 평화스러운
-                      우리의 힘차게 품었기 가장 구하기 인도하겠다는 천고에
-                      이것이다. 같이, 가슴이 청춘은 열매를 않는 이상은 어디
-                      보라. 인생의 이상 가진 힘차게 우리의 사막이다. 것은 대중을
-                      예가 얼음과 인간에 별과 할지니, 봄바람이다. 트고, 인류의
-                      때에, 청춘은 원대하고, 그들의 바로 피고 천지는 봄바람이다.
-                      같지 예수는 없으면, 부패를 우리는 앞이 웅대한 안고,
-                      이것이다. 끓는 인류의 든 찬미를 지혜는 못할 투명하되
-                      바이며, 가는 것이다. 청춘은 바로 산야에 밝은 그것을
-                      이것이다.
+                      {{post_detail.content}}
                     </p>
                   </div>
                 </div>
@@ -387,140 +361,112 @@
                 <div class="eachArticle__informations__myCart">🛒(10)</div>
               </div>
               <div class="eachArticle__author">
-                <p>Written by 솔방울</p>
+                <p>Written by {{post_detail.user.nickname}}</p>
                 <img
                   class="eachArticle__author__img"
-                  src="../../resources/dummy.png"
+                  src="{% static '/post/img/dummy.png' %}"
                   alt=""
                 />
               </div>
               <div class="eachArticle__list">
                 <hr />
                 <ul class="list__articles">
+                  {% for post in posts %}
+                  {% if post == post_detail %}
                   <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
+                    <li><a style="color: red;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                    <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
                   </div>
+                  {% else %}
                   <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
+                    <li><a style ="color: black;" href="{% url 'detail_page' post.id %}">{{post.title}}</a></li>
+                    <p class="list__articles__when">{{post.created_at|date:'Y-m-d'}}</p>
                   </div>
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
-                  <div class="list__article__container">
-                    <li>솔방울은 영양학적으로 가치가 있는가</li>
-                    <p class="list__articles__when">2022.08.01</p>
-                  </div>
+                  {% endif %}
+                  {% endfor %}
                 </ul>
               </div>
               <div class="page__navigator__container">
                 <div class="eachArticle__page__navigator">
-                  <p class="navigator__controll left">&#8249;</p>
-                  <p>1</p>
-                  <p>2</p>
-                  <p>3</p>
-                  <p>4</p>
-                  <p>5</p>
-                  <p class="navigator__controll right">&#8250;</p>
+                  {% if posts.has_other_pages %}<!-- page가 1개일 때 숫자표시 없애기 -->
+
+                  {% if posts.has_previous %}         
+                  <p class="navigator__controll left"><a style="color:black;" href="?page={{posts.previous_page_number}}">&#8249;</a></p>
+                  {% endif %}
+
+                  {% for page in custom_range %}
+                  {% if page == posts.number %}
+                    <a style ="color: red;" href="?page={{page}}">{{page}}</a>
+                  {% else %}
+                   <a style ="color:black;" href="?page={{page}}">{{page}}</a>  
+                  {% endif %}
+                  {% endfor %}
+
+                  {% if posts.has_next %}
+                  <p class="navigator__controll right"><a style ="color:black;" href="?page={{posts.next_page_number}}">&#8250;</a></p>
+                  {% endif %}
+                  {% endif %}
                 </div>
               </div>
+
+<!-- 로그인한 사람만 댓글 폼 보이게 -->
+              {% if user.is_authenticated %}
+              <form method = "POST" action="{% url 'new_comment' post_detail.id %}">
               <div class="eachArticle__comments">
                 <div class="eachArticle__comments__write">
                   <p>댓글(10)</p>
-                  <div class="eachArticle__comments__textArea">
+                    {% csrf_token %}
+                    <div class="eachArticle__comments__textArea">
                     <textarea
-                      name=""
+                      name="comment"
                       id=""
                       placeholder="댓글을 입력해주세요"
                     ></textarea>
                   </div>
                   <div class="comments__submit__container">
-                    <button class="eachArticle__comments__submit">확인</button>
+                    <input type = "submit" class="eachArticle__comments__submit" value = "확인">
                   </div>
                 </div>
+              </form>
+              {% endif %}
+
                 <div class="eachArticle__comments__list">
+                  {% for comment in post_detail.comment_set.all %}
                   <div class="eachArticle__eachComment">
                     <div class="eachComment__profile">
                       <img
                         class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
+                        src="{% static 'post/img/coffee_icon.png' %}"
                         alt=""
                       />
                       <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
+                        <p class="profile__metadata__writer">{{ comment.user.nickname }}</p>
                         <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
+                          {{ comment.date|date:'Y-m-d H:i' }}
                         </p>
                       </div>
                     </div>
                     <div class="eachComment__contents">
                       <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
+                        {{ comment.comment }}
                       </p>
                       <div class="eachArticle__divide">
                         <hr />
                       </div>
                     </div>
                   </div>
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
-                        <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="eachArticle__eachComment">
-                    <div class="eachComment__profile">
-                      <img
-                        class="eachComment__profile__img"
-                        src="../../resources/coffee_icon.png"
-                        alt=""
-                      />
-                      <div class="eachComment__profile__metadata">
-                        <p class="profile__metadata__writer">도지코인떡상</p>
-                        <p class="profile__metadata__when">
-                          2022.08.12 // 11:45
-                        </p>
-                      </div>
-                    </div>
-                    <div class="eachComment__contents">
-                      <p>
-                        댓글입니다.며, 가는 것이다. 청춘은 바로 산야에 밝은
-                        그것을 이것이다.
-                      </p>
-                      <div class="eachArticle__divide">
-                        <hr />
-                      </div>
+                      {% endfor %}
                     </div>
                   </div>
                 </div>
               </div>
+
             </div>
           </section>
         </main>
         <footer></footer>
       </div>
     </div>
-    <script type="module" src="eachArticle.js"></script>
+    <script type="text/javascript" src="{% static '/post/js/eachArticle.js' %}"></script>
   </body>
 </html>
