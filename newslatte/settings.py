@@ -58,8 +58,6 @@ INSTALLED_APPS = [
 
     # 이메일 인증
     'six',
-    
-    
     'django_summernote' # app for text editor(summernote)
 
 
@@ -131,11 +129,13 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# 한국 시간으로 수정 위해
+TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True
 
-USE_TZ = True
+# 한국시간으로 수정 위해
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
