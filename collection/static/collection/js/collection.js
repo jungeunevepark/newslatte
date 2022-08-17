@@ -46,8 +46,8 @@ const showAsideBar = () => {
   asideBar.classList.add("show_aside");
 };
 
-hideAsideIcon.addEventListener("click", hideAsideBar);
-showAsideIcon.addEventListener("click", showAsideBar);
+// hideAsideIcon.addEventListener("click", hideAsideBar);
+// showAsideIcon.addEventListener("click", showAsideBar);
 
 const asideMenuList = document.querySelectorAll(".dropDn");
 
@@ -99,9 +99,9 @@ const addAsideMyCafeList = (e) => {
 let asideInputIcon = document.getElementsByClassName("list__mycafe__input");
 let addAsideIcon = document.getElementsByClassName("list__mycafe__add");
 
-addAsideIcon[0].addEventListener("click", addAsideMyCafeList);
+// addAsideIcon[0].addEventListener("click", addAsideMyCafeList);
 
-asideInputIcon[0].addEventListener("keyup", addListIfTyped);
+// asideInputIcon[0].addEventListener("keyup", addListIfTyped);
 
 //article__min toggle 버튼 눌렀을 때 min 사라지고 max 나타남
 
