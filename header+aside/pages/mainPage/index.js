@@ -283,3 +283,64 @@ const selectCategory = (e) => {
 for (let i = 0; i < insightCategory.length; i++){
   insightCategory[i].addEventListener("click", selectCategory);
 }
+
+// 팝업 내카페/저장한 글 선택
+
+const  myCartBtn = document.querySelectorAll(".popUP__myCart__Btn");
+const choosesavedParent = document.querySelector(".choose__between__saved");
+const choosebtwnSaved = document.querySelectorAll(".choose__saved__Btn");
+const writtenInsight = document.querySelector(".written__insights__whole");
+const savedInsight = document.querySelector(".insights__whole");
+const savedCollection = document.querySelector(".collection__whole");
+
+myCartBtn[0].style.fontWeight = "700";
+myCartBtn[0].style.borderBottom = "1px solid #5f5a5a";
+writtenInsight.style.display = "flex";
+
+const chooseBtwn = (e) => {
+  if (e.target.innerHTML == myCartBtn[0].innerHTML){
+    myCartBtn[0].style.fontWeight = "700";
+    myCartBtn[0].style.borderBottom = "1px solid #5f5a5a";
+    myCartBtn[1].style.fontWeight = "400";
+    myCartBtn[1].style.borderBottom = "none";
+    writtenInsight.style.display = "flex";
+    choosesavedParent.style.display = "none";
+    savedInsight.style.display = "none";
+    savedCollection.style.display = "none";
+  } else {
+    myCartBtn[0].style.fontWeight = "400";
+    myCartBtn[0].style.borderBottom = "none";
+    myCartBtn[1].style.fontWeight = "700";
+    myCartBtn[1].style.borderBottom = "1px solid #5f5a5a";
+    writtenInsight.style.display = "none";
+    choosesavedParent.style.display = "flex";
+    choosebtwnSaved[0].style.color = "#d97a7a";
+    choosebtwnSaved[0].style.borderBottom = "1px solid #d97a7a";
+    savedInsight.style.display = "flex";
+    savedCollection.style.display = "none";
+  }
+};
+
+myCartBtn[0].addEventListener("click", chooseBtwn);
+myCartBtn[1].addEventListener("click", chooseBtwn);
+
+const chooseSaved = (e) => {
+  if (e.target.innerHTML == choosebtwnSaved[0].innerHTML){
+    choosebtwnSaved[0].style.color = "#d97a7a";
+    choosebtwnSaved[0].style.borderBottom = "1px solid #d97a7a";
+    choosebtwnSaved[1].style.color = "#5f5a5a";
+    choosebtwnSaved[1].style.borderBottom = "none";
+    savedInsight.style.display = "flex";
+    savedCollection.style.display = "none";
+  } else {
+    choosebtwnSaved[0].style.color = "#5f5a5a";
+    choosebtwnSaved[0].style.borderBottom = "none";
+    choosebtwnSaved[1].style.color = "#d97a7a";
+    choosebtwnSaved[1].style.borderBottom = "1px solid #d97a7a";
+    savedInsight.style.display = "none";
+    savedCollection.style.display = "flex";
+  }
+};
+
+choosebtwnSaved[0].addEventListener("click", chooseSaved);
+choosebtwnSaved[1].addEventListener("click", chooseSaved);
