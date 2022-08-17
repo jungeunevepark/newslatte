@@ -106,6 +106,7 @@ section {
 }
 body {
   line-height: 1;
+  background: none;
 }
 ol,
 ul {
@@ -237,7 +238,6 @@ header {
 }
 
 .mypage__container {
-  display: flex;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -424,12 +424,18 @@ main {
 }
 
 .main__myPage {
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  background: linear-gradient(#f1f1f1 124px, #ffffff 124px);
+}
+
+.holdbackground {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .myPage__main {
-  width: 80%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -781,6 +787,116 @@ a {
 
 .saved__insights__list {
   display: none;
+}
+
+.saved__collection__list {
+  display: none;
+}
+
+.insight__post__like,
+.insight__post__market,
+.insight__post__comment {
+  font-size: 11px;
+  color: #9a9a9a;
+  width: 45px;
+  height: 20px;
+  border-radius: 13px;
+  border: 1px solid #b4b4b4;
+  padding: 3px;
+  margin-right: 8px;
+}
+
+.saved__collection__container {
+  width: 100%;
+  display: flex;
+  margin-top: 30px;
+  clear: left;
+}
+
+.saved__collection__img {
+  margin-right: 40px;
+}
+
+.first {
+  height: 136px;
+  width: 102px;
+  background-color: #d97a7a;
+}
+
+.second {
+  height: 136px;
+  width: 102px;
+  background-color: #d9d9d9;
+  position: relative;
+  left: -12px;
+  top: -10px;
+}
+
+.third {
+  height: 136px;
+  width: 102px;
+  background-color: #f5f5f5;
+  position: relative;
+  left: 17px;
+  top: -12px;
+}
+
+.saved__collection__letters {
+  margin-left: 30px;
+  width: calc(100% - 14vw);
+}
+
+.saved__collection__title {
+  font-size: 240x;
+  color: #656565;
+  text-decoration: none;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.saved__collection__collector {
+  font-size: 12px;
+  color: #5f5a5a;
+  margin-bottom: 10px;
+}
+
+.saved__collection__body {
+  width: 100%;
+  overflow: hidden;
+  /* display:-webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; */
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color: #656565;
+  text-decoration: none;
+  text-align: left;
+  line-height: 20px;
+  margin-bottom: 20px;
+}
+
+.first__gisa,
+.second__gisa,
+.third__gisa {
+  font-size: 14px;
+  color: #656565;
+}
+
+.saved__collection__others {
+  display: flex;
+  align-items: center;
+}
+
+.collection__hashtag {
+  width: 520px;
+  text-align: right;
+  font-size: 12px;
+  color: #656565;
+  margin-right: 14px;
+}
+
+.collection__divider {
+  border-top: 1px solid #e2e2e2;
 }
 
 /* signUp 페이지 */
