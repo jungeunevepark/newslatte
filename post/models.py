@@ -31,7 +31,7 @@ class Post(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     title = models.CharField(max_length=120)
-    subtitle=models.CharField(max_length=200, null=True)
+    subhead=models.CharField(max_length=200, null=True)
     content = models.TextField()
     tag = models.ManyToManyField(Tag)
 

@@ -17,38 +17,105 @@ import json
 
 # Create your views here.
 
-def create_post(request):
+def create_post_test(request):
+
     
     if request.method == 'GET':
 
-        # 인증된 유저인지 여부 확인 
-
+        # TODO: 인증된 유저인지 여부 확인 
 
         collections = Collection.objects.all()
         context = {'collections': collections}
-        return render(request, 'writeArticle.html', context)
+        return render(request, 'write_test.html', context)
 
     elif request.method == 'POST': # request 에 들어온 요청을 처리 
-        
-        """
-        if 인증된 유저가 아닌 경우(애초에 접속이 되면 안된다.)
-            success = 400
-            staus_code = 401 
-            msg = "User Not Authenticated"
-        
-        elif required 필드(title가 비어있는 경우 
+    
+        msg = [""]
+        if is_user_authenticated(request.user, msg) == False: 
+            success = 400 
+            status_code = 401 
+            
+        elif is_form_valid(request.POST, msg) == False:
             success = 400
             status_code = 400
-            msg = 
+        
+        else: # POST request is valid 
+            success = status_code = 200 
 
-        """
+        # post 객체를 불러서 저장
+            data = {
+                'author': request.user.profile,
+                'title': request.POST['title'], 
+                'subhead': request.POST['subhead'],
+                'content': request.POST['content'],
+                'collection_id': request.POST['collectionId']}
+
+            Post.objects.create(**data)
+
+        return JsonResponse(
+            {'success': success,
+            'status_code': status_code,
+            'msg': msg[0] }
+        )
 
 
 
 
+def is_user_authenticated(user, msg):
+    if user.is_authenticated:
+        return True
+    else: 
+        msg[0] = "User Not Authenticaed"
+        return False
 
-        pass
 
+def is_form_valid(POST, msg):   
+    
+    """
+    유효성 검사: 
+
+    1. 제목이 채워져 있는가 
+    2. 내용이 채워져 있는가
+
+
+    3. 컬렉션이 채워져 있는가: --> 컬렉션 ID 가 None 인건 일단 pass. 컬렉션을 체크 안했어도 일단 글을 작성할 수 있게 해주자. 
+    4. subhead가 채워져 있는가 -> 이것도 패스. 
+
+    """
+    EMPTYSTRING = ""
+    MAX_LENGTH = 120 
+
+    try:
+        title = POST['title']
+        subhead = POST['subhead']
+        content = POST['content']
+        collection_id = POST['collectionId']
+    except:
+        msg[0] = "Some required data field has not been passed. Required Field: title, subhead, content, collection_id"
+        return False
+
+    if title == EMPTYSTRING:
+        msg[0] = "Title is empty string"
+        return False
+    elif content == EMPTYSTRING:
+        msg[0] = "Content is empty"
+        return False
+    elif len(title) > MAX_LENGTH:
+        msg[0] = "Length of the title allowed has been exceeded."
+        return False
+    elif collection_id == None:
+        msg[0] = "Collection ID has not been passed. post will be saved, though. "
+        return True
+    else: # Passed data is valid 
+        return True        
+
+    
+    
+
+
+
+
+        
 
     
 
@@ -57,12 +124,11 @@ def create_post(request):
 
 
 
-def create_post_test(request):
+def create_post_test_form2(request):
     
     if request.method == 'POST':
-        print('wow, it works!')
+
         collection_id = request.POST.get('collectionId', None)
-        
         title = request.POST.get('title')
         content = request.POST.get('content')
 
@@ -109,9 +175,6 @@ def create_post_test(request):
 
 #     form = PostForm() 
     
-<<<<<<< HEAD
-#     return render(request, 'test2.html', {'form': form} )
-=======
     return render(request, 'test2.html', {'form': form} )
 
 
@@ -174,6 +237,8 @@ def detail_page(request, post_id) :
      
     return render(request, 'eachArticle.html', {'post_detail': post_detail, 'comment_detail':comment_detail, 'posts':posts, 'comments': comments, 'custom_post_range': custom_post_range, 'custom_comment_range': custom_comment_range, 'news':news, 'tags': tags })
 
+
+
 def new_comment(request, post_id):
     
     filed_form = CommentForm(request.POST)
@@ -184,4 +249,3 @@ def new_comment(request, post_id):
         finished_form.author = user.profile_set.first()
         finished_form.save()
         return redirect('detail_page', post_id)
->>>>>>> e87ddfe83f414d2dd1ede3b5b88473b64cec263b

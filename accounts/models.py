@@ -63,7 +63,8 @@ class User(AbstractBaseUser):
 
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     intro = models.CharField(max_length=200, verbose_name="한줄소개", null=True)
     nickname = models.CharField(max_length=18, verbose_name="닉네임", unique=True, null=True, blank=True)
 

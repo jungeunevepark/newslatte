@@ -14,13 +14,19 @@ def show_collection_detail(request, id):
     return render(request, 'test_detail.html', {'collection':collection})
 
 
+
 def fetch_news_from_collection(request, id):
 
+
+    print(123)
+    
     collection = get_object_or_404(Collection, id)
 
     news_set = list(collection.news.all().values(
         'title','press','date','image_id','summary','main_content'
     ))
+
+
 
     for news in news_set: 
         image_id = news.pop('image_id')

@@ -20,3 +20,8 @@ class Collection(models.Model):
         return self.title 
     
     # TODO: image, editor_comment, tag, category  필드 추가 
+
+
+
+
+
