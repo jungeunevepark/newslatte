@@ -1,0 +1,121 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
+<html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSLATTE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static '/accounts/css/signUp_1.css' %}" />
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  </head>
+  <body>
+    <div class="bg__dark"></div>
+    <div class="header__container">
+      <header>
+        <nav>
+          <div class="navBar__container">
+            <div class="navBar__left">
+              <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+              <div class="navBar__name">
+                <h1 class="navBar__name__h1">NEWSLATTE</h1>
+              </div>
+            </div>
+            <div class="navBar__right">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <button class="navBar__right__save direct">로그인</button>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <section id="signUp">
+      <div class="signUp__container">
+        <div class="signUp__logo">
+          <h1>NEWSLATTE</h1>
+        </div>
+        <div class="signUp__first__container">
+          <div class="signUp__social__login">
+            <p>소셜미디어로 회원가입</p>
+            <div class="social__login__imgs">
+              <a href="{% provider_login_url 'kakao' next='/accounts/profile/' %}">
+              <img
+                class="social__login kakao"
+                src="{% static '/accounts/img/kakao_logo.jpg' %}"
+                alt="카카오 로그인 버튼"
+              />
+            </a>
+              <a href="{% provider_login_url 'naver' next='/accounts/profile/' %}">
+              <img
+                class="social__login naver"
+                src="{% static '/accounts/img/naver_logo.PNG' %}"
+                alt="네이버 회원가입 버튼"
+              />
+            </a>
+              <a href="{% provider_login_url 'google' next='/accounts/profile/' %}">
+              <img
+                class="social__login google"
+                src="{% static '/accounts/img/google_logo.PNG' %}"
+                alt="구글 회원가입 버튼"
+              />
+            </a>
+              <img
+                class="social__login facebook"
+                src="{% static '/accounts/img/facebook__logo.png' %}"
+                alt="페이스북 회원가입 버튼"
+              />
+            </div>
+          </div>
+          <div class="signUp__normal__login">
+            <p>이메일로 회원가입</p>
+            <form
+              target="first__signUp"
+              class="modal__signUp__form"
+              action="{% url 'signup' %}"
+              method="POST"
+              onsubmit="showNextPageHandler(event)"
+            >
+            {% csrf_token %}
+              <div class="modal__signUp__container">
+                <input type="email" name="email" placeholder="이메일" required />
+                <input
+                  id="signUp__password"
+                  type="password"
+                  name="password"
+                  placeholder="비밀번호"
+                  required
+                />
+                <input
+                  id="signUp__password__check"
+                  type="password"
+                  name="repeat"
+                  placeholder="비밀번호를 설정해주세요"
+                  required
+                />
+              </div>
+              <div id="password__check__guide"><p></p></div>
+              <input
+                type="submit"
+                id="signUp__first__btn"
+                value="다음"
+                required
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="{% static '/accounts/js/signUp_1.js' %}"></script>
+  </body>
+</html>
