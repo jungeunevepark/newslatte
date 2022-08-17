@@ -1,9 +1,10 @@
-
 {% if collections.2 %}
 
 {% endif %}
 {% for collection in collections %}
 
-   <a href="{% url 'collection_detail' collection.id %}"><p> {{ collection.name }} </p></a>
+<a href="{% url 'collection_detail' collection.id %}">
+   <p> {{ collection.title }} </p>
+</a>
 
 {% endfor %}

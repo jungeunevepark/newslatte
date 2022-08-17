@@ -1,13 +1,8 @@
-from re import L
 from ssl import create_default_context
 from django.db import models
-from accounts.models import Profile
-
-
+from accounts.models import User, Profile
+from typing import TYPE_CHECKING 
 from collection.models import Collection
-# Create your models here.
-
-
 
 class Tag(models.Model): # this model should be referenced by Post and Collection 
     name = models.CharField(max_length=128)
@@ -23,7 +18,6 @@ class Folder(models.Model):
     parentFolder = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True)
 
 
-
 class Post(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, blank=True) 
     collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True, blank=True)
@@ -32,7 +26,7 @@ class Post(models.Model):
     views = models.IntegerField(default=0)
     likes = models.IntegerField(default=0)
     title = models.CharField(max_length=120)
-    subtitle=models.CharField(max_length=200, null=True)
+    subhead=models.CharField(max_length=200, null=True)
     content = models.TextField()
     tag = models.ManyToManyField(Tag)
 
@@ -47,11 +41,6 @@ class Comment(models.Model):
 
     def __str__(self) :
         return self.comment
-
-
-
-
-
 
 
 

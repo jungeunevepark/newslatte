@@ -1,7 +1,5 @@
 from django.contrib import admin
 from django.urls import path, include 
-from news import views
-from accounts import views as accounts_views
 from ui import views as ui_views 
 
 from django.conf import settings

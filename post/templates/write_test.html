@@ -1,0 +1,166 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{{collections.4}}
+{% for collection in collections %}
+<div id="{{collection.id}}" style="background-color: red" onclick="get_pk(id)">
+    <p>{{ collection.title }}</p>
+    <p>{{ collection.user.nickname }}</p>
+</div>
+{% endfor %}
+
+
+<!-- 컬렉션에 속한 기사가 display 되는 부분 -->
+<div id="display">
+    <h3 id="title"></h3>
+    <p id="date"></p>
+    <img id="img" src="">
+    <pre id="content"></pre>
+</div>
+
+<button type="button" onclick="postrequest()">Click Me!</button>
+
+
+<form>
+    <input type="text" name="title">
+    <input type="text" name="subhead">
+    <textarea name="content"></textarea>
+</form>
+
+
+<!-- response test -->
+<div id="code"></div>
+<div id="result"></div>
+<div id="num__of__news"></div>
+
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+
+var chosenCollectionId = undefined 
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+var csrftoken = getCookie('csrftoken');
+
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+function postrequest(){
+
+    var title = document.getElementsByName('title')[0].value
+    var content = document.getElementsByName('content')[0].value
+    var subhead = document.getElementsByName('subhead')[0].value
+
+    if (chosenCollectionId === undefined){
+        alert('please choose Collection.')
+    }
+    else{
+        $.post('', 
+        {
+            'csrfmiddlewaretoken': csrftoken,
+            'collectionId': chosenCollectionId,
+            'title': title,
+            'content':content,
+            'subhead':subhead
+        },function(data, status){
+            console.log(status)
+            console.log(data['success'])
+            console.log(data['status_code'])
+            console.log(data['msg'])
+        }
+        )
+    }
+}
+
+
+
+
+function get_pk(id){
+    
+    chosenCollectionId = id;
+
+    const str1 = '{% for news in collections.'+ id;
+    const str2 = '.news.all %}'
+    // document.write(str1+str2);
+        
+    $("#display_article").text(str1+str2);
+
+    // $.ajax('', {type:'GET', dataType:'json', contentType:'json',
+    //     headers: {'api-key': 'myKey'}, data:{'csrfmiddlewaretoken': csrftoken}, GET:{'id':3}}); 
+
+    $.post('../../collection/' + id + '/news',
+    {
+        'csrfmiddlewaretoken': csrftoken,
+        'collectionId': id
+    },
+    function(data, status){
+
+        console.log(data['result'][1]['title'])
+        console.log(data['result'][1]['date'])
+        console.log(data['result'][1]['main_content'])
+
+        // document.getElementById('title').innerHTML = data[0]['title']
+        // document.getElementById('date').innerHTML = data[0]['date']
+        // document.getElementById('img').src = data[0]['image']
+        // document.getElementById('content').innerHTML = data[0]['main_content']
+        // // $.each(data, function(index, item){
+        // document.getElementById('title').innerHTML = item.title //data[0]['title']
+        // document.getElementById('date').innerHTML = item.date //data[0]['date']
+        // document.getElementById('img').src = item.image //data[0]['image']
+        // document.getElementById('content').innerHTML = item.main_content // data[0]['main_content']
+        // })
+    })
+}
+
+// function(data, status){
+//         $.each(data, function(index, item){
+//         document.getElementById('title').innerHTML = data[0]['title']
+//         document.getElementById('date').innerHTML = data[0]['date']
+//         document.getElementById('img').src = data[0]['image']
+//         document.getElementById('content').innerHTML = data[0]['main_content']
+//         })
+//     })
+
+// var form = document.getElementById
+
+</script>
+
+
+</html>
+

@@ -1,14 +1,13 @@
 from django.db import models
-
-from accounts.models import Profile
+from accounts.models import User, Profile
 from news.models import News 
-# Create your models here.
+# # Create your models here.
 
-class CollectionTag(models.Model): # this model should be referenced by Post and Collection 
-    name = models.CharField(max_length=128)
+# class CollectionTag(models.Model): # this model should be referenced by Post and Collection 
+#     name = models.CharField(max_length=128)
 
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 class Collection(models.Model):
     
@@ -19,13 +18,15 @@ class Collection(models.Model):
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
     views = models.IntegerField(default=0, verbose_name="조회수")
     refCount = models.IntegerField(default=0, verbose_name="참조수")
-    tag = models.ManyToManyField(CollectionTag)
+    tag = models.ManyToManyField(to='post.Tag', null=True)
     comment = models.CharField(max_length = 120, null =True, verbose_name="코멘트")
     
     def __str__(self):
-        return self.id
-
+        return self.title
+    
     # TODO: image, editor_comment, tag, category  필드 추가 
+
+
 
 
 
