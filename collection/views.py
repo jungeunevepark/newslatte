@@ -21,3 +21,8 @@ def show_collection_detail(request, id):
     return render(request, 'test_detail.html', {'collection':collection})
 
 
+def detail(request, collection_id):
+    collection = get_object_or_404(Collection, pk=collection_id)
+    newss = collection.news.all()
+    first_news = collection.news.first()
+    return render(request, 'collection.html', {'collection': collection, 'newss':newss, 'first_news': first_news})

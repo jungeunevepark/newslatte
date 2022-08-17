@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'post',
     'ui',
     'accounts',
+    'mypage',
 
     'allauth',
     'allauth.account',
@@ -149,6 +150,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'news', 'static'),
     os.path.join(BASE_DIR, 'post', 'static'),
     os.path.join(BASE_DIR, 'ui', 'static'),
+    os.path.join(BASE_DIR, 'mypage', 'static'),
 ]
 
 STATICFILES_FINDERS = [
