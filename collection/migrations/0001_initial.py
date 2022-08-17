@@ -9,8 +9,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('news', '0001_initial'),
         ('accounts', '0001_initial'),
+        ('news', '0001_initial'),
     ]
 
     operations = [
@@ -23,6 +23,7 @@ class Migration(migrations.Migration):
                 ('likes', models.IntegerField(default=0)),
                 ('views', models.IntegerField(default=0)),
                 ('refCount', models.IntegerField(default=0)),
+                ('editor_comment', models.TextField()),
                 ('author', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='accounts.profile')),
                 ('news', models.ManyToManyField(to='news.news')),
             ],
