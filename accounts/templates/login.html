@@ -1,18 +1,20 @@
 {% load socialaccount %}
 {% providers_media_js %}
 
-<form action="{% url 'login' %}" method="POST">
+<form action="{% url 'profile'%}" method="POST">
     {% csrf_token %}
-    email: <input type="text" name="email"> <br>
-    password: <input type="password" name="password">
+    nickname: <input type="text" name="nickname"> <br>
+    intro: <input type="text" name="intro">
     <br>
     <input type="submit" value="로그인">
 </form>
+
 
 <form action="{% url 'logout' %}" method = "POST">
     {% csrf_token %}
     <input type="submit" value="logout">
 </form>
-<a href="{% provider_login_url 'google' %}">Google</a>
+
+<!-- <a href="{% provider_login_url 'google' %}">Google</a>
 <a href="{% provider_login_url 'naver' %}">Naver</a>
-<a href="{% provider_login_url 'kakao' %}">Kakao</a>
+<a href="{% provider_login_url 'kakao' %}">Kakao</a> -->

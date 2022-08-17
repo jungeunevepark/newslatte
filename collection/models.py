@@ -1,5 +1,5 @@
 from django.db import models
- 
+
 from accounts.models import Profile
 from news.models import News 
 # Create your models here.
