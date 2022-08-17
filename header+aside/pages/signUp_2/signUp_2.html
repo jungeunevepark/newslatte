@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSLATTE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="signUp_2.css" />
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  </head>
+  <body>
+    <div class="bg__dark"></div>
+    <div class="header__container">
+      <header>
+        <nav>
+          <div class="navBar__container">
+            <div class="navBar__left">
+              <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+              <div class="navBar__name">
+                <h1 class="navBar__name__h1">NEWSLATTE</h1>
+              </div>
+            </div>
+            <div class="navBar__right">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <button class="navBar__right__save direct">로그인</button>
+            </div>
+          </div>
+        </nav>
+      </header>
+    </div>
+    <section id="signUp">
+      <div class="signUp__container">
+        <div class="signUp__logo">
+          <h1>NEWSLATTE</h1>
+        </div>
+        <div class="signUp__second__container">
+          <div class="signUp__normal__login">
+            <p>회원정보 설정하기</p>
+            <form
+              class="modal__signUp__form"
+              method="post"
+              target="second__signUp"
+            >
+              <div class="modal__signUp__input">
+                <div class="modal__signUp__guide">
+                  <p>NEWSLATTE에서 활동할 닉네임을 정해주세요.</p>
+                </div>
+                <input
+                  type="text"
+                  name="nickname"
+                  placeholder="닉네임을 설정해주세요. ex) 달콤쌉쓰레한 말차라떼"
+                  required
+                />
+              </div>
+              <div class="modal__signUp__input">
+                <div class="modal__signUp__guide">
+                  <p>자신을 한문장으로 표현해주세요.</p>
+                </div>
+                <input
+                  type="text"
+                  name="text"
+                  placeholder="자신을 한 문장으로 표현해주세요 ex) 세상을 바꾸고 싶은 컴린이입니다."
+                  required
+                />
+              </div>
+              <input
+                type="submit"
+                id="signUp__second__btn"
+                value="회원가입하기"
+              />
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="signUp_2.js"></script>
+  </body>
+</html>
