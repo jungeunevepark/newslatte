@@ -8,9 +8,6 @@ const asideBar = document.querySelector("aside");
 const showAsideIcon = document.querySelector("#navBar__toggle__icon");
 const showCategory = document.querySelector(".category_name");
 const chooseCategory = document.querySelectorAll(".category_btn");
-const submitBtn = document.querySelector(".navBar__right__save.direct");
-const collectionElement = document.querySelector(".myCart__each__list");
-
 
 const closeLoginModal = () => {
   modalSection.classList.remove("modal__show");
@@ -288,39 +285,5 @@ articleListController.addEventListener("mousedown", changeSizeHandler);
 
 //login 체크, local memory 가져와서 확인
 // isLogin();
-
-
-
-
-
-
-var chosenCollectionId = undefined 
-collectionElement.addEventListener("click", showArticles);
-function showArticles(id){
-  alert(id)
-  console.log(55)
-}
-
-
-function createPost(){
-
-  if (chosenCollectionId === undefined)
-  {
-    alert('컬렉션을 선택해주세요.');
-  }
-
-  // else{
-  //   $.post(
-  //     '',
-  //     {'csrfmiddleware': csrftoken,
-  //   }
-  //   )
-  // }
-}
-submitBtn.addEventListener("click", createPost); 
-
-
-
-
 
 init();
