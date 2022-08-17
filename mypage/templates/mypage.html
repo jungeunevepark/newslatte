@@ -96,8 +96,9 @@
                 <div class="written__articles__list">
 
                   {% for post in posts %}
+                  <a href="{% url 'detail_page' post.id %}">
                   <div class="written__articles__container">
-                    <img class="written__articles__img" src="">
+                    <img class="written__articles__img" src="{{ post.img }}">
                     <div class="written__articles__letters">
                       <div class="written__articles__hashtag">
                         <p>#{{ post.tag.name }} </p>
@@ -109,12 +110,13 @@
                       </div>
                       <div class="written__articles__others">
                         <div class="article__like">👍({{ post.likes }})</div>
-                        <div class="article__comment">🗨(10)</div>
-                        <div class="article__market">🛒(10)</div>
+                        <div class="article__comment">🗨({{ post.comment_set.count }})</div>
+                        <div class="article__market">🛒({{ post.refCount }})</div>
                         <div class="written__by">written by {{ post.author.nickname }}</div>
                       </div>
                     </div>
                   </div>
+                  </a>
                   {% endfor %}
 
                   <div class="post__pagination">

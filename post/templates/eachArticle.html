@@ -154,9 +154,9 @@
 
             </article>
             <div class="eachArticle__informations">
-              <div class="eachArticle__informations__recommend">👍(10)</div>
-              <div class="eachArticle__informations__comment">🗨(10)</div>
-              <div class="eachArticle__informations__myCart">🛒(10)</div>
+              <div class="eachArticle__informations__recommend">👍({{ post_detail.likes}})</div>
+              <div class="eachArticle__informations__comment">🗨({{ post_detail.comment_set.count }})</div>
+              <div class="eachArticle__informations__myCart">🛒({{ post_detail.refCount }})</div>
             </div>
             <div class="eachArticle__author">
               <p>Written by {{post_detail.author.nickname}}</p>
@@ -216,7 +216,7 @@
             <form method="POST" action="{% url 'new_comment' post_detail.id %}">
               <div class="eachArticle__comments">
                 <div class="eachArticle__comments__write">
-                  <p>댓글(10)</p>
+                  <p>댓글({{ post_detail.comment_set.count }})</p>
                   {% csrf_token %}
                   <div class="eachArticle__comments__textArea">
                     <textarea name="comment" id="" placeholder="댓글을 입력해주세요"></textarea>

@@ -245,5 +245,8 @@ def new_comment(request, post_id):
         comment.comment=request.POST['comment']
         comment.post = get_object_or_404(Post, pk=post_id)
         comment.author = request.user.profile
+        # count = comment.post.comment_num
+        # count += 1
+        # comment.post.comment_num = int(count)
         comment.save()
         return redirect('detail_page', post_id)
