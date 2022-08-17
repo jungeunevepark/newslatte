@@ -11,7 +11,7 @@ from .forms import PostForm, CommentForm
 from .models import Post, Comment
 
 from time import timezone
-from rest_framework import serializers
+# from rest_framework import serializers
 import json 
 
 
