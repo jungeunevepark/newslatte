@@ -263,13 +263,6 @@
               </div>
             </div>
             <div class="recommend__insight__post__pagination">
-              <p>&#8249;</p>
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
-              <p>4</p>
-              <p>5</p>
-              <p>&#8250;</p>
             </div>
           </div>
           <div class="todays__insight__container">
@@ -369,13 +362,6 @@
               </div>
             </div>
             <div class="recommend__insight__post__pagination">
-              <p>&#8249;</p>
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
-              <p>4</p>
-              <p>5</p>
-              <p>&#8250;</p>
             </div>
           </div>
         </section>
@@ -569,13 +555,6 @@
               </div>
             </div>
             <div class="popUp__pagination">
-              <p>&#8249;</p>
-              <p>1</p>
-              <p>2</p>
-              <p>3</p>
-              <p>4</p>
-              <p>5</p>
-              <p>&#8250;</p>
             </div>
             <div class="write__btn">글쓰기 +</div>
           </div>
@@ -644,7 +623,14 @@
       }
     });
 
+    function renewThumbsUp(id) {
+      const targetThumb = document.getElementById(`${id}`)
+      const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
+      targetThumb.innerText = `👍(${countNum+1})`
+    }
+
     function thumup(id) {
+      renewThumbsUp(id)
       // 좋아요 누르면 개수 늘어나도록. 
       //그런데 한사람당 하나씩만 높일 수 있도록
       //우선 인사이트 id 보내기 
@@ -660,15 +646,8 @@
         function (data, status) { //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
           // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
           // console.log(insightPostLike)
-          console.log(data['result'])
-
-
-
+          // console.log(data['result'])
         })
-
-
-
-
     }
   </script>
 </body>
