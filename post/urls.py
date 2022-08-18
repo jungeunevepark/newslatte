@@ -9,5 +9,4 @@ urlpatterns = [
     path('new_comment/<int:post_id>', new_comment, name='new_comment'), 
     # path('comment/', create_comment, name="create_comment"),
     path('', fetch_post)
-
 ]
