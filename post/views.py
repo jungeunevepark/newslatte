@@ -10,11 +10,25 @@ from accounts.models import Profile
 from .models import Post, Comment
 
 from time import timezone
-# from rest_framework import serializers
+
 import json 
 
 
 # Create your views here.
+
+
+def fetch_post(request):
+    """
+    127.0.0.1:8000/post?order_by=asc[likes]&category=정치
+
+    TODO: 다양한 쿼리 파라미터에 대한 요청 처리 
+    """
+
+    category  = request.GET.get('category', '')
+    posts = list(Post.objects.filter(category = category).values())
+
+
+    return JsonResponse(list(posts), safe=False) 
 
 
 
@@ -73,17 +87,6 @@ def is_user_authenticated(user, msg):
 
 def is_form_valid(POST, msg):   
     
-    """
-    유효성 검사: 
-
-    1. 제목이 채워져 있는가 
-    2. 내용이 채워져 있는가
-
-
-    3. 컬렉션이 채워져 있는가: --> 컬렉션 ID 가 None 인건 일단 pass. 컬렉션을 체크 안했어도 일단 글을 작성할 수 있게 해주자. 
-    4. subhead가 채워져 있는가 -> 이것도 패스. 
-
-    """
     EMPTYSTRING = ""
     MAX_LENGTH = 120 
 
