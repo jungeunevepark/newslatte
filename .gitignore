@@ -262,4 +262,4 @@ myvenv/
 # secret_key
 secret.json
 
-.static_root/
+staticfiles
