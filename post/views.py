@@ -184,7 +184,6 @@ def detail_page(request, post_id) :
 
 
 def new_comment(request, post_id):
-<<<<<<< HEAD
 
     if request.method == "POST":
         comment = Comment()
