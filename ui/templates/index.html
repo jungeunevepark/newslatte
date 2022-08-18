@@ -220,8 +220,9 @@
                   <div class="insight__post__comment">🗨(10)</div>
                   <div class="insight__post__market">🛒({{post1.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    <span>#경제</span>
-                    <span>#경제</span>
+                    {% for tag in post1.tag.all %}
+                    <span>#{{ tag }}</span>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
@@ -258,8 +259,9 @@
                   <div class="insight__post__comment">🗨(10)</div>
                   <div class="insight__post__market">🛒({{post3.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    <span>#경제</span>
-                    <span>#경제</span>
+                    {% for tag in post3.tag.all %}
+                    <span>#{{ tag }}</span>
+                    {% endfor %}
                   </div>
                 </div>
               </div>
