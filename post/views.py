@@ -5,9 +5,10 @@ from django.db import models
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 from collection.models import Collection
-from news.models import  NewsImage
+from news.models import NewsImage
 from accounts.models import Profile
 from .models import Post, Comment
+from news.models import News
 
 from time import timezone
 # from rest_framework import serializers
@@ -45,14 +46,24 @@ def create_post(request):
             success = status_code = 200 
 
         # post 객체를 불러서 저장
-            data = {
-                'author': request.user.profile,
-                'title': request.POST['title'], 
-                'subhead': request.POST['subhead'],
-                'content': request.POST['content'],
-                'collection_id': request.POST['collectionId']}
+            post = Post()
+            post.author = request.user.profile
+            post.title = request.POST['title']
+            post.subhead = request.POST['subhead']
+            post.content = request.POST['content']
+            post.collection = get_object_or_404(Collection, pk = request.POST['collectionId'])
+            news = post.collection.news.first()
+            post.img = news.image.image
+            post.save()
 
-            Post.objects.create(**data)
+            # data = {
+            #     'author': request.user.profile,
+            #     'title': request.POST['title'], 
+            #     'subhead': request.POST['subhead'],
+            #     'content': request.POST['content'],
+            #     'collection_id': request.POST['collectionId']}
+
+            # post = Post.objects.create(**data)
 
         return JsonResponse(
             {'success': success,
