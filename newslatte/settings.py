@@ -31,7 +31,7 @@ SECRET_KEY = 'DJANGO_SECRET'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
