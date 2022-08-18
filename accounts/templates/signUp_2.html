@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="{% static '/accounts/css/signUp_2.css' %}" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   </head>
   <body>
     <div class="bg__dark"></div>
@@ -47,12 +48,12 @@
         <div class="signUp__second__container">
           <div class="signUp__normal__login">
             <p>회원정보 설정하기</p>
-            <form
+            <!-- <form
               class="modal__signUp__form"
               action="{% url 'signup2' %}"
               method="post"
               target="second__signUp"
-            >
+            > -->
             {% csrf_token %}
               <div class="modal__signUp__input">
                 <div class="modal__signUp__guide">
@@ -61,9 +62,11 @@
                 <input
                   type="text"
                   name="nickname"
+                  id="nickname"
                   placeholder="닉네임을 설정해주세요. ex) 달콤쌉쓰레한 말차라떼"
                   required
                 />
+                <p id="nickname__check"></p>
               </div>
               <div class="modal__signUp__input">
                 <div class="modal__signUp__guide">
@@ -72,6 +75,7 @@
                 <input
                   type="text"
                   name="intro"
+                  id="intro"
                   placeholder="자신을 한 문장으로 표현해주세요 ex) 세상을 바꾸고 싶은 컴린이입니다."
                   required
                 />
@@ -81,12 +85,44 @@
                 id="signUp__second__btn"
                 value="회원가입하기"
               />
-            </form>
+            <!-- </form> -->
           </div>
         </div>
       </div>
     </section>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      $.ajaxSetup({
+        headers: { "X-CSRFToken": '{{csrf_token}}' }
+      });
+    </script>
+    <script type = "text/javascript">
+      let signup2 = document.querySelector('#signUp__second__btn');
+  
+      signup2.addEventListener('click', e => {
+        var nickname = document.getElementById('nickname').value;
+        var intro = document.getElementById('intro').value;
+        console.log(nickname)
+        console.log(intro)
+  
+        let dict = {'nickname': nickname, 'intro': intro}
+        $.ajax({
+          url: '/accounts/signup2/',
+          type: 'POST',
+          data: JSON.stringify(dict),
+          success:function(data){
+            console.log(data)
+            if (data['msg'] == ""){
+             window.location.replace("http://127.0.0.1:8000/accounts/message");
+            }document.getElementById('nickname__check').innerHTML = "이미 존재하는 바리스타입니다."
+          },
+          error: function(){
+            alert('전송실패')
+          }
+        });
+       }); 
+  
+    </script>
     <script type="text/javascript" src="{% static '/accounts/js/signUp_2.js' %}"></script>
   </body>
 </html>

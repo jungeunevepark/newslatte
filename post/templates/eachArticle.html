@@ -213,21 +213,36 @@
             </div>
 
             <!-- 로그인한 사람만 댓글 폼 보이게 -->
-            {% if user.is_authenticated %}
-            <form action="{% url 'new_comment' post_detail.id %}" method="POST">
+              {% if user.is_authenticated %}
+              <form action="{% url 'new_comment' post_detail.id %}" method="POST">
+                <div class="eachArticle__comments">
+                  <div class="eachArticle__comments__write">
+                    <p>댓글({{ post_detail.comment_set.count }})</p>
+                    {% csrf_token %}
+                    <div class="eachArticle__comments__textArea">
+                      <textarea name="comment" id="comment" placeholder="  댓글을 입력해주세요"></textarea>
+                    </div>
+                    <div class="comments__submit__container">
+                      <input type="hidden" id="post_id" value="{{post_detail.id}}">
+                      <input type="submit" class="eachArticle__comments__submit" value="확인">
+                    </div>
+                  </div>
+              {% else %}
+              <form action=""></form>
               <div class="eachArticle__comments">
                 <div class="eachArticle__comments__write">
                   <p>댓글({{ post_detail.comment_set.count }})</p>
                   {% csrf_token %}
                   <div class="eachArticle__comments__textArea">
-                    <textarea name="comment" id="" placeholder="댓글을 입력해주세요"></textarea>
+                    <textarea name="comment" id="comment" placeholder="  로그인 후 이용해주세요"></textarea>
                   </div>
                   <div class="comments__submit__container">
+                    <input type="hidden" id="post_id" value="{{post_detail.id}}">
                     <input type="submit" class="eachArticle__comments__submit" value="확인">
                   </div>
                 </div>
+                {% endif %}
               </form>
-            {% endif %}
 
             <div class="eachArticle__comments__list">
               {% for comment in comments %}
@@ -292,6 +307,37 @@
   <footer></footer>
   </div>
   </div>
+  <!-- <script>
+
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+  </script>
+  <script type = "text/javascript">
+    let comment = document.querySelector('.eachArticle__comments__submit');
+
+    comment.addEventListener('click', e => {
+      var comment = document.getElementById('comment').value;
+      var post_id = document.getElementById('post_id').value;
+
+
+      console.log(comment)
+      console.log(post_id)
+      let dict = {'comment': comment, 'post_id': post_id}
+      $.ajax({
+        url: '/post/comment/',
+        type: 'POST',
+        data: JSON.stringify(dict),
+        success:function(data){
+          json.loads(data)
+        },
+        error: function(){
+          alert('전송실패')
+        }
+      });
+     }); 
+
+  </script> -->
   <script type="text/javascript" src="{% static '/post/js/eachArticle.js' %}"></script>
 </body>
 

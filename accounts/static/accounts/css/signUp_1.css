@@ -532,3 +532,11 @@ footer {
   width: 100%;
   position: fixed;
 }
+
+#email__message{
+  font-size: 13px;
+}
+
+#password__message{
+  font-size: 13px;
+}
