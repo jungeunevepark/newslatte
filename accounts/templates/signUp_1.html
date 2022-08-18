@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="{% static '/accounts/css/signUp_1.css' %}" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   </head>
   <body>
     <div class="bg__dark"></div>
@@ -78,16 +79,10 @@
           </div>
           <div class="signUp__normal__login">
             <p>이메일로 회원가입</p>
-            <form
-              target="first__signUp"
-              class="modal__signUp__form"
-              action="{% url 'signup' %}"
-              method="POST"
-              onsubmit="showNextPageHandler(event)"
-            >
             {% csrf_token %}
               <div class="modal__signUp__container">
-                <input type="email" name="email" placeholder="이메일" required />
+                <input type="text" id = "email" name="email" placeholder="이메일" required />
+                <p id="email__message"></p>
                 <input
                   id="signUp__password"
                   type="password"
@@ -102,6 +97,7 @@
                   placeholder="비밀번호를 설정해주세요"
                   required
                 />
+                <p id="password__message"></p>
               </div>
               <div id="password__check__guide"><p></p></div>
               <input
@@ -110,12 +106,60 @@
                 value="다음"
                 required
               />
-            </form>
           </div>
         </div>
       </div>
     </section>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      $.ajaxSetup({
+        headers: { "X-CSRFToken": '{{csrf_token}}' }
+      });
+    </script>
+  
+    <script type = "text/javascript">
+      let signup = document.querySelector('#signUp__first__btn');
+  
+      signup.addEventListener('click', e => {
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('signUp__password').value;
+        var repeat = document.getElementById('signUp__password__check').value;
+        console.log(email)
+        console.log(password)
+        console.log(repeat)
+  
+        let dict = {'email': email, 'password': password, 'repeat': repeat}
+        $.ajax({
+          url: '/accounts/signup/',
+          type: 'POST',
+          data: JSON.stringify(dict),
+          success:function(data){
+            console.log(data)
+            if (data['msg'] == ""){
+             window.location.replace("http://127.0.0.1:8000/accounts/signup2");
+            }else{
+              document.getElementById('email__message').innerHTML = ""
+              document.getElementById('password__message').innerHTML = ""
+             if(data['msg']=="email"){
+              document.getElementById('email__message').innerHTML = "유효한 이메일 형식이 아닙니다."
+            }else{
+              if(data['msg']=="exist"){
+                document.getElementById('email__message').innerHTML = "가입된 이메일입니다."
+              }
+              else{
+              if(data['msg']=="pwd"){
+              document.getElementById('password__message').innerHTML = "비밀번호는 영문/숫자를 포함한 6~12자리 입니다."
+              }
+          }
+        }
+        }},
+          error: function(){
+            alert('전송실패')
+          }
+        });
+       }); 
+  
+    </script>
     <script type="text/javascript" src="{% static '/accounts/js/signUp_1.js' %}"></script>
   </body>
 </html>

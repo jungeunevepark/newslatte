@@ -512,3 +512,17 @@ footer {
   width: 100%;
   position: fixed;
 }
+
+/* #password__check__guide {
+  font-size: 13px;
+  font-weight: 300;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+} */
+
+#password__check__guide{
+    font-size: 13px;
+}
+

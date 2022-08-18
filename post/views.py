@@ -26,8 +26,9 @@ def create_post(request):
         # TODO: 인증된 유저인지 여부 확인 
 
         collections = Collection.objects.all()
-        context = {'collections': collections}
-        return render(request, 'writeArticle.html', context)
+        test = 0
+        context = {'collections': collections, 'test' :test}
+        return render(request, 'write_test.html', context)
 
     elif request.method == 'POST': # request 에 들어온 요청을 처리 
     
@@ -178,8 +179,8 @@ def detail_page(request, post_id) :
         rightIndex = paginator2.num_pages
     
     custom_comment_range = range(leftIndex, rightIndex+1)
-     
-    return render(request, 'eachArticle.html', {'post_detail': post_detail, 'posts':posts, 'comments': comments, 'custom_post_range': custom_post_range, 'custom_comment_range': custom_comment_range, 'news':news, 'tags': tags })
+    test = 0 
+    return render(request, 'eachArticle.html', {'post_detail': post_detail, 'posts':posts, 'comments': comments, 'custom_post_range': custom_post_range, 'custom_comment_range': custom_comment_range, 'news':news, 'tags': tags, 'test': test })
 
 
 
@@ -203,42 +204,30 @@ def new_comment(request, post_id):
     #     return redirect('detail_page', post_id)
 
 
-def create_comment(request):
-
-    # if request.method == 'GET':
-
-    #     # TODO: 인증된 유저인지 여부 확인 
-
-    #     collections = Collection.objects.all()
-    #     context = {'collections': collections}
-    #     return render(request, 'write_test.html', context)
-
-    if request.method == 'POST': # request 에 들어온 요청을 처리 
+def create_comment(request): #, post_id):
     
-        msg = [""]
-        if is_user_authenticated(request.user, msg) == False: 
-            success = 400 
-            status_code = 401 
+    msg = [""]
+    if is_user_authenticated(request.user, msg) == False: 
+        success = 400 
+        status_code = 401 
             
-        # elif is_form_valid(request.POST, msg) == False:
-        #     success = 400
-        #     status_code = 400
         
-        else: # POST request is valid 
-            success = status_code = 200 
-            jsonObject = json.loads(request.body)
+    else: # POST request is valid 
+        success = status_code = 200 
+        jsonObject = json.loads(request.body)
         # post 객체를 불러서 저장
-            data = {
+        data = {
                 'author': request.user.profile,
                 'post_id': jsonObject.get('post_id'), 
                 'comment': jsonObject.get('comment')
-            }
-            Comment.objects.create(**data)
-
-        return JsonResponse(
-            {'success': success,
-            'status_code': status_code,
-            'msg': msg[0] }
-        )
-    return render(request, 'eachArticle.html')
+        }
+        Comment.objects.create(**data)
+    post_detail = get_object_or_404(Post, pk = jsonObject.get('post_id'))
+    comments = Comment.objects.filter(post = post_detail).order_by('-date')
+    return render(request, 'eachArticle.html',
+            {'comments': comments})
+    #         'status_code': status_code,
+    #         'msg': msg[0] }
+    # )
+    # # return render(request, 'eachArticle.html')
 
