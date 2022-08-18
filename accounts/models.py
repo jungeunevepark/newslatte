@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
         user = self.model(
             email=self.normalize_email(email),
         )
-
+        
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -20,7 +20,7 @@ class UserManager(BaseUserManager):
     def create_superuser(self, email, password):
         user = self.create_user(
             email,
-            password=password,
+            password=password
         )
         user.is_admin = True
         user.save(using=self._db)
@@ -33,6 +33,7 @@ class User(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
+    # nick = models.CharField(max_length=18, null=True, blank=True)
     date_joined = models.DateTimeField(auto_now_add=True, verbose_name='가입일', null=True, blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -64,7 +65,6 @@ class User(AbstractBaseUser):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
     intro = models.CharField(max_length=200, verbose_name="한줄소개", null=True)
     nickname = models.CharField(max_length=18, verbose_name="닉네임", unique=True, null=True, blank=True)
 

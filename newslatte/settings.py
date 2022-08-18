@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'post',
     'ui',
     'accounts',
+    'mypage',
 
     'allauth',
     'allauth.account',
@@ -149,6 +150,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'news', 'static'),
     os.path.join(BASE_DIR, 'post', 'static'),
     os.path.join(BASE_DIR, 'ui', 'static'),
+    os.path.join(BASE_DIR, 'mypage', 'static'),
 ]
 
 STATICFILES_FINDERS = [
@@ -174,11 +176,28 @@ SITE_ID = 1
 
 
 AUTH_USER_MODEL = "accounts.User"          # (appname.User) 재설정 언급
-
+# ACCOUNT_USERNAME_REQUIRED = False          # social login error 해결
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],  
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
 
 ACCOUNT_SESSION_REMEMBER = True            # 브라우저를 닫아도 세션 기록 유지(로그인 계속 되게)
 SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
-
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+LOGIN_REDIRECT_URL='/'
+# SOCIAL_AUTH_LOGIN_REDIRECT_URL='/accounts/profile/'
 
 
 
