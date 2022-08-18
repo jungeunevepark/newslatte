@@ -1,24 +1,25 @@
 from django.contrib import admin
-from django.urls import path, include 
-from ui import views as ui_views 
+from django.urls import path, include
+from ui import views as ui_views
 
 from django.conf import settings
-from django.conf.urls.static import static 
-import post, collection, news 
+from django.conf.urls.static import static
+import post
+import collection
+import news
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ui_views.home, name = 'home'),
+    path('', ui_views.home, name='home'),
     path('post/', include('post.urls')),
     path('collection/', include('collection.urls')),
+    path('ui/', include('ui.urls')),
     path('news/', include('news.urls')),
     path('mypage/', include('mypage.urls')),
     path('auth/', include('allauth.urls')),
     path('accounts/', include('accounts.urls')),
-    path('summernote/', include('django_summernote.urls')), 
-] 
+    path('summernote/', include('django_summernote.urls')),
+]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-
