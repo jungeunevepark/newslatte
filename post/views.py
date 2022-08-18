@@ -41,7 +41,7 @@ def create_post(request):
 
         collections = Collection.objects.all()
         context = {'collections': collections}
-        return render(request, 'writeArticle.html', context)
+        return render(request, 'write_test.html', context)
 
     elif request.method == 'POST': # request 에 들어온 요청을 처리 
     
@@ -65,7 +65,8 @@ def create_post(request):
                 'content': request.POST['content'],
                 'collection_id': request.POST['collectionId']}
 
-            Post.objects.create(**data)
+            post = Post.objects.create(**data)
+            print(post)
 
         return JsonResponse(
             {'success': success,
