@@ -357,3 +357,101 @@ const chooseSaved = (e) => {
 
 choosebtwnSaved[0].addEventListener("click", chooseSaved);
 choosebtwnSaved[1].addEventListener("click", chooseSaved);
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+var csrftoken = getCookie("csrftoken");
+
+function csrfSafeMethod(method) {
+  // these HTTP methods do not require CSRF protection
+  return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+}
+$.ajaxSetup({
+  beforeSend: function (xhr, settings) {
+    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+  },
+});
+
+function renewThumbsUp(id) {
+  const targetThumb = document.getElementById(`${id}`);
+  const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g, ""));
+  targetThumb.innerText = `👍(${countNum + 1})`;
+}
+
+function thumup(id) {
+  // 좋아요 누르면 개수 늘어나도록.
+  //그런데 한사람당 하나씩만 높일 수 있도록
+  //우선 인사이트 id 보내기
+  // console.log(id)
+
+  $.post(
+    "/ui/" + id + "/likes", //post 방식으로 서버에 요청을 보낸다.
+    {
+      csrfmiddlewaretoken: csrftoken,
+      post_id: id, //서버에 필요한 정보를 같이 보냄.
+    },
+    function (data, status) {
+      //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
+      // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
+      // console.log(insightPostLike)
+      // console.log(data['result'])
+    }
+  );
+}
+
+// 해쉬태그에 따라 컬렉션 달라지게
+
+const hashTagList = [
+  ...document.querySelector(".hashtag__list").getElementsByTagName("button"),
+];
+
+async function filterCollection(event) {
+  const targetName = event.target.innerText.replace("#", "");
+  console.log(`../../post?category=${targetName}`);
+  await fetch(`../../post?category=${targetName}`)
+    .then((response) => {
+      console.log(response);
+    })
+    .then((data) => console.log(data, "성공"))
+    .catch((error) => console.log(error, "에러"));
+
+  // $.get("/post?category=정치", function (data, status) {
+  //   console.log(data, status); // 전송받은 데이터와 전송 성공 여부를 보여줌.
+  // });
+}
+
+hashTagList.forEach((hashTag) => {
+  hashTag.addEventListener("click", filterCollection);
+});
+
+// 추천은 한번까지만
+
+const insight__post__like = [
+  ...document.getElementsByClassName("insight__post__like"),
+];
+
+function limitThumbsUp(id) {
+  if (localStorage.getItem(id)) {
+    return;
+  } else {
+    localStorage.setItem(id, true);
+    renewThumbsUp(id);
+    thumup(id);
+  }
+}

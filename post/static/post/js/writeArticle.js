@@ -452,4 +452,14 @@ const saveBtn = [...document.querySelectorAll(".navBar__right__save")][1];
 let collection_id;
 saveBtn.addEventListener("click", postrequest);
 
+// collection 가져오기
+
+$.get("/post/create/", {
+  csrfmiddlewaretoken: csrftoken,
+  collectionId: collection_id,
+  title: targetHeader[0].innerText,
+  content: targetParagraph,
+  subhead: targetHeader[1].innerText,
+});
+
 init();
