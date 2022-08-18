@@ -48,6 +48,7 @@ def fetch_news_from_collection(request, id):
 
     return JsonResponse(response, safe=False, json_dumps_params={'ensure_ascii':False})
 
+
 def test1(request):
     return render(request, 'test.html')
 

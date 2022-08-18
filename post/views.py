@@ -17,6 +17,20 @@ import json
 # Create your views here.
 
 
+def fetch_post(request):
+    """
+    127.0.0.1:8000/post?order_by=asc[likes]&category=정치
+
+    TODO: 다양한 쿼리 파라미터에 대한 요청 처리 
+    """
+
+    category  = request.GET.get('category', '')
+    posts = list(Post.objects.filter(category = category).values())
+
+
+    return JsonResponse(list(posts), safe=False) 
+
+
 
 def create_post(request):
 

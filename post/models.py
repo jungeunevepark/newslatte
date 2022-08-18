@@ -24,11 +24,13 @@ class Post(models.Model):
     views = models.IntegerField(default=0, verbose_name="조회수")
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
     title = models.CharField(max_length=120, verbose_name="제목")
-    subhead=models.CharField(max_length=200, null=True)
+    subhead=models.CharField(max_length=200, null=True, blank=True)
     content = models.TextField()
-    img = models.URLField(null=True, verbose_name="인사이트 대표 이미지")
+    img = models.URLField(null=True, blank=True,  verbose_name="인사이트 대표 이미지")
     tag = models.ManyToManyField(Tag)
     refCount = models.IntegerField(default=0, verbose_name="참조수")
+    category = models.CharField(max_length=120, null=True)
+
 
     def __str__(self):
         return self.title
