@@ -7,6 +7,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>NEWSLATTE</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
     integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
@@ -207,15 +208,15 @@
             <div class="recommend__insight__post__list">
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">인사이트 제목 부분 입니다.</a>
+                <a href="" class="recommend__insight__post__title">{{post1.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                  {{post1.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by 작성자</p>
+                <p class="recommend__insight__post__author">written by {{post1.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div class="insight__post__like">👍(10)</div>
+                  <div id="{{post1.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post1.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒(10)</div>
+                  <div class="insight__post__market">🛒({{post1.refCount}})</div>
                   <div class="recommend__post__hashtag">
                     <span>#경제</span>
                     <span>#경제</span>
@@ -224,32 +225,36 @@
               </div>
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">인사이트 제목 부분 입니다.</a>
+                <a href="" class="recommend__insight__post__title">{{post2.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                  {{post2.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by 작성자</p>
+                <p class="recommend__insight__post__author">written by {{post2.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div class="insight__post__like">👍(10)</div>
+                  <div id="{{post2.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post2.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒(10)</div>
+                  <div class="insight__post__market">🛒({{post2.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    <span>#경제</span>
-                    <span>#경제</span>
+
+                    {% for tag in post2.tag.all %}
+                    <span>#{{ tag }}</span>
+                    {% endfor %}
+
+
                   </div>
                 </div>
               </div>
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">인사이트 제목 부분 입니다.</a>
+                <a href="" class="recommend__insight__post__title">{{post3.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                  {{post3.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by 작성자</p>
+                <p class="recommend__insight__post__author">written by {{post3.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div class="insight__post__like">👍(10)</div>
+                  <div id="{{post3.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post3.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒(10)</div>
+                  <div class="insight__post__market">🛒({{post3.refCount}})</div>
                   <div class="recommend__post__hashtag">
                     <span>#경제</span>
                     <span>#경제</span>
@@ -605,6 +610,67 @@
     <footer></footer>
   </div>
   <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script>
+
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+          var cookie = cookies[i].trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    var csrftoken = getCookie('csrftoken');
+
+    function csrfSafeMethod(method) {
+      // these HTTP methods do not require CSRF protection
+      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    }
+    $.ajaxSetup({
+      beforeSend: function (xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+          xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+      }
+    });
+
+    function thumup(id) {
+      // 좋아요 누르면 개수 늘어나도록. 
+      //그런데 한사람당 하나씩만 높일 수 있도록
+      //우선 인사이트 id 보내기 
+      var CollectionId = id
+
+      // console.log(id)
+
+      $.post('/ui/' + id + '/likes', //post 방식으로 서버에 요청을 보낸다.
+        {
+          'csrfmiddlewaretoken': csrftoken,
+          'post_id': id  //서버에 필요한 정보를 같이 보냄.
+        },
+        function (data, status) { //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
+          // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
+          // console.log(insightPostLike)
+          console.log(data['result'])
+
+
+
+        })
+
+
+
+
+    }
+  </script>
 </body>
 
 </html>
