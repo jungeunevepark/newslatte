@@ -27,6 +27,19 @@ def fetch_post(request):
     category  = request.GET.get('category', '')
     posts = list(Post.objects.filter(category = category).values())
 
+    
+    """
+    언제 실패처리를 해야 하는가. 
+
+    클라의 쿼리 파라미터가 포스트의 필드에 없는 파라미터일 때. 
+
+    
+
+
+
+    """
+
+
 
     return JsonResponse(list(posts), safe=False) 
 
