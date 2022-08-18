@@ -8,6 +8,58 @@ import json
 # Create your views here.
 
 
+
+def fetch_collection(request):
+
+    """
+    Some Logic For query parsing.
+    """
+    if request.method == 'GET':
+
+        query = dict(request.GET)
+
+        for key in query:
+            query[key] = query[key][0]
+            if is_value_integer(query[key]) == True:
+                query[key] = int(query[key])
+        
+        collections = list(Collection.objects.filter(**query).values())
+
+        return JsonResponse(collections, safe=False)
+        
+
+
+
+def is_value_integer(var): # input: str
+
+    try: 
+        test = int(var) # test if int() works well
+    except: # otherwise, type of var is not int 
+        return False
+    return True
+
+
+
+    """
+    
+    
+    각 딕셔너리 요소를 순회하면서 리스트로 되어 있는 걸 unpack 해주어야 한다. 
+    정수면-> int로 추가로 형변환.
+
+    for each element in dict:
+        dict[element] = dict[element][0]
+
+        dict[element]: 정수야? --> 정수로 형변환
+    
+
+
+
+
+    """
+
+
+
+
 def show_collection_detail(request, id):
 
     collection = get_object_or_404(Collection, pk=id)
@@ -47,6 +99,7 @@ def fetch_news_from_collection(request, id):
     }
 
     return JsonResponse(response, safe=False, json_dumps_params={'ensure_ascii':False})
+
 
 def test1(request):
     return render(request, 'test.html')
