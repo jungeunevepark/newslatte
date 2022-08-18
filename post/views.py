@@ -81,8 +81,8 @@ def create_post(request):
 
             # post = Post.objects.create(**data)
 
-            post = Post.objects.create(**data)
-            print(post)
+            # post = Post.objects.create(**data)
+            # print(post)
 
 
         return JsonResponse(
