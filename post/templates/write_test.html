@@ -10,7 +10,8 @@
 </head>
 <body>
 
-{{collections.4}}
+{{collections.1}}
+
 {% for collection in collections %}
 <div id="{{collection.id}}" style="background-color: red" onclick="get_pk(id)">
     <p>{{ collection.title }}</p>
@@ -80,7 +81,6 @@ $.ajaxSetup({
     }
 });
 
-
 function postrequest(){
 
     var title = document.getElementsByName('title')[0].value
@@ -91,13 +91,13 @@ function postrequest(){
         alert('please choose Collection.')
     }
     else{
-        $.post('', 
+        $.post('/asdfsdf',
         {
             'csrfmiddlewaretoken': csrftoken,
             'collectionId': chosenCollectionId,
             'title': title,
             'content':content,
-            'subhead':subhead
+            'subhead':subhead      
         },function(data, status){
             console.log(status)
             console.log(data['success'])
@@ -111,12 +111,15 @@ function postrequest(){
 
 
 
+
 function get_pk(id){
     
     chosenCollectionId = id;
 
     const str1 = '{% for news in collections.'+ id;
     const str2 = '.news.all %}'
+
+
     // document.write(str1+str2);
         
     $("#display_article").text(str1+str2);

@@ -37,6 +37,7 @@ def fetch_news_from_collection(request, id):
             news['imageUrl'] = None
 
 
+
     response = {
         'success': 200,
         'result': news_set
