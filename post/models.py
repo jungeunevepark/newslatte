@@ -10,8 +10,6 @@ class Tag(models.Model): # this model should be referenced by Post and Collectio
     def __str__(self):
         return self.name
 
-
-
 class Folder(models.Model):
     name = models.CharField(max_length=120)
     author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)

@@ -61,7 +61,7 @@
                 </div>
                 <div class="navBar__right">
                   <i class="fa-solid fa-magnifying-glass"></i>
-                  <button class="navBar__login__btn">로그인</button>
+                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
                   <a href="../myPage/mypage.html"
                     ><img class="navBar__profile__img" src="" alt=""
                   /></a>
@@ -96,8 +96,9 @@
                 <div class="written__articles__list">
 
                   {% for post in posts %}
-                  <a href="{% url 'detail_page' post.id %}">
+                  <!-- <a href="{% url 'detail_page' post.id %}"> -->
                   <div class="written__articles__container">
+                    <a href="{% url 'detail_page' post.id %}">
                     <img class="written__articles__img" src="{{ post.img }}">
                     <div class="written__articles__letters">
                       <div class="written__articles__hashtag">
@@ -115,8 +116,9 @@
                         <div class="written__by">written by {{ post.author.nickname }}</div>
                       </div>
                     </div>
-                  </div>
                   </a>
+                  </div>
+                  <!-- </a> -->
                   {% endfor %}
 
                   <div class="post__pagination">
