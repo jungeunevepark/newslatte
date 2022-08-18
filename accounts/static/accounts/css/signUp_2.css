@@ -531,3 +531,6 @@ footer {
   width: 100%;
   position: fixed;
 }
+#nickname__check{
+  font-size:13px;
+}
