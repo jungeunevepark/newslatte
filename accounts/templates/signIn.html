@@ -1,3 +1,7 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
 <!DOCTYPE html>
 <html lang="Ko">
   <head>
@@ -12,7 +16,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="signIn.css" />
+    <link rel="stylesheet" href="{% static '/accounts/css/signIn.css' %}" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   </head>
   <body>
@@ -44,37 +48,47 @@
           <div class="signUp__social__login">
             <p>소셜미디어로 로그인</p>
             <div class="social__login__imgs">
+              <a href="{% provider_login_url 'kakao' %}">
               <img
                 class="social__login kakao"
-                src="../../resources/kakao_logo.jpg"
+                src="{% static '/accounts/img/kakao_logo.jpg' %}"
                 alt="카카오 로그인 버튼"
               />
+            </a>
+              <a href="{% provider_login_url 'kakao' %}">
               <img
                 class="social__login naver"
-                src="../../resources/naver_logo.PNG"
+                src="{% static '/accounts/img/naver_logo.PNG' %}"
                 alt="네이버 회원가입 버튼"
               />
+            </a>
+              <a href="{% provider_login_url 'kakao' %}">
               <img
                 class="social__login google"
-                src="../../resources/google_logo.PNG"
+                src="{% static '/accounts/img/google_logo.PNG' %}"
                 alt="구글 회원가입 버튼"
               />
+            </a>
+              <a href="{% provider_login_url 'kakao' method='oauth2' %}">
               <img
                 class="social__login facebook"
-                src="../../resources/facebook__logo.png"
+                src="{% static '/accounts/img/facebook__logo.png' %}"
                 alt="페이스북 회원가입 버튼"
               />
+            </a>
             </div>
           </div>
           <div class="signUp__normal__login">
             <p>이메일로 로그인</p>
             <form
               target="first__signUp"
+              action="{% url 'login' %}"
               class="modal__signUp__form"
               method="POST"
             >
+            {% csrf_token %}
               <div class="modal__signUp__container">
-                <input type="email" name="id" placeholder="이메일" required />
+                <input type="email" name="email" placeholder="이메일" required />
                 <input
                   id="signUp__password"
                   type="password"
@@ -91,18 +105,18 @@
                 required
               />
             </form>
-            <iframe name="first__signUp"></iframe>
+            <!-- <iframe name="first__signUp"></iframe> -->
           </div>
           <div class="signUp__anchor">
             <p>
               NEWSLATTE가 처음이라면?
-              <a href="../signUp/signUp.html">회원가입하기</a>
+              <a href="{% url 'signup' %}">회원가입하기</a>
             </p>
           </div>
         </div>
       </div>
     </section>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script type="text/javascript" src="signIn.js"></script>
+    <script type="text/javascript" src="{% static '/accounts/js/signIn.js' %}"></script>
   </body>
 </html>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import auth
-from .models import User
+from .models import User, Profile
 
 # 이메일 인증을 위해 추가
 from django.contrib.sites.shortcuts import get_current_site
@@ -24,7 +24,7 @@ def login(request):
         else:
             return render(request, 'bad.html')
     else :
-        return render(request, 'login.html')
+        return render(request, 'signIn.html')
 
 def logout(request):
     auth.logout(request)
@@ -32,11 +32,10 @@ def logout(request):
 
 def signup(request):
     if request.method == 'POST':
+        print("post요청")
         if request.POST['password'] == request.POST['repeat']:
             new_user = User.objects.create_user(email=request.POST['email'], password=request.POST['password'])
-            new_user.is_active = False
-            new_user.save()
-
+            auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
             current_site = get_current_site(request)
             message = render_to_string('user_active_email.html',{
                 'user': new_user,
@@ -48,16 +47,10 @@ def signup(request):
             user_email = new_user.email
             email = EmailMessage(mail_subject, message, to=[user_email])
             email.send()
-            return HttpResponse(
-                '<div style="font-size: 40px; width: 100%; height:100%; display:flex; text-align:center; '
-                'justify-content: center; align-items: center;">'
-                '입력하신 이메일<span>로 인증 링크가 전송되었습니다.</span>'
-                '</div>'
-            )
-
-            # auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
-            # return redirect('home')
-    return render(request, 'signUp.html')
+            return render(request, 'signUp_2.html')  #, {'new_profile':new_profile})
+    else :
+        return render(request, 'signUp_1.html')
+    return render(request, 'bad.html')
 
 def active(request, uidb64, token):
 
@@ -71,3 +64,28 @@ def active(request, uidb64, token):
         return redirect('home')
     else:
         return HttpResponse('비정상적인 접근입니다.')
+
+
+def profile(request):
+    if request.method == 'POST':
+        profile = Profile()
+        profile.user = request.user
+        profile.nickname = request.POST["nickname"]
+        profile.intro = request.POST["intro"]
+        profile.save()
+        nickname = profile.nickname
+        return render(request, 'email_message.html', {'nickname': nickname})
+    return render(request, 'signUp.html')
+
+def signup2(request):
+    if request.method == 'POST':
+        profile = Profile()
+        profile.user = request.user
+        request.user.is_active = False
+        request.user.save()
+        profile.nickname = request.POST["nickname"]
+        profile.intro = request.POST["intro"]
+        profile.save()
+        nickname = profile.nickname
+        return render(request, 'email_message.html', {'nickname': nickname})
+    return render(request, 'signUp_2.html')
