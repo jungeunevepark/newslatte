@@ -240,12 +240,20 @@ def detail_page(request, post_id) :
 
 
 def new_comment(request, post_id):
-    
-    filed_form = CommentForm(request.POST)
-    if filed_form.is_valid():
-        finished_form = filed_form.save(commit=False)
-        finished_form.post = get_object_or_404(Post, pk=post_id)
-        user = request.user
-        finished_form.author = user.profile_set.first()
-        finished_form.save()
+
+    if request.method == "POST":
+        comment = Comment()
+        comment.author = request.user.profile
+        comment.post = get_object_or_404(Post, pk=post_id)
+        comment.comment = request.POST["comment"]
+        comment.save()
         return redirect('detail_page', post_id)
+    
+    # filed_form = CommentForm(request.POST)
+    # if filed_form.is_valid():
+    #     finished_form = filed_form.save(commit=False)
+    #     finished_form.post = get_object_or_404(Post, pk=post_id)
+    #     user = request.user
+    #     finished_form.author = user.profile
+    #     finished_form.save()
+    #     return redirect('detail_page', post_id)
