@@ -13,17 +13,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = os.path.dirname(BASE_DIR)
 secret_file = os.path.join(BASE_DIR, 'secret.json')
 
-with open(secret_file) as f:
-    secret = json.loads(f.read())
+# with open(secret_file) as f:
+#     secret = json.loads(f.read())
 
-def get_secret(setting, secret=secret):
-    try:
-        return secret[setting]
-    except:
-        error_msg = "Set key '{0}' in secret.json".format(setting)
-        raise ImproperlyConfigured(error_msg)
+# def get_secret(setting, secret=secret):
+#     try:
+#         return secret[setting]
+#     except:
+#         error_msg = "Set key '{0}' in secret.json".format(setting)
+#         raise ImproperlyConfigured(error_msg)
 
-SECRET_KEY = get_secret('DJANGO_SECRET')
+SECRET_KEY = 'DJANGO_SECRET'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
