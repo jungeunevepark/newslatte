@@ -226,10 +226,10 @@ const hashtagNames = document.querySelectorAll(".hashtag__btn");
 const hashtagLeft = document.querySelector(".collection__post__left");
 const hashtagRight = document.querySelector(".collection__post__right");
 
-if (hashtagSpace.innerHTML == "") {
-  hashtagSpace.innerHTML =
-    hashtagNames[Math.floor(Math.random() * 4)].innerHTML;
-}
+// if (hashtagSpace.innerHTML == "") {
+//   hashtagSpace.innerHTML =
+//     hashtagNames[Math.floor(Math.random() * 4)].innerHTML;
+// }
 
 const hashtagChoose = (e) => {
   hashtagSpace.innerHTML = e.target.innerHTML;
@@ -421,25 +421,100 @@ const hashTagList = [
   ...document.querySelector(".hashtag__list").getElementsByTagName("button"),
 ];
 
+const collectionPosts = [
+  ...document.getElementsByClassName("collection__post__container"),
+];
+
+function showEachCollection(collection) {
+  let max = collection.length < 4 ? collection.length : 4;
+  for (let i = 0; i < max; i++) {
+    const targetCollection = collectionPosts[i];
+    const currentCollection = collection[i];
+    targetCollection.querySelector(".collection__post__title").innerText =
+      currentCollection.title;
+
+    targetCollection.querySelector(".collection__post__author").innerText =
+      currentCollection.author_id;
+
+    targetCollection.querySelector(
+      ".post__like"
+    ).innerText = `👍(${currentCollection.likes})`;
+
+    targetCollection.querySelector(
+      ".post__market"
+    ).innerText = `🛒(${currentCollection.refCount})`;
+  }
+}
+
 async function filterCollection(event) {
   const targetName = event.target.innerText.replace("#", "");
-  console.log(`../../post?category=${targetName}`);
-  await fetch(`../../post?category=${targetName}`)
-    .then((response) => {
-      console.log(response);
-    })
-    .then((data) => console.log(data, "성공"))
-    .catch((error) => console.log(error, "에러"));
-
-  // $.get("/post?category=정치", function (data, status) {
-  //   console.log(data, status); // 전송받은 데이터와 전송 성공 여부를 보여줌.
-  // });
+  $.get("/collection?category=" + targetName, function (data, status) {
+    showEachCollection(data);
+  });
 }
+
+$.get("/collection?category=정치", function (data, status) {
+  showEachCollection(data);
+  document.querySelector(".sentence__namespace").innerText = "#정치";
+});
 
 hashTagList.forEach((hashTag) => {
   hashTag.addEventListener("click", filterCollection);
 });
 
+// 오늘의 인사이트 필터링
+
+function showInsight(data) {
+  console.log(data);
+  let max = data.length < 4 ? data.length : 4;
+  for (let i = 0; i < max; i++) {
+    console.log(data[i]);
+    const targetInsight = data[i];
+    const currentInsight = todaysInsights[i];
+
+    currentInsight.querySelector(
+      ".todays__insight__post__hashtag"
+    ).innerText = `#${targetInsight.category}`;
+
+    currentInsight.querySelector(
+      ".todays__insight__post__title"
+    ).childNodes[0].innerText = targetInsight.title;
+
+    currentInsight.querySelector(
+      ".todays__insight__post__body"
+    ).childNodes[1].innerText = targetInsight.content.replace(
+      /[^ㄱ-ㅎ|^ㅏ-ㅣ|^가-힣]/g,
+      " "
+    );
+
+    currentInsight.querySelector(".post__like").innerText = targetInsight.likes;
+
+    currentInsight.querySelector(".post__market").innerText =
+      targetInsight.refCount;
+
+    currentInsight.querySelector(".written__by").innerText =
+      targetInsight.author_id;
+  }
+}
+
+async function filterInsights(event) {
+  const targetNode = event.target;
+  $.get("post?category=" + targetNode.innerText, function (data, status) {
+    showInsight(data);
+  });
+}
+
+const insightHashTags = [
+  ...document.getElementsByClassName("todays__insight__hashtag"),
+];
+
+const todaysInsights = [
+  ...document.getElementsByClassName("todays__insight__post__container"),
+];
+
+insightHashTags.forEach((insight) => {
+  insight.addEventListener("click", filterInsights);
+});
 // 추천은 한번까지만
 
 const insight__post__like = [
