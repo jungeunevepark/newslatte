@@ -7,11 +7,10 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from collection.models import Collection
 from news.models import  NewsImage
 from accounts.models import Profile
-from .forms import PostForm, CommentForm
 from .models import Post, Comment
 
 from time import timezone
-from rest_framework import serializers
+# from rest_framework import serializers
 import json 
 
 
@@ -180,7 +179,6 @@ def create_post_test_form2(request):
 
 def detail_page(request, post_id) :
     post_detail = get_object_or_404(Post, pk=post_id)                 # detail 페이지의 본문 post
-    comment_detail = CommentForm()                                    # 댓글
     news = post_detail.collection.news.all()
     tags = post_detail.tag.all()
     posts = Post.objects.filter(author = post_detail.author).order_by('-created_at')     # post_detail의 작성자가 작성한 글 시간 역순으로
@@ -235,17 +233,54 @@ def detail_page(request, post_id) :
     
     custom_comment_range = range(leftIndex, rightIndex+1)
      
-    return render(request, 'eachArticle.html', {'post_detail': post_detail, 'comment_detail':comment_detail, 'posts':posts, 'comments': comments, 'custom_post_range': custom_post_range, 'custom_comment_range': custom_comment_range, 'news':news, 'tags': tags })
+    return render(request, 'eachArticle.html', {'post_detail': post_detail, 'posts':posts, 'comments': comments, 'custom_post_range': custom_post_range, 'custom_comment_range': custom_comment_range, 'news':news, 'tags': tags })
 
 
 
 def new_comment(request, post_id):
-    
-    filed_form = CommentForm(request.POST)
-    if filed_form.is_valid():
-        finished_form = filed_form.save(commit=False)
-        finished_form.post = get_object_or_404(Post, pk=post_id)
-        user = request.user
-        finished_form.author = user.profile_set.first()
-        finished_form.save()
+    if request.method == "POST":
+        comment=Comment()
+        comment.comment=request.POST['comment']
+        comment.post = get_object_or_404(Post, pk=post_id)
+        comment.author = request.user.profile
+        comment.save()
         return redirect('detail_page', post_id)
+
+def create_comment(request):
+
+    # if request.method == 'GET':
+
+    #     # TODO: 인증된 유저인지 여부 확인 
+
+    #     collections = Collection.objects.all()
+    #     context = {'collections': collections}
+    #     return render(request, 'write_test.html', context)
+
+    if request.method == 'POST': # request 에 들어온 요청을 처리 
+    
+        msg = [""]
+        if is_user_authenticated(request.user, msg) == False: 
+            success = 400 
+            status_code = 401 
+            
+        # elif is_form_valid(request.POST, msg) == False:
+        #     success = 400
+        #     status_code = 400
+        
+        else: # POST request is valid 
+            success = status_code = 200 
+            jsonObject = json.loads(request.body)
+        # post 객체를 불러서 저장
+            data = {
+                'author': request.user.profile,
+                'post_id': jsonObject.get('post_id'), 
+                'comment': jsonObject.get('comment')
+            }
+            Comment.objects.create(**data)
+
+        return JsonResponse(
+            {'success': success,
+            'status_code': status_code,
+            'msg': msg[0] }
+        )
+    return render(request, 'eachArticle.html')

@@ -13,6 +13,7 @@
     integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static '/post/css/eachArticle.css' %}" />
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 </head>
 
 <body>
@@ -148,18 +149,15 @@
                 <div class="article__paragraph__container">
                   <p>
                     {{post_detail.content}}
-                  <!--  </p>
-                  <p> 
-                    {{post_detail.content}} -->
                   </p>
                 </div>
               </div>
 
             </article>
             <div class="eachArticle__informations">
-              <div class="eachArticle__informations__recommend">👍(10)</div>
-              <div class="eachArticle__informations__comment">🗨(10)</div>
-              <div class="eachArticle__informations__myCart">🛒(10)</div>
+              <div class="eachArticle__informations__recommend">👍({{ post_detail.likes}})</div>
+              <div class="eachArticle__informations__comment">🗨({{ post_detail.comment_set.count }})</div>
+              <div class="eachArticle__informations__myCart">🛒({{ post_detail.refCount }})</div>
             </div>
             <div class="eachArticle__author">
               <p>Written by {{post_detail.author.nickname}}</p>
@@ -216,10 +214,10 @@
 
             <!-- 로그인한 사람만 댓글 폼 보이게 -->
             {% if user.is_authenticated %}
-            <form method="POST" action="{% url 'new_comment' post_detail.id %}">
+            <form action="{% url 'new_comment' post_detail.id %}" method="POST">
               <div class="eachArticle__comments">
                 <div class="eachArticle__comments__write">
-                  <p>댓글(10)</p>
+                  <p>댓글({{ post_detail.comment_set.count }})</p>
                   {% csrf_token %}
                   <div class="eachArticle__comments__textArea">
                     <textarea name="comment" id="" placeholder="댓글을 입력해주세요"></textarea>
@@ -228,7 +226,7 @@
                     <input type="submit" class="eachArticle__comments__submit" value="확인">
                   </div>
                 </div>
-            </form>
+              </form>
             {% endif %}
 
             <div class="eachArticle__comments__list">

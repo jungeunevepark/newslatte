@@ -53,19 +53,6 @@
 
 // kakaoLogo.addEventListener("click", loginWithKakao);
 
-const nextButton = document.getElementById("signUp__first__btn");
-const firstSignUp = [
-  ...document.getElementsByClassName("signUp__first__container"),
-][0];
-const secondSignUp = [
-  ...document.getElementsByClassName("signUp__second__container"),
-][0];
-
-function showNextSignUpPage() {
-  secondSignUp.style.display = "block";
-  firstSignUp.style.display = "none";
-}
-
 const allSignUpInputs = [
   ...[
     ...document.getElementsByClassName("modal__signUp__container"),
@@ -82,9 +69,7 @@ function showNextPageHandler(event) {
     }
   });
   console.log(isValid, isTrue);
-  if (isValid == allSignUpInputs.length && isTrue == true) {
-    showNextSignUpPage();
-  } else {
+  if (isValid != allSignUpInputs.length || isTrue != true) {
     event.preventDefault();
   }
 }
@@ -109,15 +94,3 @@ function checkIfPwIsSame() {
 }
 
 passwordCheck.addEventListener("keyup", checkIfPwIsSame);
-
-function CheckIsBlank(event) {
-  let secondSignUpInputs = [
-    ...event.currentTarget.getElementsByClassName("modal__signUp__input"),
-  ];
-
-  secondSignUpInputs.forEach((input) => {
-    if (input.innerText == "") {
-      event.preventDefault();
-    }
-  });
-}

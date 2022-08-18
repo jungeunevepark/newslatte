@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSLATTE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static 'collection/css/collection.css' %}" />
+  </head>
+  <body>
+    <div class="bg__dark"></div>
+    <div class="header__container">
+        <header>
+            <nav>
+            <div class="navBar__container">
+                <div class="navBar__left">
+                <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+                <div class="navBar__name">
+                    <h1 class="navBar__name__h1">NEWSLATTE</h1>
+                </div>
+                </div>
+                <div class="navBar__right">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
+                    <a href=""
+                    ><img class="navBar__profile__img" src="" alt=""
+                    /></a>
+                </div>
+                </a>
+            </div>
+            </nav>
+        </header>
+    </div>
+
+    <!-- <aside>
+      <div class="aside__top">
+        <i id="aside__top__icon" class="fa-solid fa-angles-left"></i>
+      </div>
+      <div class="aside__main">
+        <div class="aside__main__profile">
+          <img
+            class="main__profile__img"
+            src="../../resources/coffee_icon.png"
+            alt=""
+          />
+          <p id="profile__userName">{{ collection.author.nickname }}</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+            ratione architecto, nulla id repellat assumenda. Atque, consectetur
+            id quam doloribus, eveniet numquam assumenda, animi tempora facilis
+            non tempore optio. Earum?
+          </p>
+        </div>
+        <div class="main__profile__write">
+          <button class="profile__write__btn">글 작성하기</button>
+        </div>
+      </div>
+      <div class="aside__list">
+        <ul>
+          <li><p class="dropDn">&#9749; 내 컬렉션</p></li>
+          <li>
+            <p class="dropDn">&#9749; 내 카페</p>
+            <ul class="aside__list__myCafe">
+              <li>
+                <p class="dropDn">시사</p>
+              </li>
+              <li>
+                <p class="dropDn">경제</p>
+              </li>
+              <li>
+                <p class="list__mycafe__add">&#43;</p>
+                <input class="list__mycafe__input" type="text" />
+              </li>
+            </ul>
+          </li>
+          <li><p class="dropDn">&#9749; 오늘의 컬렉션</p></li>
+          <li><p class="dropDn">&#9749; organization</p></li>
+          <li><p class="dropDn">&#9749; 문의사항 및 질문</p></li>
+        </ul>
+      </div>
+    </aside>
+    어사이드바 주석처리 -->
+
+    <div class="main__container">
+      <main>
+        <div class="collection__container">
+            <div class="first__img">
+                <div class="second__img">
+                    <div class="third__img">
+                    <img class="main__img"  src="{{ first_news.image.image }}">
+
+                    </div>
+                </div>
+            </div>
+            <div class="collection__title">{{ collection.title }}</div>
+            <div class="collector__name">{{ collection.author.nickname }}</div>
+            <div class="collection__others">
+                <div class="collection__like">👍({{ collection.likes }})</div>
+                <div class="collection__market">🛒({{ collection.refCount }})</div>
+            </div>
+            <div class="collection__hashtag">
+                #{{ collection.tag.name }}
+            </div>
+        </div>
+
+
+        <!-- 기사 for문 처리 -->
+        <div class="article__container">
+          <section id="article__list__container">
+              <div class="article__list">
+                {% for news in newss %}
+                  <article class="article__container__min">
+                      <div class="article__toggle">
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                      </div>
+                      <div class="article__contents__container">
+                          <div class="article__contents__thumbNail">
+                              <img class="contents__thumbNail__imgs" src="{{ news.image.image }}" alt="">
+                          </div>
+                          <div class="article__contents__texts">
+                              <div class="contents__title">
+                                  <p>{{ news.title }}</p>
+                              </div>
+                              <div class="contents__paragraph">
+                                  <p>{{ news.summary }}</p>
+                              </div>
+                              <div class="contents__source">
+                                  <p>{{ news.press }}</p>
+                              </div>
+                          </div>
+                      </div>
+                  </article>
+
+                  <article class="article__container__max">
+                      <div class="article__toggle__max">
+                        <i class="fa-solid fa-circle-chevron-down"></i>
+                      </div>
+                      <div class="article__contents__max">
+                          <div class="contents__texts__max">
+                              <div class="texts__source__max">
+                                  <p>{{ news.press }}</p>
+                              </div>
+                              <div class="texts__title__max">
+                                  <p>{{ news.title }}</p>
+                              </div>
+                              <div class="texts__when__max">
+                                  <p>{{ news.date|date:'Y-m-d' }}</p>
+                              </div>
+                          </div>
+                          <div class="contents__original">
+                              <div class="contents__original__img">
+                                  <img src="{{ news.image.image }}" alt="">
+                              </div>
+                              <div class="contents__original__text">
+                              {{ news.main_content }}
+                              </div>
+                          </div>
+                      </div>
+                  </article>
+                  {% endfor %}
+              </div>
+          </section>
+        </div>
+        <div class="comment__container">
+            <div class="comment__title">컬렉터의 코멘트</div>
+            <hr class="divider">
+            <div class="comment__body">
+            {{ collection.comment }}
+            </div>
+        </div>
+
+        <section id="modal">
+          <div class="modal__wrap">
+            <div class="modal__top">
+              뉴스와 커피 한 모금<br /><b>NEWSLATTE</b>☕
+            </div>
+            <form class="modal__login__form" method="post" onsubmit="false">
+              <input type="text" name="id" placeholder="ID" />
+              <input type="password" name="password" placeholder="Password" />
+              <input type="submit" id="login__submit__btn" value="로그인" />
+            </form>
+            <p>또는 소셜 로그인</p>
+            <div class="modal__login__social">
+              <div class="social__login__imgs">
+                <img
+                  id="social__login"
+                  src="../../resources/kakao_logo.jpg"
+                  alt="카카오 로그인 버튼"
+                />
+                <img
+                  id="social__login"
+                  src="../../resources/naver_logo.PNG"
+                  alt="네이버 회원가입 버튼"
+                />
+                <img
+                  id="social__login"
+                  src="../../resources/google_logo.PNG"
+                  alt="구글 회원가입 버튼"
+                />
+                <img id="social__login" src="../../resources/facebook__logo.png" alt="페이스북 로그인 버튼" >
+              </div>
+            </div>
+            <p>
+              혹은
+              <a href="../signUp/signUp.html" class="modal__signUp">회원가입</a>하러가기
+            </p>
+            <i id="modal__close" class="fa-solid fa-xmark"></i>
+        </section>
+      </main>
+      <footer></footer>
+    </div>
+    <script type="text/javascript" src="{% static 'collection/js/collection.js' %}"></script>
+  </body>
+</html>

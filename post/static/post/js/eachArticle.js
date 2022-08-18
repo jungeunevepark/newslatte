@@ -92,6 +92,8 @@ const addListIfTyped = (e) => {
 
 //article__min toggle 버튼 눌렀을 때 min 사라지고 max 나타남
 
+
+
 const minToggleList = [...document.getElementsByClassName("article__toggle")];
 
 const maxArticleList = [
