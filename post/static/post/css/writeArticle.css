@@ -449,7 +449,7 @@ main {
 
 .article__list {
   margin-top: 40px;
-  display: flex;
+  display: none;
   flex-wrap: nowrap;
   flex-direction: column;
   gap: 10px;
@@ -703,6 +703,12 @@ main {
   gap: 12px;
 }
 
+.mycart__collection {
+  display: flex;
+  gap: 5px;
+  flex-grow: 1;
+}
+
 .collection__container {
   height: 100%;
   width: 15%;
@@ -831,6 +837,7 @@ main {
 
 .write__contents__container {
   margin-top: 10px;
+  height: 100%;
 }
 
 /* footer */
