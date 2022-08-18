@@ -11,7 +11,6 @@ const chooseCategory = document.querySelectorAll(".category_btn");
 const submitBtn = document.querySelector(".navBar__right__save.direct");
 const collectionElement = document.querySelector(".myCart__each__list");
 
-
 const closeLoginModal = () => {
   modalSection.classList.remove("modal__show");
   modalSection.style.visibility = "hidden";
@@ -289,38 +288,168 @@ articleListController.addEventListener("mousedown", changeSizeHandler);
 //login 체크, local memory 가져와서 확인
 // isLogin();
 
+// var chosenCollectionId = undefined
+// collectionElement.addEventListener("click", showArticles);
+// function showArticles(id){
+//   alert(id)
+//   console.log(55)
+// }
 
+// function createPost(){
 
+//   if (chosenCollectionId === undefined)
+//   {
+//     alert('컬렉션을 선택해주세요.');
+//   }
 
+//   // else{
+//   //   $.post(
+//   //     '',
+//   //     {'csrfmiddleware': csrftoken,
+//   //   }
+//   //   )
+//   // }
+// }
+// submitBtn.addEventListener("click", createPost);
 
+// 본인이 가지고 있는 컬렉션 페이지 데이터를 받아오기
 
-var chosenCollectionId = undefined 
-collectionElement.addEventListener("click", showArticles);
-function showArticles(id){
-  alert(id)
-  console.log(55)
+async function getCollectionId(id) {
+  collection_id = id;
+  const response = await fetch(`../../collection/${id}/news`);
+  response.json().then((data) => {
+    loopMinArticle(data.result);
+  });
 }
 
+// min, max 부분에 데이터 뿌려주기
 
-function createPost(){
+const minArticleList = [
+  ...document.getElementsByClassName("article__container__min"),
+];
 
-  if (chosenCollectionId === undefined)
-  {
-    alert('컬렉션을 선택해주세요.');
+function changeMinArticle(art, idx) {
+  const targetMin = minArticleList[idx];
+
+  // 이미지 넣어주기
+  targetMin
+    .querySelector(".contents__thumbNail__imgs")
+    .setAttribute(
+      "src",
+      art.imageUrl ||
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYwRdM%2FbtqSsQ5SjON%2FXkAU5i0emfsPyi2H42y831%2Fimg.jpg"
+    );
+
+  // 기사 제목 넣어주기
+  targetMin.querySelector(".contents__title").childNodes[1].innerText =
+    art.title;
+
+  //기사 작은 본문 넣어주기
+  targetMin.querySelector(".contents__paragraph").childNodes[1].innerText =
+    art.main_content.substring(0, 90).replace(/\n/g, "") + "......";
+}
+
+function changeMaxArticle(art, idx) {
+  const targetMax = maxArticleList[idx];
+
+  // 뉴스 출처
+  targetMax.querySelector(".texts__source__max").childNodes[1].innerText =
+    art.press;
+
+  // 뉴스 제목
+  targetMax.querySelector(".texts__title__max").childNodes[1].innerText =
+    art.title;
+
+  // 뉴스 일자
+  targetMax.querySelector(".texts__when__max").childNodes[1].innerText =
+    art.date;
+
+  // 뉴스 본문
+  targetMax.querySelector(".contents__original__text").childNodes[1].innerText =
+    art.main_content;
+
+  // 뉴스 본문 이미지
+  targetMax
+    .querySelector(".contents__original__img")
+    .childNodes[1].setAttribute(
+      "src",
+      art.imageUrl ||
+        "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FYwRdM%2FbtqSsQ5SjON%2FXkAU5i0emfsPyi2H42y831%2Fimg.jpg"
+    );
+}
+
+function changeDataHandler(article, idx) {
+  const article__list = document.querySelector(".article__list");
+  article__list.style.display = "flex";
+
+  changeMinArticle(article, idx);
+  changeMaxArticle(article, idx);
+}
+
+function loopMinArticle(data) {
+  data.forEach((article, idx) => {
+    changeDataHandler(article, idx);
+  });
+}
+
+// 쓴 글 제출하기
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
   }
-
-  // else{
-  //   $.post(
-  //     '',
-  //     {'csrfmiddleware': csrftoken,
-  //   }
-  //   )
-  // }
+  return cookieValue;
 }
-submitBtn.addEventListener("click", createPost); 
 
+var csrftoken = getCookie("csrftoken");
 
+function csrfSafeMethod(method) {
+  // these HTTP methods do not require CSRF protection
+  return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+}
+$.ajaxSetup({
+  beforeSend: function (xhr, settings) {
+    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+  },
+});
 
+function postrequest() {
+  const targetHeader = [
+    ...document.querySelector(".write__title__container").querySelectorAll("p"),
+  ];
 
+  const targetParagraph = document.querySelector(
+    ".write__contents__container"
+  ).innerHTML;
+
+  if (collection_id === undefined) {
+    alert("please choose Collection.");
+  } else {
+    $.post("/post/create/", {
+      csrfmiddlewaretoken: csrftoken,
+      collectionId: collection_id,
+      title: targetHeader[0].innerText,
+      content: targetParagraph,
+      subhead: targetHeader[1].innerText,
+    });
+  }
+}
+
+const writeArea = document.querySelector(".write__contents__container");
+
+const saveBtn = [...document.querySelectorAll(".navBar__right__save")][1];
+let collection_id;
+saveBtn.addEventListener("click", postrequest);
 
 init();
