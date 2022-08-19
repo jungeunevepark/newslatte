@@ -593,16 +593,16 @@ main {
 }
 
 .collection__post__list {
-  width: 59vw;
+  width: 800px;
   min-height: 100%;
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: nowrap;
 }
 
 .collection__post__container {
   display: inline-block;
   height: 100%;
+  width: 100%;
 }
 
 .first__img {
@@ -630,7 +630,7 @@ main {
   position: relative;
   top: -14px;
   left: 28px;
-} 
+}
 
 .collection__post__title {
   font-size: 20px;
@@ -644,7 +644,7 @@ main {
   color: black;
 }
 
-.collection__post__likeandmarket{
+.collection__post__likeandmarket {
   display: flex;
   justify-content: center;
   margin-top: 7px;
@@ -717,7 +717,7 @@ main {
   text-decoration: none;
   color: #656565;
   display: flex;
-  justify-content:left;
+  justify-content: left;
 }
 
 .recommend__insight__post__body {
@@ -727,7 +727,7 @@ main {
   color: #656565;
   display: flex;
   flex-wrap: wrap;
-  justify-content:left;
+  justify-content: left;
   line-height: 20px;
 }
 
@@ -958,7 +958,6 @@ a {
   align-items: center;
   font-size: 13px;
   display: none;
-  
 }
 
 .popUp__myCart__list {
@@ -973,7 +972,6 @@ a {
   flex-direction: column;
   display: none;
 }
-
 
 .myCart__each__list {
   height: 70px;
