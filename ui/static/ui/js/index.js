@@ -350,6 +350,10 @@ function showEachCollection(collection) {
     targetCollection.querySelector(
       ".post__market"
     ).innerText = `🛒(${currentCollection.refCount})`;
+
+    console.log(currentCollection.image);
+
+    // targetCollection.querySelector(".third__img").childNodes[0].setAttribute("src",)
   }
 }
 
@@ -457,4 +461,18 @@ const todayInsightsTitle = [
 
 todayInsightsTitle.forEach((insight) => {
   insight.addEventListener("click", moveEachArticle);
+});
+
+const insightImgs = [
+  ...document.getElementsByClassName("todays__insight__post__img"),
+];
+
+function moveEachArticle(event) {
+  const targetNode = event.target.parentNode;
+  const targetIdx = targetNode.querySelector(".written__by").innerText;
+  location.href = `../post/page/${targetIdx}`;
+}
+
+insightImgs.forEach((img) => {
+  img.addEventListener("click", moveEachArticle);
 });

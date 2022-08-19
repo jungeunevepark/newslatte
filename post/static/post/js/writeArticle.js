@@ -429,9 +429,9 @@ function postrequest() {
     ...document.querySelector(".write__title__container").querySelectorAll("p"),
   ];
 
-  const targetParagraph = document.querySelector(
-    ".write__contents__container"
-  ).innerHTML;
+  const targetParagraph = document
+    .querySelector(".write__contents__container")
+    .innerHTML.replace(/[^ㄱ-ㅎ|^ㅏ-ㅣ|^가-힣]/g, " ");
 
   if (collection_id === undefined) {
     alert("please choose Collection.");
@@ -453,13 +453,5 @@ let collection_id;
 saveBtn.addEventListener("click", postrequest);
 
 // collection 가져오기
-
-$.get("/post/create/", {
-  csrfmiddlewaretoken: csrftoken,
-  collectionId: collection_id,
-  title: targetHeader[0].innerText,
-  content: targetParagraph,
-  subhead: targetHeader[1].innerText,
-});
 
 init();
