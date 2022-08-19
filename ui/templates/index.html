@@ -41,8 +41,11 @@
                 </div>
                 <div class="navBar__right">
                   <div class="navBar__searchLogin">
-                    <i class="fa-solid fa-magnifying-glass"></i>
                     {% if user.is_authenticated %}
+                    <img class="navBar__profile__img" src="../static/ui/img/dummy.png" alt="">
+                    <a href="{% url 'create_post' %}"
+                      ><button class="navBar__login__btn">글쓰기</button></a
+                    >
                     <a href="{% url 'logout' %}"
                       ><button class="navBar__login__btn">로그아웃</button></a
                     >
@@ -51,9 +54,6 @@
                       ><button class="navBar__login__btn">로그인</button></a
                     >
                     {% endif %}
-                    <a href="../myPage/mypage.html"
-                      ><img class="navBar__profile__img" src="" alt=""
-                    /></a>
                   </div>
                 </div>
               </div>

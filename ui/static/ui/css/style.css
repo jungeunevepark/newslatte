@@ -235,7 +235,7 @@ header {
 
 .navBar__toggle,
 .navBar__searchLogin {
-  width: 120px;
+  width: 160px;
 }
 
 .navBar__searchLogin {
@@ -260,7 +260,6 @@ header {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  display: none;
 }
 
 .Contents__nav__trash {
