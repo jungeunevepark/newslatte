@@ -14,7 +14,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static '/ui/css/style.css'%}" />
   <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,9 +35,9 @@
                 <div class="navBar__searchLogin">
                   <i class="fa-solid fa-magnifying-glass"></i>
                   {% if user.is_authenticated %}
-                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
-                  {% else %}
                   <a href="{% url 'logout' %}"><button class="navBar__login__btn">로그아웃</button></a>
+                  {% else %}
+                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
                   {% endif %}
                   <a href="../myPage/mypage.html"><img class="navBar__profile__img" src="" alt="" /></a>
                 </div>
@@ -212,38 +212,45 @@
           <div class="recommend__insight__container">
             <div class="recommend__insight__title">추천 인사이트</div>
             <div class="recommend__insight__post__list">
+              {% if posts.0 %}
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post1.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.0.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post1.subhead}}
+                  {{posts.0.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post1.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.0.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post1.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post1.likes}})</div>
+                  <div id="{{posts.0.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{posts.0.likes}})
+                  </div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post1.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.0.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    {% for tag in post1.tag.all %}
+                    {% for tag in posts.0.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
                   </div>
                 </div>
               </div>
+              {% endif %}
+
+              {% if posts.1 %}
+
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post2.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.1.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post2.subhead}}
+                  {{posts.1.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post2.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.1.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post2.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post2.likes}})</div>
+                  <div id="{{posts.1.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{posts.1.likes}})
+                  </div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post2.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.1.refCount}})</div>
                   <div class="recommend__post__hashtag">
 
-                    {% for tag in post2.tag.all %}
+                    {% for tag in posts.1.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
 
@@ -251,24 +258,28 @@
                   </div>
                 </div>
               </div>
+              {% endif %}
+              {% if posts.2 %}
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post3.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.2.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post3.subhead}}
+                  {{posts.2.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post3.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.2.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post3.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post3.likes}})</div>
+                  <div id="{{posts.2.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{posts.2.likes}})
+                  </div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post3.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.2.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    {% for tag in post3.tag.all %}
+                    {% for tag in posts.2.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
                   </div>
                 </div>
               </div>
+              {% endif %}
             </div>
             <div class="recommend__insight__post__pagination">
             </div>
@@ -515,51 +526,65 @@
               </div>
               <div class="written__insights__whole">
                 <!-- 여기가 내 카페 글 목록 -->
+
+                {% if blogs_all.0 %}
+
                 <div class="insights__each__list">
                   <div class="insights__img"></div>
                   <div class="insights__others">
                     <div class="insights__title">
-                      {{blog1.title}}
+                      {{blogs_all.0.title}}
                     </div>
                     <div class="insights__wrapping">
                       <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
+                        {% for tag in blogs_all.0.tag.all %}
+                        <p>#{{ tag }} </p>
+                        {% endfor %}
                       </div>
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </div>
                 </div>
+                {% endif %}
+
+                {% if blogs_all.1 %}
                 <div class="insights__each__list">
                   <div class="insights__img"></div>
                   <div class="insights__others">
                     <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
+                      {{blogs_all.1.title}}
                     </div>
                     <div class="insights__wrapping">
                       <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
+                        {% for tag in blogs_all.1.tag.all %}
+                        <p>#{{ tag }} </p>
+                        {% endfor %}
                       </div>
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </div>
                 </div>
+                {% endif %}
+
+                {% if blogs_all.2 %}
                 <div class="insights__each__list">
                   <div class="insights__img"></div>
                   <div class="insights__others">
                     <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
+                      {{blogs_all.2.title}}
                     </div>
                     <div class="insights__wrapping">
                       <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
+                        {% for tag in blogs_all.2.tag.all %}
+                        <p>#{{ tag }} </p>
+                        {% endfor %}
                       </div>
                       <i class="fa-solid fa-trash-can"></i>
                     </div>
                   </div>
                 </div>
+                {% endif %}
+
               </div>
             </div>
             <div class="popUp__pagination">
@@ -597,7 +622,7 @@
     <footer></footer>
   </div>
   <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
-    <!-- // function getCookie(name) {
+  <!-- // function getCookie(name) {
     //   var cookieValue = null;
     //   if (document.cookie && document.cookie !== '') {
     //     var cookies = document.cookie.split(';');
