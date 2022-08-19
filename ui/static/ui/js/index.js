@@ -368,13 +368,14 @@ hashTagList.forEach((hashTag) => {
   hashTag.addEventListener("click", filterCollection);
 });
 
+// 컬렉션
+
 // 오늘의 인사이트 필터링
 
 function showInsight(data) {
   console.log(data);
   let max = data.length < 4 ? data.length : 4;
   for (let i = 0; i < max; i++) {
-    console.log(data[i]);
     const targetInsight = data[i];
     const currentInsight = todaysInsights[i];
 
@@ -401,13 +402,13 @@ function showInsight(data) {
       ".post__market"
     ).innerText = `🛒(${targetInsight.refCount})`;
 
-    currentInsight.querySelector(".written__by").innerText =
-      targetInsight.author_id;
+    currentInsight.querySelector(".written__by").innerText = targetInsight.id;
   }
 }
 
 async function filterInsights(event) {
   const targetNode = event.target;
+  console.log(targetNode.innerText);
   $.get("post?category=" + targetNode.innerText, function (data, status) {
     showInsight(data);
   });
@@ -439,3 +440,20 @@ function limitThumbsUp(id) {
     thumup(id);
   }
 }
+
+// 게시글 클릭할 때 이동
+
+function moveEachArticle(event) {
+  let targetArticle = event.target.parentNode;
+  let post_id = targetArticle.querySelector(".written__by").innerText;
+  console.log(post_id);
+  location.href = `../post/page/${post_id}`;
+}
+
+const todayInsightsTitle = [
+  ...document.getElementsByClassName("todays__insight__post__img"),
+];
+
+todayInsightsTitle.forEach((insight) => {
+  insight.addEventListener("click", moveEachArticle);
+});
