@@ -157,13 +157,20 @@ body * {
 }
 
 .bg__dark {
-  width: 100vw;
+  color: white;
+  font-size: 25px;
+  font-weight: 400;
+  width: 100%;
   height: 100%;
-  background-color: gray;
-  opacity: 0.6;
+  background-color: black;
+  opacity: 0.9;
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 4;
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__container {
@@ -458,9 +465,28 @@ main {
   position: relative;
 }
 
+.main__button__container {
+  font-size: 12px;
+  justify-content: space-between;
+  position: absolute;
+  top: 69%;
+  left: 16.5%;
+  display: flex;
+  width: 120px;
+  padding: 5px 20px;
+  border-radius: 11px;
+  height: 35px;
+  background-color: white;
+  align-items: center;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.main__button__container:hover {
+  background-color: #efedea;
+}
+
 #main__bgImg {
-  width: 75vw;
-  height: 24vw;
+  width: 100%;
 }
 
 /* signUp 페이지 */
@@ -504,7 +530,7 @@ main {
 .recommend__collection__container {
   width: 100%;
   min-height: 38vh;
-  margin-top: 20px;
+  margin-top: 40px;
   display: flex;
   align-items: center;
 }
@@ -1168,4 +1194,10 @@ a {
   margin-right: 13px;
   color: #5f5a5a;
   font-size: 13px;
+}
+
+@media (max-width: 1024px) {
+  .bg__dark {
+    display: flex;
+  }
 }
