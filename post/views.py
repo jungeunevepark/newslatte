@@ -44,7 +44,7 @@ def create_post(request):
 
         context = {'collections': collections}
 
-        return render(request, 'write_test.html', context)
+        return render(request, 'writeArticle.html', context)
 
     elif request.method == 'POST': # request 에 들어온 요청을 처리 
     
