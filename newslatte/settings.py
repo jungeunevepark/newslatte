@@ -224,3 +224,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER	     # 응답 메일 관련 설정
 # 이떄 만료된 쿠키는 서버 session에 계속 남아있음!
 # python manage.py clearsessions로 삭제해주기.
 # 자동화하거나 수동으로
+
+
+CORS_ORIGIN_ALLOW_ALL = True
