@@ -487,10 +487,13 @@ function showInsight(data) {
       " "
     );
 
-    currentInsight.querySelector(".post__like").innerText = targetInsight.likes;
+    currentInsight.querySelector(
+      ".post__like"
+    ).innerText = `👍(${targetInsight.likes})`;
 
-    currentInsight.querySelector(".post__market").innerText =
-      targetInsight.refCount;
+    currentInsight.querySelector(
+      ".post__market"
+    ).innerText = `🛒(${targetInsight.refCount})`;
 
     currentInsight.querySelector(".written__by").innerText =
       targetInsight.author_id;
