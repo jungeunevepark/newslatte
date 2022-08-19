@@ -484,11 +484,11 @@ const recommendedInsight = [
   ...document.getElementsByClassName("recommend__insight__post__image"),
 ];
 
-function moveRecommendAritcle(event) {
-  const targetNode = event.target.id;
-  console.log(targetNode);
-  // location.href = `../post/page/${targetIdx}`;
-}
+// function moveRecommendAritcle(event) {
+//   const targetNode = event.target.id;
+//   console.log(targetNode);
+//   // location.href = `../post/page/${targetIdx}`;
+// }
 
 recommendedInsight.forEach((recommend) => {
   recommend.addEventListener("click", moveRecommendAritcle);
