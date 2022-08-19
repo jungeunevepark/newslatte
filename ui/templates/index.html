@@ -514,11 +514,12 @@
                 </div>
               </div>
               <div class="written__insights__whole">
+                <!-- 여기가 내 카페 글 목록 -->
                 <div class="insights__each__list">
                   <div class="insights__img"></div>
                   <div class="insights__others">
                     <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
+                      {{blog1.title}}
                     </div>
                     <div class="insights__wrapping">
                       <div class="insights__hashtags">
@@ -626,11 +627,13 @@
     //   }
     // });
 
+
     // function renewThumbsUp(id) {
     //   const targetThumb = document.getElementById(`${id}`)
     //   const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
     //   targetThumb.innerText = `👍(${countNum+1})`
     // }
+
 
     // function thumup(id) {
     //   renewThumbsUp(id)
