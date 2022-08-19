@@ -127,7 +127,7 @@
         <section class="main__slide">
           <img
             id="main__bgImg"
-            src="{% static '/ui/img/main_img.PNG'%}"
+            src="{% static '/ui/img/main_img.png'%}"
             alt=""
           />
           <div class="main__button__container">
@@ -233,13 +233,16 @@
               <div class="recommend__insight__post__list">
                 {% if posts.0 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image">
-                    <img src="{{posts.0.img}}" alt="" />
+                  <div
+                    class="recommend__insight__post__image"
+                    id="{{posts.0.id}}"
+                  >
+                    <img src="{{posts.0.img}}" />
                   </div>
-                  <a href="" class="recommend__insight__post__title"
+                  <a class="recommend__insight__post__title"
                     >{{posts.0.title}}</a
                   >
-                  <a href="" class="recommend__insight__post__body">
+                  <a class="recommend__insight__post__body">
                     {{posts.0.subhead}}
                   </a>
                   <p class="recommend__insight__post__author">
