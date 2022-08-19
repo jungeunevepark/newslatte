@@ -190,6 +190,7 @@ hashtagRight.addEventListener("click", righty);
 //오늘의 인사이트 카테고리 선택
 
 const insightCategory = document.querySelectorAll(".todays__insight__hashtag");
+insightCategory[0].style.color = "#d97a7a";
 const selectCategory = (e) => {
   for (let i = 0; i < insightCategory.length; i++) {
     if (insightCategory[i].innerHTML !== e.target.innerHTML) {
