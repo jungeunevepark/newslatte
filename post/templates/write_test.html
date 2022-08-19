@@ -10,12 +10,18 @@
 </head>
 <body>
 
-{{collections.1}}
 
+<input type="hidden" id="test" value="{{test}}">
+{% if test == 0 %}
+{{collections.1.author.nickname}} 
+{% else %}
+{{test}}
+{% endif %}
 {% for collection in collections %}
 <div id="{{collection.id}}" style="background-color: red" onclick="get_pk(id)">
     <p>{{ collection.title }}</p>
-    <p>{{ collection.user.nickname }}</p>
+    <p>{{ collection.author.nickname }}</p>
+    <p>{{ collection.created_at }}</p>
 </div>
 {% endfor %}
 
@@ -49,7 +55,8 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <script>
 
-var chosenCollectionId = undefined 
+
+var chosenCollectionId = undefined
 
 function getCookie(name) {
     var cookieValue = null;
@@ -115,6 +122,7 @@ function postrequest(){
 function get_pk(id){
     
     chosenCollectionId = id;
+    document.getElementById('test').value = 1
 
     const str1 = '{% for news in collections.'+ id;
     const str2 = '.news.all %}'
@@ -133,15 +141,15 @@ function get_pk(id){
         'collectionId': id
     },
     function(data, status){
-
+        // data = json.loads(data)
         console.log(data['result'][1]['title'])
         console.log(data['result'][1]['date'])
         console.log(data['result'][1]['main_content'])
 
-        // document.getElementById('title').innerHTML = data[0]['title']
-        // document.getElementById('date').innerHTML = data[0]['date']
-        // document.getElementById('img').src = data[0]['image']
-        // document.getElementById('content').innerHTML = data[0]['main_content']
+        document.getElementById('title').innerHTML = data['result'][0]['title']
+        document.getElementById('date').innerHTML = data['result'][0]['date']
+        document.getElementById('img').src = data['result'][0]['image']
+        document.getElementById('content').innerHTML = data['result'][0]['main_content']
         // // $.each(data, function(index, item){
         // document.getElementById('title').innerHTML = item.title //data[0]['title']
         // document.getElementById('date').innerHTML = item.date //data[0]['date']
