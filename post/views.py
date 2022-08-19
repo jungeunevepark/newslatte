@@ -25,7 +25,7 @@ def fetch_post(request):
 
     TODO: 다양한 쿼리 파라미터에 대한 요청 처리 
     """
-
+    print(123)
     category  = request.GET.get('category', '')
     posts = list(Post.objects.filter(category = category).values())
 
