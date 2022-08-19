@@ -376,7 +376,6 @@ hashTagList.forEach((hashTag) => {
 // 오늘의 인사이트 필터링
 
 function showInsight(data) {
-  console.log(data);
   let max = data.length < 4 ? data.length : 4;
   for (let i = 0; i < max; i++) {
     const targetInsight = data[i];
@@ -477,4 +476,20 @@ function moveEachArticle(event) {
 
 insightImgs.forEach((img) => {
   img.addEventListener("click", moveEachArticle);
+});
+
+// 추천인사이트 클릭 시 이동
+
+const recommendedInsight = [
+  ...document.getElementsByClassName("recommend__insight__post__image"),
+];
+
+// function moveRecommendAritcle(event) {
+//   const targetNode = event.target.id;
+//   console.log(targetNode);
+//   // location.href = `../post/page/${targetIdx}`;
+// }
+
+recommendedInsight.forEach((recommend) => {
+  recommend.addEventListener("click", moveRecommendAritcle);
 });
