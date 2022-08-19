@@ -175,6 +175,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -188,6 +189,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -201,6 +203,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -240,7 +243,7 @@
                     class="recommend__insight__post__image"
                     id="{{posts.0.id}}"
                   >
-                    <img src="{{posts.0.img}}" />
+                    <img src="{{posts.0.img}}" id="{{posts.0.id}}" />
                   </div>
                   <a class="recommend__insight__post__title"
                     >{{posts.0.title}}</a
@@ -272,11 +275,13 @@
                 </div>
                 {% endif %} {% if posts.1 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
-                  <a href="" class="recommend__insight__post__title"
+                  <div class="recommend__insight__post__image">
+                    <img src="{{posts.1.img}}" id="{{posts.1.id}}" />
+                  </div>
+                  <a class="recommend__insight__post__title"
                     >{{posts.1.title}}</a
                   >
-                  <a href="" class="recommend__insight__post__body">
+                  <a class="recommend__insight__post__body">
                     {{posts.1.subhead}}
                   </a>
                   <p class="recommend__insight__post__author">
@@ -303,7 +308,9 @@
                 </div>
                 {% endif %} {% if posts.2 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
+                  <div class="recommend__insight__post__image">
+                    <img src="{{posts.2.img}}" id="{{posts.2.id}}" />
+                  </div>
                   <a href="" class="recommend__insight__post__title"
                     >{{posts.2.title}}</a
                   >

@@ -548,13 +548,12 @@ main {
 /* article lists */
 
 .article__list {
-  margin-top: 20px;
-  display: flex;
+  margin-top: 40px;
+  display: none;
   flex-wrap: nowrap;
   flex-direction: column;
   gap: 10px;
   height: 90%;
-  overflow-y: auto;
 }
 
 .article__container__min {
@@ -697,7 +696,7 @@ main {
 /* article__list__container */
 
 #article__list__container {
-  width: 48%;
+  width: 60%;
   height: 100%;
   margin-left: auto;
   margin-right: auto;
