@@ -14,7 +14,6 @@ class Collection(models.Model):
     CATEGORY_CHOICES = (('politics', '정치'), ('economy', '경제'), ('society', '사회'), ('culture', '생활/문화'),
                 ('science','IT/과학'), ('world', '세계'))
 
-
     title = models.CharField(max_length=120, verbose_name="컬렉션제목")
     author = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, verbose_name="작성자")
     news = models.ManyToManyField(News)
