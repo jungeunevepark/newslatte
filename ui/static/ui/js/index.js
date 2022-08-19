@@ -337,6 +337,10 @@ function showEachCollection(collection) {
   for (let i = 0; i < max; i++) {
     const targetCollection = collectionPosts[i];
     const currentCollection = collection[i];
+    targetCollection
+      .querySelector(".third__img")
+      .childNodes[0].setAttribute("src", currentCollection.image);
+
     targetCollection.querySelector(".collection__post__title").innerText =
       currentCollection.title;
 
@@ -515,3 +519,23 @@ function moveCollectionPage(event) {
 recommendCollectionId.forEach((targetCt) => {
   targetCt.addEventListener("click", moveCollectionPage);
 });
+
+// 버튼 누르면  첫번째 기사
+
+const mainSlideBtn = document.getElementById("main__button__container");
+
+function moveGuidePage() {
+  location.href = `../post/page/1`;
+}
+
+mainSlideBtn.addEventListener("click", moveGuidePage);
+
+// 버튼 누르면 홈페이지로
+
+const navBarRedirectBtn = document.querySelector(".navBar__name__h1");
+
+function redirectHomepage() {
+  location.href = "";
+}
+
+navBarRedirectBtn.addEventListener("click", redirectHomepage);

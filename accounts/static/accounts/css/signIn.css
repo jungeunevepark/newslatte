@@ -522,7 +522,13 @@ footer {
   margin: 0px;
 } */
 
-#password__check__guide{
-    font-size: 13px;
+#password__check__guide {
+  font-size: 13px;
 }
 
+.modal__signUp__container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
