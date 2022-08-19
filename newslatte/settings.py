@@ -21,8 +21,7 @@ SECRET_KEY = 'DJANGO_SECRET'
 
 DEBUG = True
 
-
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".cloudtype.app"]
 
 
 # Application definition
@@ -191,7 +190,6 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 ACCOUNT_SESSION_REMEMBER = True            # 브라우저를 닫아도 세션 기록 유지(로그인 계속 되게)
-SESSION_COOKIE_AGE = 3600                  # 쿠키를 한시간만 저장
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
@@ -240,3 +238,15 @@ CORS_ALLOW_HEADERS = (
     'x-csrftoken',
     'x-requested-with',
 )
+
+
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE = 86400 # sec
+SESSION_COOKIE_DOMAIN = None
+SESSION_COOKIE_NAME = 'DSESSIONID'
+SESSION_COOKIE_SECURE = False
+
+CSRF_TRUSTED_ORIGINS = ['https://*.cloudtype.app']
+
