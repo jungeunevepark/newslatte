@@ -470,6 +470,7 @@ main {
 
 #signUp__first__btn,
 #signUp__second__btn {
+  margin-top: 10px;
   background-color: black;
   font-size: 15px;
   font-weight: 400;
@@ -522,7 +523,13 @@ footer {
   margin: 0px;
 } */
 
-#password__check__guide{
-    font-size: 13px;
+#password__check__guide {
+  font-size: 13px;
 }
 
+.modal__signUp__container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

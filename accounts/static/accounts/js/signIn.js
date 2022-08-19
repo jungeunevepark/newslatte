@@ -121,3 +121,11 @@ function CheckIsBlank(event) {
     }
   });
 }
+
+const navBarRedirectBtn = document.querySelector(".navBar__name__h1");
+
+function redirectHomepage() {
+  location.href = "";
+}
+
+navBarRedirectBtn.addEventListener("click", redirectHomepage);

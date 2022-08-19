@@ -28,7 +28,7 @@ def fetch_collection(request):
 
         return JsonResponse(collections, safe=False)
         
-
+ 
 
 
 def is_value_integer(var): # input: str
