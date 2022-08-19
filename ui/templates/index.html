@@ -68,6 +68,16 @@
         </nav>
       </header>
     </div>
+    <div class="aside__main">
+      <div class="aside__main__profile">
+        <img class="main__profile__img" src="{% static 'ui/img/coffee_icon.png' %}" alt="" />
+        <p id="profile__userName">{{ user.profile.nickname }}</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+          ratione architecto, nulla id repellat assumenda. Atque, consectetur
+          id quam doloribus, eveniet numquam assumenda, animi tempora facilis
+          non tempore optio. Earum?
+        </p>
     <aside>
       <div class="aside__top">
         <i id="aside__top__icon" class="fa-solid fa-angles-left"></i>
@@ -223,6 +233,44 @@
           </div>
           <hr class="onlyHR" />
         </section>
+<<<<<<< HEAD
+        <section id="article__list__container">
+          <div class="navbar__trash"></div>
+          <div class="aritcle__list__popUp">
+            <div class="popUp__toggle">
+              <i id="popUp__toggle__btn" class="fa-solid fa-bars"></i>
+            </div>
+            <div class="popUp__profile">
+              <div class="popUp__profile__img">
+                <img src="{% static 'ui/img/dummy.png'%}" alt="">
+              </div>
+              <div class="popUp__profile__names">
+                <p class="profile__id">{{ user.profile.nickname }}</p>
+                <p class="profile__pos">초보 바리스타</p>
+              </div>
+            </div>
+            <div class="popUp__myCart">
+              <p class="popUP__myCart__Btn">내 카페</p>
+              <p class="Btn__divider">|</p>
+              <p class="popUP__myCart__Btn">저장한 글</p>
+            </div>
+            <div class="choose__between__saved">
+              <p class="choose__saved__Btn">인사이트</p>
+              <p class="Btn__divider" style="color: transparent;">|</p>
+              <p class="choose__saved__Btn">컬렉션</p>
+            </div>
+            <div class="popUp__myCart__list">
+              <div class="collection__whole">
+                <div class="myCart__each__list">
+                  <div class="collection__container">
+                    <div class="collection__template first"></div>
+                    <div class="collection__template second"></div>
+                    <div class="collection__template third"></div>
+                  </div>
+                  <div class="each__list__container">
+                    <div class="list__main__title">
+                      <h3>솔방울의 영양학적 가치</h3>
+=======
         <div class="down__all">
           <section id="recommend__and__todays__insight">
             <div class="recommend__insight__container">
@@ -246,6 +294,7 @@
                       onclick="limitThumbsUp(id)"
                     >
                       👍({{post1.likes}})
+>>>>>>> 6b10463fe5d4dd83f4b83e8b5af1050331eb1c30
                     </div>
                     <div class="insight__post__comment">🗨(10)</div>
                     <div class="insight__post__market">
@@ -693,9 +742,7 @@
     //   }
     //   return cookieValue;
     // }
-
     // var csrftoken = getCookie('csrftoken');
-
     // function csrfSafeMethod(method) {
     //   // these HTTP methods do not require CSRF protection
     //   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
@@ -707,22 +754,18 @@
     //     }
     //   }
     // });
-
     // function renewThumbsUp(id) {
     //   const targetThumb = document.getElementById(`${id}`)
     //   const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
     //   targetThumb.innerText = `👍(${countNum+1})`
     // }
-
     // function thumup(id) {
     //   renewThumbsUp(id)
     //   // 좋아요 누르면 개수 늘어나도록. 
     //   //그런데 한사람당 하나씩만 높일 수 있도록
     //   //우선 인사이트 id 보내기 
     //   var CollectionId = id
-
     //   // console.log(id)
-
     //   $.post('/ui/' + id + '/likes', //post 방식으로 서버에 요청을 보낸다.
     //     {
     //       'csrfmiddlewaretoken': csrftoken,
