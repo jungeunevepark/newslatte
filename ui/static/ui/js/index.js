@@ -351,8 +351,6 @@ function showEachCollection(collection) {
       ".post__market"
     ).innerText = `🛒(${currentCollection.refCount})`;
 
-    console.log(currentCollection.image);
-
     // targetCollection.querySelector(".third__img").childNodes[0].setAttribute("src",)
   }
 }
@@ -435,6 +433,10 @@ insightHashTags.forEach((insight) => {
 const insight__post__like = [
   ...document.getElementsByClassName("insight__post__like"),
 ];
+
+$.get("post?category=정치", function (data, status) {
+  showInsight(data);
+});
 
 function limitThumbsUp(id) {
   if (localStorage.getItem(id)) {
