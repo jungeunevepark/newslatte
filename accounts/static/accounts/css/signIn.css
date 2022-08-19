@@ -470,6 +470,7 @@ main {
 
 #signUp__first__btn,
 #signUp__second__btn {
+  margin-top: 10px;
   background-color: black;
   font-size: 15px;
   font-weight: 400;

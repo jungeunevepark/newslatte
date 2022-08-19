@@ -234,18 +234,15 @@ header {
   width: 100%;
 }
 
-.navBar__toggle,
-.navBar__searchLogin {
-  width: 120px;
-}
-
 .navBar__searchLogin {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
-.navBar__login__btn {
+.navBar__login__btn,
+.navBar__login__writeBtn {
   background-color: transparent;
   border: 1px solid gray;
   border-radius: 8px;
@@ -261,7 +258,6 @@ header {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  display: none;
 }
 
 .Contents__nav__trash {
@@ -567,7 +563,7 @@ main {
 }
 
 .hashtag__search {
-  width: 90%;
+  width: 100px;
   background-image: url(../../resources/search-normal.png);
   background-repeat: no-repeat;
   background-position: 3px center;
@@ -1197,10 +1193,12 @@ a {
 }
 
 .write__btn {
-  text-align: right;
+  width: 100%;
   margin-right: 13px;
   color: #5f5a5a;
   font-size: 13px;
+  text-align: right;
+  cursor: pointer;
 }
 
 @media (max-width: 1024px) {

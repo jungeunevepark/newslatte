@@ -99,10 +99,10 @@
                 </div>
                 <div class="popUp__profile">
                   <div class="popUp__profile__img">
-                    <img src="../../resources/dummy.png" alt="">
+                    <img src="{% static '/post/img/dummy.png'%}" alt="">
                   </div>
                   <div class="popUp__profile__names">
-                    <p class="profile__id">{{ user.nickname }}</p>
+                    <p class="profile__id">{{ user.profile.nickname }}</p>
                     <p class="profile__pos">초보 바리스타</p>
                   </div>
                 </div>

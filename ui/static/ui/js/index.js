@@ -2,7 +2,6 @@ const navBarLoginBtn = document.querySelector(".navBar__login__btn");
 const modalSection = document.querySelector("#modal");
 const modalClose = document.querySelector("#modal__close");
 const darkBg = document.querySelector(".bg__dark");
-const navProfileImg = document.querySelector(".navBar__profile__img");
 const hideAsideIcon = document.querySelector("#aside__top__icon");
 const asideBar = document.querySelector("aside");
 const showAsideIcon = document.querySelector("#navBar__toggle__icon");
@@ -539,3 +538,24 @@ function redirectHomepage() {
 }
 
 navBarRedirectBtn.addEventListener("click", redirectHomepage);
+
+// 글쓰기 버튼
+
+const writeBtn = document.querySelector(".write__btn");
+const writeNavBtn = document.querySelector(".navBar__login__writeBtn");
+
+function moveToArticleWrite() {
+  console.log("hi");
+  location.href = "post/create";
+}
+
+writeNavBtn.addEventListener("click", moveToArticleWrite);
+writeBtn.addEventListener("click", moveToArticleWrite);
+
+const profileImg = document.querySelector(".navBar__profile__img");
+
+function moveToMyPage() {
+  location.href = "mypage/1/";
+}
+
+profileImg.addEventListener("click", moveToMyPage);

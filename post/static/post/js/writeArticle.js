@@ -443,6 +443,7 @@ function postrequest() {
       content: targetParagraph,
       subhead: targetHeader[1].innerText,
     });
+    location.href = "../../mypage/1";
   }
 }
 
@@ -451,7 +452,5 @@ const writeArea = document.querySelector(".write__contents__container");
 const saveBtn = [...document.querySelectorAll(".navBar__right__save")][1];
 let collection_id;
 saveBtn.addEventListener("click", postrequest);
-
-// collection 가져오기
 
 init();
