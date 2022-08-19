@@ -41,19 +41,21 @@
                 </div>
                 <div class="navBar__right">
                   <div class="navBar__searchLogin">
-                    <i class="fa-solid fa-magnifying-glass"></i>
                     {% if user.is_authenticated %}
                     <a href="{% url 'logout' %}"
                       ><button class="navBar__login__btn">로그아웃</button></a
                     >
+                    <button class="navBar__login__writeBtn">글쓰기</button>
+                    <img
+                      class="navBar__profile__img"
+                      src="{% static 'ui/img/dummy.png' %}"
+                      alt=""
+                    />
                     {% else %}
                     <a href="{% url 'login' %}"
                       ><button class="navBar__login__btn">로그인</button></a
                     >
                     {% endif %}
-                    <a href="../myPage/mypage.html"
-                      ><img class="navBar__profile__img" src="" alt=""
-                    /></a>
                   </div>
                 </div>
               </div>
@@ -133,7 +135,7 @@
             src="{% static '/ui/img/main_img.png'%}"
             alt=""
           />
-          <div class="main__button__container">
+          <div id="main__button__container">
             <p>바로가기</p>
             <span>&#62;</span>
           </div>
@@ -173,7 +175,7 @@
                   <div class="post__img__container">
                     <div class="first__img"></div>
                     <div class="second__img"></div>
-                    <div class="third__img"><img src="" alt="" /></div>
+                    <div class="third__img"><img alt="" /></div>
                   </div>
                   <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
@@ -187,7 +189,7 @@
                   <div class="post__img__container">
                     <div class="first__img"></div>
                     <div class="second__img"></div>
-                    <div class="third__img"><img src="" alt="" /></div>
+                    <div class="third__img"><img alt="" /></div>
                   </div>
                   <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
@@ -201,7 +203,7 @@
                   <div class="post__img__container">
                     <div class="first__img"></div>
                     <div class="second__img"></div>
-                    <div class="third__img"><img src="" alt="" /></div>
+                    <div class="third__img"><img alt="" /></div>
                   </div>
                   <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
@@ -215,7 +217,7 @@
                   <div class="post__img__container">
                     <div class="first__img"></div>
                     <div class="second__img"></div>
-                    <div class="third__img"></div>
+                    <div class="third__img"><img alt="" /></div>
                   </div>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>

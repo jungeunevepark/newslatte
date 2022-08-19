@@ -96,13 +96,15 @@ isLogin();
 // 메뉴이동
 
 const writtensaveBtn = document.querySelector(".written__and__saved__choose");
-const insightcollectionBtn = document.querySelector(".insights__collection__choose");
+const insightcollectionBtn = document.querySelector(
+  ".insights__collection__choose"
+);
 const writtenList = document.querySelector(".written__articles__list");
 const savedinsightsList = document.querySelector(".saved__insights__list");
 const savedcollectionsList = document.querySelector(".saved__collection__list");
 console.log(writtensaveBtn);
 const writtensaveChoose = (e) => {
-  if (e.target.innerHTML == writtensaveBtn.children[0].innerHTML){
+  if (e.target.innerHTML == writtensaveBtn.children[0].innerHTML) {
     writtensaveBtn.children[0].style.color = "#d97a7a";
     writtensaveBtn.children[0].style.borderBottom = "2px solid #d97a7a";
     writtensaveBtn.children[1].style.color = "#636363";
@@ -116,10 +118,10 @@ const writtensaveChoose = (e) => {
     writtensaveBtn.children[0].style.borderBottom = "none";
     writtensaveBtn.children[1].style.color = "#d97a7a";
     writtensaveBtn.children[1].style.borderBottom = "2px solid #d97a7a";
-    insightcollectionBtn.children[0].style.color  = "#d97a7a7a";
-    insightcollectionBtn.children[0].style.borderBottom  = "2px solid #d97a7a7a";
-    insightcollectionBtn.children[1].style.color  = "#636363";
-    insightcollectionBtn.children[1].style.borderBottom  = "none";
+    insightcollectionBtn.children[0].style.color = "#d97a7a7a";
+    insightcollectionBtn.children[0].style.borderBottom = "2px solid #d97a7a7a";
+    insightcollectionBtn.children[1].style.color = "#636363";
+    insightcollectionBtn.children[1].style.borderBottom = "none";
     writtenList.style.display = "inline-block";
     insightcollectionBtn.style.display = "flex";
     savedinsightsList.style.display = "inline";
@@ -132,30 +134,44 @@ writtensaveBtn.children[0].addEventListener("click", writtensaveChoose);
 writtensaveBtn.children[1].addEventListener("click", writtensaveChoose);
 
 const insightcollectionChoose = (e) => {
-  if (e.target.innerHTML == insightcollectionBtn.children[0].innerHTML){
-    insightcollectionBtn.children[0].style.color  = "#d97a7a7a";
-    insightcollectionBtn.children[0].style.borderBottom  = "2px solid #d97a7a7a";
-    insightcollectionBtn.children[1].style.color  = "#636363";
-    insightcollectionBtn.children[1].style.borderBottom  = "none";
+  if (e.target.innerHTML == insightcollectionBtn.children[0].innerHTML) {
+    insightcollectionBtn.children[0].style.color = "#d97a7a7a";
+    insightcollectionBtn.children[0].style.borderBottom = "2px solid #d97a7a7a";
+    insightcollectionBtn.children[1].style.color = "#636363";
+    insightcollectionBtn.children[1].style.borderBottom = "none";
     savedinsightsList.style.display = "inline";
     savedcollectionsList.style.display = "none";
   } else {
-    insightcollectionBtn.children[0].style.color  = "#636363";
-    insightcollectionBtn.children[0].style.borderBottom  = "none";
-    insightcollectionBtn.children[1].style.color  = "#d97a7a7a";
-    insightcollectionBtn.children[1].style.borderBottom  = "2px solid #d97a7a7a";
+    insightcollectionBtn.children[0].style.color = "#636363";
+    insightcollectionBtn.children[0].style.borderBottom = "none";
+    insightcollectionBtn.children[1].style.color = "#d97a7a7a";
+    insightcollectionBtn.children[1].style.borderBottom = "2px solid #d97a7a7a";
     savedinsightsList.style.display = "none";
     savedcollectionsList.style.display = "inline";
   }
 };
 
-
-insightcollectionBtn.children[0].addEventListener("click", insightcollectionChoose);
-insightcollectionBtn.children[1].addEventListener("click", insightcollectionChoose);
+insightcollectionBtn.children[0].addEventListener(
+  "click",
+  insightcollectionChoose
+);
+insightcollectionBtn.children[1].addEventListener(
+  "click",
+  insightcollectionChoose
+);
 
 //배경색을 프로필 이미지 중간까지 오도록
 
 const profileImg = document.querySelector(".profile__pic");
 const wholeView = document.querySelector(".mypage__container");
-const backgroundHeight = profileImg.clientHeight + 63
-wholeView.style.background = "linear-gradient(0 deg, #f1f1f1 124px, #ffffff 124px)"
+const backgroundHeight = profileImg.clientHeight + 63;
+wholeView.style.background =
+  "linear-gradient(0 deg, #f1f1f1 124px, #ffffff 124px)";
+
+const navBarRedirectBtn = document.querySelector(".navBar__name__h1");
+
+function redirectHomepage() {
+  location.href = "";
+}
+
+navBarRedirectBtn.addEventListener("click", redirectHomepage);

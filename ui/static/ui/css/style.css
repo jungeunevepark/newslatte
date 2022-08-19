@@ -204,6 +204,7 @@ header {
 }
 
 .navBar__name__h1 {
+  cursor: pointer;
   font-weight: bold;
 }
 
@@ -233,18 +234,15 @@ header {
   width: 100%;
 }
 
-.navBar__toggle,
-.navBar__searchLogin {
-  width: 120px;
-}
-
 .navBar__searchLogin {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
-.navBar__login__btn {
+.navBar__login__btn,
+.navBar__login__writeBtn {
   background-color: transparent;
   border: 1px solid gray;
   border-radius: 8px;
@@ -260,7 +258,6 @@ header {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  display: none;
 }
 
 .Contents__nav__trash {
@@ -465,7 +462,8 @@ main {
   position: relative;
 }
 
-.main__button__container {
+#main__button__container {
+  cursor: pointer;
   font-size: 12px;
   justify-content: space-between;
   position: absolute;
@@ -565,7 +563,7 @@ main {
 }
 
 .hashtag__search {
-  width: 90%;
+  width: 100px;
   background-image: url(../../resources/search-normal.png);
   background-repeat: no-repeat;
   background-position: 3px center;
@@ -674,6 +672,11 @@ main {
   position: relative;
   top: -20px;
   left: 20px;
+}
+
+.third__img img {
+  width: 119px;
+  height: 160px;
 }
 
 .collection__post__title {
@@ -1190,10 +1193,12 @@ a {
 }
 
 .write__btn {
-  text-align: right;
+  width: 100%;
   margin-right: 13px;
   color: #5f5a5a;
   font-size: 13px;
+  text-align: right;
+  cursor: pointer;
 }
 
 @media (max-width: 1024px) {
