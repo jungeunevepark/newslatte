@@ -90,6 +90,7 @@ video {
   font: inherit;
   vertical-align: baseline;
 }
+
 /* HTML5 display-role reset for older browsers */
 article,
 aside,
@@ -104,17 +105,21 @@ nav,
 section {
   display: block;
 }
+
 body {
   line-height: 1;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 blockquote,
 q {
   quotes: none;
 }
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -122,6 +127,7 @@ q:after {
   content: "";
   content: none;
 }
+
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -269,6 +275,7 @@ header {
   margin-left: 1px;
   margin-bottom: 10px;
 }
+
 /* asdie 창 */
 
 aside {
@@ -408,6 +415,7 @@ aside {
   margin: 1vh 0;
   border-radius: 10px;
 }
+
 #login__submit__btn {
   background-color: white;
 }
@@ -496,7 +504,7 @@ main {
 .recommend__collection__container {
   width: 100%;
   min-height: 38vh;
-  margin-top: 5vh;
+  margin-top: 20px;
   display: flex;
   align-items: center;
 }
@@ -507,7 +515,7 @@ main {
 }
 
 .collection__container__name {
-  font-size: 24px;
+  font-size: 21px;
   text-align: left;
 }
 
@@ -565,6 +573,7 @@ main {
 }
 
 .collection__post {
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -600,18 +609,27 @@ main {
 }
 
 .collection__post__container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 160px;
+}
+
+.post__img__container {
+  height: 170px;
+  position: relative;
+}
+
+.post__img__container div {
+  position: absolute;
 }
 
 .first__img {
   width: 119px;
   height: 160px;
   background-color: #d97a7a;
-  position: relative;
-  top: -7px;
-  left: 7px;
+  top: 0px;
+  left: 0px;
 }
 
 .second__img {
@@ -619,8 +637,8 @@ main {
   height: 160px;
   background-color: #d9d9d9;
   position: relative;
-  top: -14px;
-  left: -14px;
+  top: -10px;
+  left: 10px;
 }
 
 .third__img {
@@ -628,18 +646,19 @@ main {
   height: 160px;
   background-color: #f5f5f5;
   position: relative;
-  top: -14px;
-  left: 28px;
+  top: -20px;
+  left: 20px;
 }
 
 .collection__post__title {
-  font-size: 20px;
+  height: 40px;
+  font-size: 16px;
   text-decoration: none;
   color: black;
 }
 
 .collection__post__author {
-  font-size: 18px;
+  font-size: 13px;
   text-decoration: none;
   color: black;
 }
@@ -862,6 +881,7 @@ a {
   font-size: 12px;
   color: #656565;
 }
+
 /* 장바구니창 */
 
 #article__list__container {
@@ -1128,6 +1148,7 @@ a {
   width: 10px;
   cursor: pointer;
 }
+
 .write__btn {
   text-align: right;
   margin-right: 13px;

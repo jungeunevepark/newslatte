@@ -16,6 +16,26 @@ import re
 import string
 from django.core.exceptions import ValidationError
 
+#===========================REST API=============================
+
+def crud_user(request, id):
+    if request.method == 'POST':
+        UpdateUser(request, id)
+    # TODO: Create, Delete 등 다른 메소드에 대한 처리함수 구현 
+
+
+def updateUser(request, id):
+    pass
+   # request body 부분을 봄으로써 수정되어야 
+
+
+
+
+
+
+
+#=================================================================
+
 def login(request):
     if request.method == 'POST':
         jsonObject = json.loads(request.body)

@@ -1,18 +1,27 @@
 from django.shortcuts import render, get_object_or_404
 from collection.models import Collection
 from post.models import Tag, Post
+from accounts.models import Profile, User
 from django.http import JsonResponse
 # Create your views here.
 
 
 def home(request):
+    blogs = Post.objects.all()
+    writers = Profile.objects.all()
+
     posts = Post.objects.filter().order_by('-likes')
-    post1 = posts[0]
-    post2 = posts[1]
-    post3 = posts[2]
+
     tag = Tag.objects.filter(name='경제')
     searched = Collection.objects.filter(tag__in=tag)
-    return render(request, 'index.html', {'searched': searched, 'post1': post1, 'post2': post2, 'post3': post3})
+
+    if request.user.is_authenticated:
+        my_profile = writers.filter(user=request.user)
+        blogs_all = blogs.filter(author__in=my_profile)
+
+        return render(request, 'index.html', {'searched': searched, 'posts': posts, 'blogs_all': blogs_all})
+
+    return render(request, 'index.html', {'searched': searched, 'posts': posts})
 
 
 def thumb_up(request, post_id):

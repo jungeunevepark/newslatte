@@ -2,10 +2,6 @@ from pathlib import Path
 from pickle import TRUE
 import os
 import json
-from django.core.exceptions import ImproperlyConfigured
-
-
-
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -13,15 +9,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = os.path.dirname(BASE_DIR)
 secret_file = os.path.join(BASE_DIR, 'secret.json')
 
-# with open(secret_file) as f:
-#     secret = json.loads(f.read())
-
-# def get_secret(setting, secret=secret):
-#     try:
-#         return secret[setting]
-#     except:
-#         error_msg = "Set key '{0}' in secret.json".format(setting)
-#         raise ImproperlyConfigured(error_msg)
 
 SECRET_KEY = 'DJANGO_SECRET'
 # Quick-start development settings - unsuitable for production
@@ -31,7 +18,9 @@ SECRET_KEY = 'DJANGO_SECRET'
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+
+DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -65,7 +54,7 @@ INSTALLED_APPS = [
 
     # 이메일 인증
     'six',
-    'django_summernote', # app for text editor(summernote)
+    'django_summernote',  # app for text editor(summernote)
 
     'corsheaders',
 
@@ -194,7 +183,7 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': [
             'profile',
             'email',
-        ],  
+        ],
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
@@ -207,9 +196,8 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-LOGIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL = '/'
 # SOCIAL_AUTH_LOGIN_REDIRECT_URL='/accounts/profile/'
-
 
 
 # 이메일 인증 관련
@@ -253,6 +241,7 @@ CORS_ALLOW_HEADERS = (
 )
 
 
+
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_AGE = 86400 # sec
@@ -261,3 +250,4 @@ SESSION_COOKIE_NAME = 'DSESSIONID'
 SESSION_COOKIE_SECURE = False
 
 CSRF_TRUSTED_ORIGINS = ['https://*.cloudtype.app']
+
