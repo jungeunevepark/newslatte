@@ -157,13 +157,20 @@ body * {
 }
 
 .bg__dark {
-  width: 100vw;
+  color: white;
+  font-size: 25px;
+  font-weight: 400;
+  width: 100%;
   height: 100%;
-  background-color: gray;
-  opacity: 0.6;
+  background-color: black;
+  opacity: 0.9;
   position: absolute;
+  top: 0;
+  left: 0;
   z-index: 4;
   display: none;
+  justify-content: center;
+  align-items: center;
 }
 
 .header__container {
@@ -458,9 +465,28 @@ main {
   position: relative;
 }
 
+.main__button__container {
+  font-size: 12px;
+  justify-content: space-between;
+  position: absolute;
+  top: 69%;
+  left: 16.5%;
+  display: flex;
+  width: 120px;
+  padding: 5px 20px;
+  border-radius: 11px;
+  height: 35px;
+  background-color: white;
+  align-items: center;
+  box-shadow: 1px 1px 5px gray;
+}
+
+.main__button__container:hover {
+  background-color: #efedea;
+}
+
 #main__bgImg {
-  width: 75vw;
-  height: 24vw;
+  width: 100%;
 }
 
 /* signUp 페이지 */
@@ -504,7 +530,7 @@ main {
 .recommend__collection__container {
   width: 100%;
   min-height: 38vh;
-  margin-top: 5vh;
+  margin-top: 40px;
   display: flex;
   align-items: center;
 }
@@ -515,7 +541,7 @@ main {
 }
 
 .collection__container__name {
-  font-size: 24px;
+  font-size: 21px;
   text-align: left;
 }
 
@@ -573,6 +599,7 @@ main {
 }
 
 .collection__post {
+  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -608,18 +635,27 @@ main {
 }
 
 .collection__post__container {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   height: 100%;
-  width: 100%;
+  width: 160px;
+}
+
+.post__img__container {
+  height: 170px;
+  position: relative;
+}
+
+.post__img__container div {
+  position: absolute;
 }
 
 .first__img {
   width: 119px;
   height: 160px;
   background-color: #d97a7a;
-  position: relative;
-  top: -7px;
-  left: 7px;
+  top: 0px;
+  left: 0px;
 }
 
 .second__img {
@@ -627,8 +663,8 @@ main {
   height: 160px;
   background-color: #d9d9d9;
   position: relative;
-  top: -14px;
-  left: -14px;
+  top: -10px;
+  left: 10px;
 }
 
 .third__img {
@@ -636,18 +672,19 @@ main {
   height: 160px;
   background-color: #f5f5f5;
   position: relative;
-  top: -14px;
-  left: 28px;
+  top: -20px;
+  left: 20px;
 }
 
 .collection__post__title {
-  font-size: 20px;
+  height: 40px;
+  font-size: 16px;
   text-decoration: none;
   color: black;
 }
 
 .collection__post__author {
-  font-size: 18px;
+  font-size: 13px;
   text-decoration: none;
   color: black;
 }
@@ -695,16 +732,18 @@ main {
 }
 
 .recommend__insight__title {
-  font-size: 24px;
+  font-size: 21px;
   width: 100%;
   text-align: left;
   margin-bottom: 40px;
 }
 
 .recommend__insight__post__list {
+  width: 900px;
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
+  overflow-x: auto;
 }
 
 .recommend__insight__post__container {
@@ -715,6 +754,11 @@ main {
   width: 100%;
   height: 224px;
   background-color: #d9d9d9;
+}
+
+.recommend__insight__post__image img {
+  width: 100%;
+  height: 100%;
 }
 
 .recommend__insight__post__title {
@@ -784,7 +828,7 @@ main {
 /* 오늘의 인사이트 */
 
 .todays__insight__title {
-  font-size: 24px;
+  font-size: 21px;
   width: 100%;
   text-align: left;
 }
@@ -815,6 +859,7 @@ main {
 .todays__insight__post__container {
   display: flex;
   width: 100%;
+  height: 170px;
   margin-top: 20px;
 }
 
@@ -849,11 +894,17 @@ main {
 
 .todays__insight__post__body {
   font-size: 14px;
+  height: 60px;
   color: #656565;
   text-decoration: none;
   text-align: left;
   line-height: 20px;
   margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 a {
@@ -967,7 +1018,6 @@ a {
   align-items: center;
   font-size: 13px;
   display: none;
-
 }
 
 .popUp__myCart__list {
@@ -1144,4 +1194,10 @@ a {
   margin-right: 13px;
   color: #5f5a5a;
   font-size: 13px;
+}
+
+@media (max-width: 1024px) {
+  .bg__dark {
+    display: flex;
+  }
 }

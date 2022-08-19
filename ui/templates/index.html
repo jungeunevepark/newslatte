@@ -24,7 +24,9 @@
   </head>
 
   <body>
-    <div class="bg__dark"></div>
+    <div class="bg__dark">
+      <p>1024px 이상의 PC 화면에서 봐주세요 :)</p>
+    </div>
     <div class="header__container">
       <header>
         <nav>
@@ -125,9 +127,13 @@
         <section class="main__slide">
           <img
             id="main__bgImg"
-            src="{% static '/ui/img/main_background.PNG'%}"
+            src="{% static '/ui/img/main_img.PNG'%}"
             alt=""
           />
+          <div class="main__button__container">
+            <p>바로가기</p>
+            <span>&#62;</span>
+          </div>
         </section>
         <section id="recommend__collection">
           <div class="recommend__collection__container">
@@ -161,10 +167,10 @@
               </div>
               <div class="collection__post__list">
                 <div class="collection__post__container">
-                  <div class="first__img">
-                    <div class="second__img">
-                      <div class="third__img"></div>
-                    </div>
+                  <div class="post__img__container">
+                    <div class="first__img"></div>
+                    <div class="second__img"></div>
+                    <div class="third__img"><img src="" alt="" /></div>
                   </div>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
@@ -174,10 +180,10 @@
                   </div>
                 </div>
                 <div class="collection__post__container">
-                  <div class="first__img">
-                    <div class="second__img">
-                      <div class="third__img"></div>
-                    </div>
+                  <div class="post__img__container">
+                    <div class="first__img"></div>
+                    <div class="second__img"></div>
+                    <div class="third__img"><img src="" alt="" /></div>
                   </div>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
@@ -187,10 +193,10 @@
                   </div>
                 </div>
                 <div class="collection__post__container">
-                  <div class="first__img">
-                    <div class="second__img">
-                      <div class="third__img"></div>
-                    </div>
+                  <div class="post__img__container">
+                    <div class="first__img"></div>
+                    <div class="second__img"></div>
+                    <div class="third__img"><img src="" alt="" /></div>
                   </div>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
@@ -200,10 +206,10 @@
                   </div>
                 </div>
                 <div class="collection__post__container">
-                  <div class="first__img">
-                    <div class="second__img">
-                      <div class="third__img"></div>
-                    </div>
+                  <div class="post__img__container">
+                    <div class="first__img"></div>
+                    <div class="second__img"></div>
+                    <div class="third__img"></div>
                   </div>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
@@ -225,58 +231,93 @@
             <div class="recommend__insight__container">
               <div class="recommend__insight__title">추천 인사이트</div>
               <div class="recommend__insight__post__list">
+                {% if posts.0 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
+                  <div class="recommend__insight__post__image">
+                    <img src="{{posts.0.img}}" alt="" />
+                  </div>
                   <a href="" class="recommend__insight__post__title"
-                    >{{post1.title}}</a
+                    >{{posts.0.title}}</a
                   >
                   <a href="" class="recommend__insight__post__body">
-                    {{post1.subhead}}
+                    {{posts.0.subhead}}
                   </a>
                   <p class="recommend__insight__post__author">
-                    written by {{post1.author}}
+                    written by {{posts.0.author}}
                   </p>
                   <div class="recommend__insight__post__others">
                     <div
-                      id="{{post1.id}}"
+                      id="{{posts.0.id}}"
                       class="insight__post__like"
                       onclick="limitThumbsUp(id)"
                     >
-                      👍({{post1.likes}})
+                      👍({{posts.0.likes}})
                     </div>
                     <div class="insight__post__comment">🗨(10)</div>
                     <div class="insight__post__market">
-                      🛒({{post1.refCount}})
+                      🛒({{posts.0.refCount}})
                     </div>
                     <div class="recommend__post__hashtag">
-                      {% for tag in post1.tag.all %}
+                      {% for tag in posts.0.tag.all %}
                       <span>#{{ tag }}</span>
                       {% endfor %}
                     </div>
                   </div>
                 </div>
+                {% endif %} {% if posts.1 %}
                 <div class="recommend__insight__post__container">
                   <div class="recommend__insight__post__image"></div>
                   <a href="" class="recommend__insight__post__title"
-                    >{{post2.title}}</a
+                    >{{posts.1.title}}</a
                   >
                   <a href="" class="recommend__insight__post__body">
-                    {{post2.subhead}}
+                    {{posts.1.subhead}}
                   </a>
                   <p class="recommend__insight__post__author">
-                    written by {{post2.author}}
+                    written by {{posts.1.author}}
                   </p>
                   <div class="recommend__insight__post__others">
                     <div
-                      id="{{post2.id}}"
+                      id="{{posts.1.id}}"
                       class="insight__post__like"
                       onclick="limitThumbsUp(id)"
                     >
-                      👍({{post2.likes}})
+                      👍({{posts.1.likes}})
                     </div>
                     <div class="insight__post__comment">🗨(10)</div>
                     <div class="insight__post__market">
-                      🛒({{post2.refCount}})
+                      🛒({{posts.1.refCount}})
+                    </div>
+                    <div class="recommend__post__hashtag">
+                      {% for tag in posts.1.tag.all %}
+                      <span>#{{ tag }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                {% endif %} {% if posts.2 %}
+                <div class="recommend__insight__post__container">
+                  <div class="recommend__insight__post__image"></div>
+                  <a href="" class="recommend__insight__post__title"
+                    >{{posts.2.title}}</a
+                  >
+                  <a href="" class="recommend__insight__post__body">
+                    {{posts.2.subhead}}
+                  </a>
+                  <p class="recommend__insight__post__author">
+                    written by {{posts.2.author}}
+                  </p>
+                  <div class="recommend__insight__post__others">
+                    <div
+                      id="{{posts.2.id}}"
+                      class="insight__post__like"
+                      onclick="limitThumbsUp(id)"
+                    >
+                      👍({{posts.2.likes}})
+                    </div>
+                    <div class="insight__post__comment">🗨(10)</div>
+                    <div class="insight__post__market">
+                      🛒({{posts.2.refCount}})
                     </div>
                     <div class="recommend__post__hashtag">
                       {% for tag in post2.tag.all %}
@@ -285,36 +326,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
-                  <a href="" class="recommend__insight__post__title"
-                    >{{post3.title}}</a
-                  >
-                  <a href="" class="recommend__insight__post__body">
-                    {{post3.subhead}}
-                  </a>
-                  <p class="recommend__insight__post__author">
-                    written by {{post3.author}}
-                  </p>
-                  <div class="recommend__insight__post__others">
-                    <div
-                      id="{{post3.id}}"
-                      class="insight__post__like"
-                      onclick="limitThumbsUp(id)"
-                    >
-                      👍({{post3.likes}})
-                    </div>
-                    <div class="insight__post__comment">🗨(10)</div>
-                    <div class="insight__post__market">
-                      🛒({{post3.refCount}})
-                    </div>
-                    <div class="recommend__post__hashtag">
-                      {% for tag in post3.tag.all %}
-                      <span>#{{ tag }}</span>
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
+                {% endif %}
               </div>
               <div class="recommend__insight__post__pagination"></div>
             </div>
@@ -336,12 +348,10 @@
                       <p>#경제</p>
                     </div>
                     <div class="todays__insight__post__title">
-                      <a href="" style="color: #656565"
-                        >여기는 인사이트 제목입니다.</a
-                      >
+                      <a style="color: #656565">여기는 인사이트 제목입니다.</a>
                     </div>
                     <div class="todays__insight__post__body">
-                      <a href="" style="color: #656565"
+                      <a style="color: #656565"
                         >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
                         청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
                         이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
@@ -366,12 +376,10 @@
                       <p>#경제</p>
                     </div>
                     <div class="todays__insight__post__title">
-                      <a href="" style="color: #656565"
-                        >여기는 인사이트 제목입니다.</a
-                      >
+                      <a style="color: #656565">여기는 인사이트 제목입니다.</a>
                     </div>
                     <div class="todays__insight__post__body">
-                      <a href="" style="color: #656565"
+                      <a style="color: #656565"
                         >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
                         청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
                         이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
@@ -396,12 +404,10 @@
                       <p>#경제</p>
                     </div>
                     <div class="todays__insight__post__title">
-                      <a href="" style="color: #656565"
-                        >여기는 인사이트 제목입니다.</a
-                      >
+                      <a style="color: #656565">여기는 인사이트 제목입니다.</a>
                     </div>
                     <div class="todays__insight__post__body">
-                      <a href="" style="color: #656565"
+                      <a style="color: #656565"
                         >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
                         청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
                         이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
@@ -426,12 +432,10 @@
                       <p>#경제</p>
                     </div>
                     <div class="todays__insight__post__title">
-                      <a href="" style="color: #656565"
-                        >여기는 인사이트 제목입니다.</a
-                      >
+                      <a style="color: #656565">여기는 인사이트 제목입니다.</a>
                     </div>
                     <div class="todays__insight__post__body">
-                      <a href="" style="color: #656565"
+                      <a style="color: #656565"
                         >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
                         청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
                         이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
@@ -598,49 +602,52 @@
                 </div>
                 <div class="written__insights__whole">
                   <!-- 여기가 내 카페 글 목록 -->
+                  {% if blogs_all.0 %}
                   <div class="insights__each__list">
                     <div class="insights__img"></div>
                     <div class="insights__others">
-                      <div class="insights__title">{{blog1.title}}</div>
+                      <div class="insights__title">{{blogs_all.0.title}}</div>
                       <div class="insights__wrapping">
                         <div class="insights__hashtags">
-                          <p>#경제학</p>
-                          <p>#경제학</p>
+                          {% for tag in blogs_all.0.tag.all %}
+                          <p>#{{ tag }}</p>
+                          {% endfor %}
                         </div>
                         <i class="fa-solid fa-trash-can"></i>
                       </div>
                     </div>
                   </div>
+                  {% endif %} {% if blogs_all.1 %}
                   <div class="insights__each__list">
                     <div class="insights__img"></div>
                     <div class="insights__others">
-                      <div class="insights__title">
-                        인사이트 제목인사이트 제목인사이트 제목 ...
-                      </div>
+                      <div class="insights__title">{{blogs_all.1.title}}</div>
                       <div class="insights__wrapping">
                         <div class="insights__hashtags">
-                          <p>#경제학</p>
-                          <p>#경제학</p>
+                          {% for tag in blogs_all.1.tag.all %}
+                          <p>#{{ tag }}</p>
+                          {% endfor %}
                         </div>
                         <i class="fa-solid fa-trash-can"></i>
                       </div>
                     </div>
                   </div>
+                  {% endif %} {% if blogs_all.2 %}
                   <div class="insights__each__list">
                     <div class="insights__img"></div>
                     <div class="insights__others">
-                      <div class="insights__title">
-                        인사이트 제목인사이트 제목인사이트 제목 ...
-                      </div>
+                      <div class="insights__title">{{blogs_all.2.title}}</div>
                       <div class="insights__wrapping">
                         <div class="insights__hashtags">
-                          <p>#경제학</p>
-                          <p>#경제학</p>
+                          {% for tag in blogs_all.2.tag.all %}
+                          <p>#{{ tag }}</p>
+                          {% endfor %}
                         </div>
                         <i class="fa-solid fa-trash-can"></i>
                       </div>
                     </div>
                   </div>
+                  {% endif %}
                 </div>
               </div>
               <div class="popUp__pagination"></div>
