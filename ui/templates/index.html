@@ -33,9 +33,9 @@
                 <div class="navBar__searchLogin">
                   <i class="fa-solid fa-magnifying-glass"></i>
                   {% if user.is_authenticated %}
-                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
-                  {% else %}
                   <a href="{% url 'login' %}"><button class="navBar__login__btn">로그아웃</button></a>
+                  {% else %}
+                  <a href="{% url 'logout' %}"><button class="navBar__login__btn">로그인</button></a>
                   {% endif %}
 
                   <a href="../myPage/mypage.html"><img class="navBar__profile__img" src="" alt="" /></a>
@@ -213,17 +213,17 @@
             <div class="recommend__insight__post__list">
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post1.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.1.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post1.subhead}}
+                  {{posts.1.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post1.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.1.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post1.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post1.likes}})</div>
+                  <div id="{{post1.id}}" class="insight__post__like" onclick="thumup(id)">👍({{posts.1.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post1.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.1.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    {% for tag in post1.tag.all %}
+                    {% for tag in posts.1.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
                   </div>
@@ -231,18 +231,18 @@
               </div>
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post2.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.2.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post2.subhead}}
+                  {{posts.2.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post2.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.2.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post2.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post2.likes}})</div>
+                  <div id="{{post2.id}}" class="insight__post__like" onclick="thumup(id)">👍({{posts.2.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post2.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.2.refCount}})</div>
                   <div class="recommend__post__hashtag">
 
-                    {% for tag in post2.tag.all %}
+                    {% for tag in posts.2.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
 
@@ -252,17 +252,17 @@
               </div>
               <div class="recommend__insight__post__container">
                 <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post3.title}}</a>
+                <a href="" class="recommend__insight__post__title">{{posts.3.title}}</a>
                 <a href="" class="recommend__insight__post__body">
-                  {{post3.subhead}}
+                  {{posts.3.subhead}}
                 </a>
-                <p class="recommend__insight__post__author">written by {{post3.author}}</p>
+                <p class="recommend__insight__post__author">written by {{posts.3.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post3.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post3.likes}})</div>
+                  <div id="{{post3.id}}" class="insight__post__like" onclick="thumup(id)">👍({{posts.3.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post3.refCount}})</div>
+                  <div class="insight__post__market">🛒({{posts.3.refCount}})</div>
                   <div class="recommend__post__hashtag">
-                    {% for tag in post3.tag.all %}
+                    {% for tag in posts.3.tag.all %}
                     <span>#{{ tag }}</span>
                     {% endfor %}
                   </div>
