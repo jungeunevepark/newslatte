@@ -20,7 +20,7 @@ class Collection(models.Model):
     refCount = models.IntegerField(default=0, verbose_name="참조수")
     tag = models.ManyToManyField(to='post.Tag', null=True)
     comment = models.CharField(max_length = 120, null =True, verbose_name="코멘트")
-    image = models.URLField(null=True, blank=True),
+    image = models.URLField(null=True),
     category = models.CharField(max_length=120)
 
     def __str__(self):
