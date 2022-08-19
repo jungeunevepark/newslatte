@@ -2,7 +2,7 @@ from ssl import create_default_context
 from django.db import models
 from accounts.models import User, Profile
 from typing import TYPE_CHECKING
-from collection.models import Collection
+# from collection.models  Collection
 
 
 class Tag(models.Model):  # this model should be referenced by Post and Collection
@@ -22,12 +22,10 @@ class Folder(models.Model):
 
 class Post(models.Model):
     author = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, null=True, verbose_name="작성자")
-    collection = models.ForeignKey(
-        Collection, on_delete=models.SET_NULL, null=True, verbose_name="참조 컬렉션")
+    Profile, on_delete=models.CASCADE, null=True, verbose_name="작성자")
+    collection = models.ForeignKey(to='collection.Collection', on_delete=models.SET_NULL, null=True, verbose_name="참조 컬렉션")
     # TODO: cascade->set null
-    folder = models.ForeignKey(
-        Folder, on_delete=models.SET_NULL, null=True, blank=True)
+    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성시간")
     views = models.IntegerField(default=0, verbose_name="조회수")
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
