@@ -71,9 +71,10 @@ def show_collection_detail(request, id):
 
 def detail(request, collection_id):
     collection = get_object_or_404(Collection, pk=collection_id)
-    newss = collection.news.all()
+    article = collection.news.all()
+    print(article)
     first_news = collection.news.first()
-    return render(request, 'collection.html', {'collection': collection, 'newss':newss, 'first_news': first_news})
+    return render(request, 'collection.html', {'collection': collection, 'newss':article, 'first_news': first_news})
 
 
 def fetch_news_from_collection(request, id):

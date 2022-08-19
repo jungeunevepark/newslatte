@@ -23,7 +23,7 @@ class Collection(models.Model):
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
     views = models.IntegerField(default=0, verbose_name="조회수")
     refCount = models.IntegerField(default=0, verbose_name="참조수")
-    tag = models.ManyToManyField(to='post.Tag', null=True)
+    tag = models.ManyToManyField(to='post.Tag')
 
     comment = models.CharField(max_length = 120, null =True, verbose_name="코멘트")
     image = models.URLField(null=True, blank=True),

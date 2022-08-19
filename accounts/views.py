@@ -100,17 +100,7 @@ def signup(request):
                 msg=""
                 new_user = User.objects.create_user(email=email, password=password)
                 auth.login(request, new_user, backend='django.contrib.auth.backends.ModelBackend')
-                current_site = get_current_site(request)
-                message = render_to_string('user_active_email.html',{
-                    'user': new_user,
-                    'domain': current_site.domain,
-                    'uid':urlsafe_base64_encode(force_bytes(new_user.pk)).encode().decode(),
-                    'token': account_activation_token.make_token(new_user),
-                })
-                mail_subject = "[NEWSLATTE] 회원가입 인증 메일입니다."
-                user_email = new_user.email
-                email = EmailMessage(mail_subject, message, to=[user_email])
-                email.send()
+                
             data = {'msg':msg}
             return JsonResponse(data)
         
@@ -170,8 +160,7 @@ def signup2(request):
             profile.nickname = nickname
             profile.intro = intro
             profile.save()
-            request.user.is_active = False
-            request.user.save()
+           
         data = {'msg':msg}
         return JsonResponse(data)
     return render(request, 'signUp_2.html')
