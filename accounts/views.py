@@ -53,9 +53,11 @@ def login(request):
     else : #처음 페이지 클릭했을 때 어디로 가는지
         return render(request, 'signIn.html')
 
+
 def logout(request):
     auth.logout(request)
     return redirect('home')
+
 
 def is__email__unique(email):
     if User.objects.filter(email = email).exists():

@@ -343,6 +343,9 @@ function showEachCollection(collection) {
     targetCollection.querySelector(".collection__post__author").innerText =
       currentCollection.author_id;
 
+    targetCollection.querySelector(".collection__post__id").innerText =
+      currentCollection.id;
+
     targetCollection.querySelector(
       ".post__like"
     ).innerText = `👍(${currentCollection.likes})`;
@@ -484,12 +487,31 @@ const recommendedInsight = [
   ...document.getElementsByClassName("recommend__insight__post__image"),
 ];
 
-// function moveRecommendAritcle(event) {
-//   const targetNode = event.target.id;
-//   console.log(targetNode);
-//   // location.href = `../post/page/${targetIdx}`;
-// }
+function moveRecommendAritcle(event) {
+  const targetIdx = event.target.id;
+  location.href = `../post/page/${targetIdx}`;
+}
 
 recommendedInsight.forEach((recommend) => {
+  console.log(recommend);
   recommend.addEventListener("click", moveRecommendAritcle);
+});
+
+// 추천 컬렉션 클릭 시
+
+// collection/detail/collection_id
+
+const recommendCollectionId = [
+  ...document.getElementsByClassName("collection__post__title"),
+];
+
+function moveCollectionPage(event) {
+  const targetNode = event.target.parentNode;
+  const targetId = targetNode.querySelector(".collection__post__id").innerText;
+
+  location.href = `../../collection/detail/${targetId}`;
+}
+
+recommendCollectionId.forEach((targetCt) => {
+  targetCt.addEventListener("click", moveCollectionPage);
 });

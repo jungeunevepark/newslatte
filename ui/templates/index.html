@@ -49,10 +49,6 @@
                     <a href="{% url 'logout' %}"
                       ><button class="navBar__login__btn">로그아웃</button></a
                     >
-                    {% else %}
-                    <a href="{% url 'login' %}"
-                      ><button class="navBar__login__btn">로그인</button></a
-                    >
                     {% endif %}
                   </div>
                 </div>
@@ -175,6 +171,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -188,6 +185,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -201,6 +199,7 @@
                     <div class="second__img"></div>
                     <div class="third__img"><img src="" alt="" /></div>
                   </div>
+                  <p class="collection__post__id" style="display: none"></p>
                   <p class="collection__post__title">title title</p>
                   <p class="collection__post__author">author author</p>
                   <div class="collection__post__likeandmarket">
@@ -240,7 +239,7 @@
                     class="recommend__insight__post__image"
                     id="{{posts.0.id}}"
                   >
-                    <img src="{{posts.0.img}}" />
+                    <img src="{{posts.0.img}}" id="{{posts.0.id}}" />
                   </div>
                   <a class="recommend__insight__post__title"
                     >{{posts.0.title}}</a
@@ -272,11 +271,13 @@
                 </div>
                 {% endif %} {% if posts.1 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
-                  <a href="" class="recommend__insight__post__title"
+                  <div class="recommend__insight__post__image">
+                    <img src="{{posts.1.img}}" id="{{posts.1.id}}" />
+                  </div>
+                  <a class="recommend__insight__post__title"
                     >{{posts.1.title}}</a
                   >
-                  <a href="" class="recommend__insight__post__body">
+                  <a class="recommend__insight__post__body">
                     {{posts.1.subhead}}
                   </a>
                   <p class="recommend__insight__post__author">
@@ -303,7 +304,9 @@
                 </div>
                 {% endif %} {% if posts.2 %}
                 <div class="recommend__insight__post__container">
-                  <div class="recommend__insight__post__image"></div>
+                  <div class="recommend__insight__post__image">
+                    <img src="{{posts.2.img}}" id="{{posts.2.id}}" />
+                  </div>
                   <a href="" class="recommend__insight__post__title"
                     >{{posts.2.title}}</a
                   >
@@ -462,6 +465,9 @@
               <div class="recommend__insight__post__pagination"></div>
             </div>
           </section>
+
+
+          {% if user.is_authenticated %}
           <section id="article__list__container">
             <div class="navbar__trash"></div>
             <div class="aritcle__list__popUp">
@@ -469,11 +475,13 @@
                 <i id="popUp__toggle__btn" class="fa-solid fa-bars"></i>
               </div>
               <div class="popUp__profile">
+                <!-- <a href="{% url 'mypage' profile_id %}"> -->
                 <div class="popUp__profile__img">
                   <img src="{% static 'ui/img/dummy.png'%}" alt="" />
                 </div>
+               <!-- </a> -->
                 <div class="popUp__profile__names">
-                  <p class="profile__id">아이디(이름)</p>
+                  <p class="profile__id">{{ user.profile.nickname }}</p>
                   <p class="profile__pos">초보 바리스타</p>
                 </div>
               </div>
@@ -654,9 +662,11 @@
                 </div>
               </div>
               <div class="popUp__pagination"></div>
-              <div class="write__btn">글쓰기 +</div>
+              <a href="{% url 'create_post' %}"><div class="write__btn">글쓰기 +</div></a>
             </div>
           </section>
+
+          {% endif %}
         </div>
         <!-- <section id="modal">
         <div class="modal__wrap">
@@ -689,3 +699,4 @@
     <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
   </body>
 </html>
+

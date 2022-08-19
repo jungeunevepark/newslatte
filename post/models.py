@@ -21,24 +21,25 @@ class Folder(models.Model):
 
 
 class Post(models.Model):
-    author = models.ForeignKey(
-        Profile, on_delete=models.CASCADE, null=True, verbose_name="작성자")
-    collection = models.ForeignKey(
-        to='collection.Collection', on_delete=models.SET_NULL, null=True, verbose_name="참조 컬렉션")
-    # TODO: cascade->set null
-    folder = models.ForeignKey(
-        Folder, on_delete=models.SET_NULL, null=True, blank=True)
+
+     
+    CATEGORY_CHOICES = (('politics', '정치'), ('economy', '경제'), ('society', '사회'), ('culture', '생활/문화'),
+                ('science','IT/과학'), ('world', '세계'))
+
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, verbose_name="작성자") 
+    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True ) # TODO: cascade->set null
+    collection = models.ForeignKey(to='collection.Collection', on_delete=models.SET_NULL, null=True, verbose_name="참조 컬렉션")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성시간")
     views = models.IntegerField(default=0, verbose_name="조회수")
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
     title = models.CharField(max_length=120, verbose_name="제목")
     subhead = models.CharField(max_length=200, null=True, blank=True)
     content = models.TextField()
-    img = models.URLField(verbose_name="인사이트 대표 이미지",
-                          null=True, blank=True)  # TODO: null = blank = true
+    img = models.ImageField(upload_to='post_img', null=True, blank=True)
     tag = models.ManyToManyField(Tag)
     refCount = models.IntegerField(default=0, verbose_name="참조수")
-    category = models.CharField(max_length=120, null=True)
+    category = models.CharField(max_length=120, null=True, choices=CATEGORY_CHOICES)
+    
 
     def __str__(self):
         return self.title

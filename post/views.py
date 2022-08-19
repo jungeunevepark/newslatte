@@ -10,6 +10,7 @@ from accounts.models import Profile
 from .models import Post, Comment
 from news.models import News
 
+import requests
 from time import timezone
 
 import json 
@@ -24,7 +25,7 @@ def fetch_post(request):
 
     TODO: 다양한 쿼리 파라미터에 대한 요청 처리 
     """
-
+    print(123)
     category  = request.GET.get('category', '')
     posts = list(Post.objects.filter(category = category).values())
 
@@ -35,9 +36,6 @@ def fetch_post(request):
     클라의 쿼리 파라미터가 포스트의 필드에 없는 파라미터일 때. 
 
     
-
-
-
     """
 
 
@@ -80,9 +78,13 @@ def create_post(request):
             post.subhead = request.POST['subhead']
             post.content = request.POST['content']
             post.collection = get_object_or_404(Collection, pk = request.POST['collectionId'])
+            
             news = post.collection.news.first()
-            post.img = news.image.image
-            post.save()
+            try:
+                post.img = requests.get(news.image.image).content
+                post.save()
+            except:
+                print("No image on first news")
 
 
             # data = {
