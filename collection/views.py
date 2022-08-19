@@ -22,12 +22,13 @@ def fetch_collection(request):
             query[key] = query[key][0]
             if is_value_integer(query[key]) == True:
                 query[key] = int(query[key])
+
         
         collections = list(Collection.objects.filter(**query).values())
 
         return JsonResponse(collections, safe=False)
         
-
+ 
 
 
 def is_value_integer(var): # input: str

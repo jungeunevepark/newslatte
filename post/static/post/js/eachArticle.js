@@ -92,8 +92,6 @@ const addListIfTyped = (e) => {
 
 //article__min toggle 버튼 눌렀을 때 min 사라지고 max 나타남
 
-
-
 const minToggleList = [...document.getElementsByClassName("article__toggle")];
 
 const maxArticleList = [
@@ -158,3 +156,11 @@ listToggleMax.addEventListener("click", hideArticleLists);
 
 //login 체크, local memory 가져와서 확인
 // isLogin();
+
+const navBarRedirectBtn = document.querySelector(".navBar__name__h1");
+
+function redirectHomepage() {
+  location.href = "";
+}
+
+navBarRedirectBtn.addEventListener("click", redirectHomepage);

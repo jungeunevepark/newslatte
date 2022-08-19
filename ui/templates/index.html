@@ -46,12 +46,11 @@
                       ><button class="navBar__login__btn">로그아웃</button></a
                     >
                     <button class="navBar__login__writeBtn">글쓰기</button>
-                    <a
-                      ><img
-                        class="navBar__profile__img"
-                        src="{% static 'ui/img/dummy.png' %}"
-                        alt=""
-                    /></a>
+                    <img
+                      class="navBar__profile__img"
+                      src="{% static 'ui/img/dummy.png' %}"
+                      alt=""
+                    />
                     {% else %}
                     <a href="{% url 'login' %}"
                       ><button class="navBar__login__btn">로그인</button></a
@@ -483,7 +482,7 @@
                   <img src="{% static 'ui/img/dummy.png'%}" alt="" />
                 </div>
                 <div class="popUp__profile__names">
-                  <p class="profile__id">{{ user.profile.nickname }}</p>
+                  <p class="profile__id">아이디(이름)</p>
                   <p class="profile__pos">초보 바리스타</p>
                 </div>
               </div>
