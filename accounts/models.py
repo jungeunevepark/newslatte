@@ -38,8 +38,8 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     
-    # collectionScrapped = models.ManyToManyField(to='collection.Collection', related_name='refUser') 
-
+    collectionScrapped = models.ManyToManyField(to='collection.Collection', related_name='refUser') 
+    postScrapped = models.ManyToManyField(to='post.Post', related_name='refUser')
 
     objects = UserManager()
 

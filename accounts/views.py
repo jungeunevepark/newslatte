@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
+from django.http import JsonResponse
 from django.contrib import auth
+
 from .models import User, Profile
+from collection.models import Collection 
 
 # 이메일 인증을 위해 추가
 from django.contrib.sites.shortcuts import get_current_site
@@ -18,6 +21,7 @@ from django.core.exceptions import ValidationError
 
 # ===========================REST API=============================
 
+
 # def crud_user(request, id):
 #     if request.method == 'POST':
 #         UpdateUser(request, id)
@@ -29,7 +33,35 @@ from django.core.exceptions import ValidationError
 # request body 부분을 봄으로써 수정되어야
 
 
-# =================================================================
+def test_view(request):
+    return render(request, 'test2.html')
+
+
+
+def UpdateUserCollectionBucket(request, user_id, collection_id):
+
+
+    user = get_object_or_404(User, id=user_id)
+    selected_collection = get_object_or_404(Collection, id=collection_id)
+
+    if request.method == "POST":
+        user.collectionScrapped.add(selected_collection)
+
+    elif request.method == "DELETE":
+        user.collectionScrapped.remove(selected_collection)
+
+    user.save()
+
+    result = {
+        'success': 200,
+        'status_code': 200
+    }
+
+    return JsonResponse(result)
+    
+
+
+
 
 def login(request):
     if request.method == 'POST':

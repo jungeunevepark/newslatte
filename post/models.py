@@ -38,7 +38,7 @@ class Post(models.Model):
     title = models.CharField(max_length=120, verbose_name="제목")
     subhead = models.CharField(max_length=200, null=True, blank=True)
     content = models.TextField()
-    img = models.ImageField(upload_to='post_img', null=True, blank=True)
+    img = models.URLField(null=True, blank=True)
     tag = models.ManyToManyField(Tag)
     refCount = models.IntegerField(default=0, verbose_name="참조수")
     category = models.CharField(
