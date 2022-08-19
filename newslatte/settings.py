@@ -19,9 +19,11 @@ SECRET_KEY = 'DJANGO_SECRET'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".cloudtype.app"]
+
+CSRF_TRUSTED_ORIGINS = ['https://*.cloudtype.app']
 
 
 # Application definition
@@ -248,5 +250,4 @@ SESSION_COOKIE_DOMAIN = None
 SESSION_COOKIE_NAME = 'DSESSIONID'
 SESSION_COOKIE_SECURE = False
 
-CSRF_TRUSTED_ORIGINS = ['https://*.cloudtype.app']
 
