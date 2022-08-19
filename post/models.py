@@ -19,14 +19,14 @@ class Folder(models.Model):
 class Post(models.Model):
     author = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True, verbose_name="작성자") 
     collection = models.ForeignKey(Collection, on_delete=models.SET_NULL, null=True, verbose_name="참조 컬렉션")
-    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True)
+    folder = models.ForeignKey(Folder, on_delete=models.SET_NULL, null=True, blank=True ) # TODO: cascade->set null
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="작성시간")
     views = models.IntegerField(default=0, verbose_name="조회수")
     likes = models.IntegerField(default=0, verbose_name="좋아요수")
     title = models.CharField(max_length=120, verbose_name="제목")
     subhead=models.CharField(max_length=200, null=True, blank=True)
     content = models.TextField()
-    img = models.URLField(null=True, blank=True,  verbose_name="인사이트 대표 이미지")
+    img = models.URLField(verbose_name="인사이트 대표 이미지", null=True, blank=True) # TODO: null = blank = true 
     tag = models.ManyToManyField(Tag)
     refCount = models.IntegerField(default=0, verbose_name="참조수")
     category = models.CharField(max_length=120, null=True)
@@ -46,7 +46,6 @@ class Comment(models.Model):
 
 
 
-### 일단 collection고 folder에 대해 blank=True값 삽입
 
 
 

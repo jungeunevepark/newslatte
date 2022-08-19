@@ -601,16 +601,16 @@ main {
 }
 
 .collection__post__list {
-  width: 59vw;
+  width: 800px;
   min-height: 100%;
   display: flex;
   justify-content: space-evenly;
-  flex-wrap: nowrap;
 }
 
 .collection__post__container {
   display: inline-block;
   height: 100%;
+  width: 100%;
 }
 
 .first__img {
@@ -982,7 +982,6 @@ a {
   flex-direction: column;
   display: none;
 }
-
 
 .myCart__each__list {
   height: 70px;
