@@ -13,6 +13,8 @@
     integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="{% static '/ui/css/style.css'%}" />
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -35,9 +37,8 @@
                   {% if user.is_authenticated %}
                   <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
                   {% else %}
-                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그아웃</button></a>
+                  <a href="{% url 'logout' %}"><button class="navBar__login__btn">로그아웃</button></a>
                   {% endif %}
-
                   <a href="../myPage/mypage.html"><img class="navBar__profile__img" src="" alt="" /></a>
                 </div>
               </div>
@@ -62,7 +63,7 @@
     <div class="aside__main">
       <div class="aside__main__profile">
         <img class="main__profile__img" src="{% static 'ui/img/coffee_icon.png' %}" alt="" />
-        <p id="profile__userName">{{ user.profile.nickname }}</p>
+        <p id="profile__userName">user name</p>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
           ratione architecto, nulla id repellat assumenda. Atque, consectetur
@@ -149,8 +150,8 @@
                     </div>
                   </div>
                 </div>
-                <a href="" class="collection__post__title">title title<br></a>
-                <a href="" class="collection__post__author">author author</a>
+                <p class="collection__post__title">title title</p>
+                <p class="collection__post__author">author author</p>
                 <div class="collection__post__likeandmarket">
                   <div class="post__like">👍(10)</div>
                   <div class="post__market">🛒(10)</div>
@@ -163,8 +164,8 @@
                     </div>
                   </div>
                 </div>
-                <a href="" class="collection__post__title">title title<br></a>
-                <a href="" class="collection__post__author">author author</a>
+                <p class="collection__post__title">title title</p>
+                <p class="collection__post__author">author author</p>
                 <div class="collection__post__likeandmarket">
                   <div class="post__like">👍(10)</div>
                   <div class="post__market">🛒(10)</div>
@@ -177,8 +178,8 @@
                     </div>
                   </div>
                 </div>
-                <a href="" class="collection__post__title">title title<br></a>
-                <a href="" class="collection__post__author">author author</a>
+                <p class="collection__post__title">title title</p>
+                <p class="collection__post__author">author author</p>
                 <div class="collection__post__likeandmarket">
                   <div class="post__like">👍(10)</div>
                   <div class="post__market">🛒(10)</div>
@@ -191,8 +192,8 @@
                     </div>
                   </div>
                 </div>
-                <a href="" class="collection__post__title">title title<br></a>
-                <a href="" class="collection__post__author">author author</a>
+                <p class="collection__post__title">title title</p>
+                <p class="collection__post__author">author author</p>
                 <div class="collection__post__likeandmarket">
                   <div class="post__like">👍(10)</div>
                   <div class="post__market">🛒(10)</div>
@@ -219,7 +220,7 @@
                 </a>
                 <p class="recommend__insight__post__author">written by {{post1.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post1.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post1.likes}})</div>
+                  <div id="{{post1.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post1.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
                   <div class="insight__post__market">🛒({{post1.refCount}})</div>
                   <div class="recommend__post__hashtag">
@@ -237,7 +238,7 @@
                 </a>
                 <p class="recommend__insight__post__author">written by {{post2.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post2.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post2.likes}})</div>
+                  <div id="{{post2.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post2.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
                   <div class="insight__post__market">🛒({{post2.refCount}})</div>
                   <div class="recommend__post__hashtag">
@@ -258,7 +259,7 @@
                 </a>
                 <p class="recommend__insight__post__author">written by {{post3.author}}</p>
                 <div class="recommend__insight__post__others">
-                  <div id="{{post3.id}}" class="insight__post__like" onclick="thumup(id)">👍({{post3.likes}})</div>
+                  <div id="{{post3.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post3.likes}})</div>
                   <div class="insight__post__comment">🗨(10)</div>
                   <div class="insight__post__market">🛒({{post3.refCount}})</div>
                   <div class="recommend__post__hashtag">
@@ -287,7 +288,6 @@
                 <div class="todays__insight__post__img"></div>
                 <div class="todays__insight__post__letters">
                   <div class="todays__insight__post__hashtag">
-                    <p>#경제 </p>
                     <p>#경제 </p>
                   </div>
                   <div class="todays__insight__post__title"><a href="" style="color: #656565;">여기는 인사이트 제목입니다.</a></div>
@@ -383,7 +383,7 @@
                 <img src="{% static 'ui/img/dummy.png'%}" alt="">
               </div>
               <div class="popUp__profile__names">
-                <p class="profile__id">{{ user.profile.nickname }}</p>
+                <p class="profile__id">아이디(이름)</p>
                 <p class="profile__pos">초보 바리스타</p>
               </div>
             </div>
@@ -514,11 +514,12 @@
                 </div>
               </div>
               <div class="written__insights__whole">
+                <!-- 여기가 내 카페 글 목록 -->
                 <div class="insights__each__list">
                   <div class="insights__img"></div>
                   <div class="insights__others">
                     <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
+                      {{blog1.title}}
                     </div>
                     <div class="insights__wrapping">
                       <div class="insights__hashtags">
@@ -567,7 +568,7 @@
           </div>
         </section>
       </div>
-      <section id="modal">
+      <!-- <section id="modal">
         <div class="modal__wrap">
           <div class="modal__top">
             뉴스와 커피 한 모금<br /><b>NEWSLATTE</b>☕
@@ -591,72 +592,61 @@
             <a href="../signUp/signUp.html" class="modal__signUp">회원가입</a>하러가기
           </p>
           <i id="modal__close" class="fa-solid fa-xmark"></i>
-      </section>
+      </section> -->
     </main>
     <footer></footer>
   </div>
   <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
-  <script>
-
-    function getCookie(name) {
-      var cookieValue = null;
-      if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-          var cookie = cookies[i].trim();
-          // Does this cookie string begin with the name we want?
-          if (cookie.substring(0, name.length + 1) === (name + '=')) {
-            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-            break;
-          }
-        }
-      }
-      return cookieValue;
-    }
-
-    var csrftoken = getCookie('csrftoken');
-
-    function csrfSafeMethod(method) {
-      // these HTTP methods do not require CSRF protection
-      return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    }
-    $.ajaxSetup({
-      beforeSend: function (xhr, settings) {
-        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-          xhr.setRequestHeader("X-CSRFToken", csrftoken);
-        }
-      }
-    });
-
-    function renewThumbsUp(id) {
-      const targetThumb = document.getElementById(`${id}`)
-      const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
-      targetThumb.innerText = `👍(${countNum+1})`
-    }
-
-    function thumup(id) {
-      renewThumbsUp(id)
-      // 좋아요 누르면 개수 늘어나도록. 
-      //그런데 한사람당 하나씩만 높일 수 있도록
-      //우선 인사이트 id 보내기 
-      var CollectionId = id
-
-      // console.log(id)
-
-      $.post('/ui/' + id + '/likes', //post 방식으로 서버에 요청을 보낸다.
-        {
-          'csrfmiddlewaretoken': csrftoken,
-          'post_id': id  //서버에 필요한 정보를 같이 보냄.
-        },
-        function (data, status) { //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
-          // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
-          // console.log(insightPostLike)
-          // console.log(data['result'])
-        })
-    }
-  </script>
+    <!-- // function getCookie(name) {
+    //   var cookieValue = null;
+    //   if (document.cookie && document.cookie !== '') {
+    //     var cookies = document.cookie.split(';');
+    //     for (var i = 0; i < cookies.length; i++) {
+    //       var cookie = cookies[i].trim();
+    //       // Does this cookie string begin with the name we want?
+    //       if (cookie.substring(0, name.length + 1) === (name + '=')) {
+    //         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+    //         break;
+    //       }
+    //     }
+    //   }
+    //   return cookieValue;
+    // }
+    // var csrftoken = getCookie('csrftoken');
+    // function csrfSafeMethod(method) {
+    //   // these HTTP methods do not require CSRF protection
+    //   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+    // }
+    // $.ajaxSetup({
+    //   beforeSend: function (xhr, settings) {
+    //     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+    //       xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    //     }
+    //   }
+    // });
+    // function renewThumbsUp(id) {
+    //   const targetThumb = document.getElementById(`${id}`)
+    //   const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
+    //   targetThumb.innerText = `👍(${countNum+1})`
+    // }
+    // function thumup(id) {
+    //   renewThumbsUp(id)
+    //   // 좋아요 누르면 개수 늘어나도록. 
+    //   //그런데 한사람당 하나씩만 높일 수 있도록
+    //   //우선 인사이트 id 보내기 
+    //   var CollectionId = id
+    //   // console.log(id)
+    //   $.post('/ui/' + id + '/likes', //post 방식으로 서버에 요청을 보낸다.
+    //     {
+    //       'csrfmiddlewaretoken': csrftoken,
+    //       'post_id': id  //서버에 필요한 정보를 같이 보냄.
+    //     },
+    //     function (data, status) { //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
+    //       // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
+    //       // console.log(insightPostLike)
+    //       // console.log(data['result'])
+    //     })
+    // } -->
 </body>
 
 </html>
