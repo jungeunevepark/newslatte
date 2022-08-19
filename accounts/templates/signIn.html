@@ -18,6 +18,7 @@
     />
     <link rel="stylesheet" href="{% static '/accounts/css/signIn.css' %}" />
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   </head>
   <body>
     <div class="bg__dark"></div>
@@ -80,15 +81,9 @@
           </div>
           <div class="signUp__normal__login">
             <p>이메일로 로그인</p>
-            <form
-              target="first__signUp"
-              action="{% url 'login' %}"
-              class="modal__signUp__form"
-              method="POST"
-            >
             {% csrf_token %}
               <div class="modal__signUp__container">
-                <input type="email" name="email" placeholder="이메일" required />
+                <input type="email" name="email" id ="email" placeholder="이메일" required />
                 <input
                   id="signUp__password"
                   type="password"
@@ -97,14 +92,13 @@
                   required
                 />
               </div>
-              <div id="password__check__guide"><p></p></div>
+              <p id="login__check">{{ msg }}</p>
               <input
                 type="submit"
                 id="signUp__first__btn"
                 value="로그인"
                 required
               />
-            </form>
             <!-- <iframe name="first__signUp"></iframe> -->
           </div>
           <div class="signUp__anchor">
@@ -117,6 +111,40 @@
       </div>
     </section>
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+    $.ajaxSetup({
+      headers: { "X-CSRFToken": '{{csrf_token}}' }
+    });
+  </script>
+
+  <script type = "text/javascript">
+    let signin = document.querySelector('#signUp__first__btn');
+
+    signin.addEventListener('click', e => {
+      var email = document.getElementById('email').value;
+      var password = document.getElementById('signUp__password').value;
+      console.log(email)
+      console.log(password)
+
+      let dict = {'email': email, 'password': password}
+      $.ajax({
+        url: '/accounts/login/',
+        type: 'POST',
+        data: JSON.stringify(dict),
+        success:function(data){
+          console.log(data)
+          // json.loads(data)
+          if (data['msg'] == ""){
+           window.location.replace("http://127.0.0.1:8000/");
+          }document.getElementById('login__check').innerHTML = data['msg']
+        },
+        error: function(){
+          alert('전송실패')
+        }
+      });
+     }); 
+
+  </script>
     <script type="text/javascript" src="{% static '/accounts/js/signIn.js' %}"></script>
   </body>
 </html>

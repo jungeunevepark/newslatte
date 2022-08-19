@@ -9,102 +9,7 @@ const showAsideIcon = document.querySelector("#navBar__toggle__icon");
 const showCategory = document.querySelector(".category_name");
 const chooseCategory = document.querySelectorAll(".category_btn");
 
-const closeLoginModal = () => {
-  modalSection.classList.remove("modal__show");
-  modalSection.style.visibility = "hidden";
-  darkBg.style.display = "none";
-};
-
-const openLoginModal = () => {
-  modalSection.classList.add("modal__show");
-  modalSection.style.visibility = "visible";
-  darkBg.style.display = "block";
-};
-
-navBarLoginBtn.addEventListener("click", openLoginModal);
-modalClose.addEventListener("click", closeLoginModal);
-
-const isLogin = () => {
-  let profileLocal = localStorage.getItem("profile");
-
-  if (profileLocal) {
-    navBarLoginBtn.style.display = "none";
-    navProfileImg.src = profileLocal;
-    navProfileImg.style.display = "block";
-  }
-};
-
-const hideAsideBar = () => {
-  asideBar.classList.remove("show_aside");
-  setTimeout(() => {
-    asideBar.style.visibility = "hidden";
-  }, 500);
-};
-
-const showAsideBar = () => {
-  asideBar.style.visibility = "visible";
-  asideBar.classList.add("show_aside");
-};
-
-hideAsideIcon.addEventListener("click", hideAsideBar);
-showAsideIcon.addEventListener("click", showAsideBar);
-
 const asideMenuList = document.querySelectorAll(".dropDn");
-
-// 어사이드 바 밑에 노션처럼 세부 페이지 토글
-const toggleAsideMenu = (e) => {
-  let childList = e.target.children[0];
-  childList.style.display =
-    childList.style.display == "" || childList.style.display == "none"
-      ? "block"
-      : "none";
-};
-
-asideMenuList.forEach((li) => {
-  li.addEventListener("click", toggleAsideMenu);
-});
-//
-
-const addListIfTyped = (e) => {
-  if (e.key == "Enter") {
-    if (e.target.value) {
-      e.target.previousElementSibling.remove();
-
-      let newList = document.createElement("p");
-      newList.innerHTML = `
-      <p class="dropDn">${e.target.value}</p>
-      `;
-      e.target.parentNode.appendChild(newList);
-
-      let newAddIcon = document.createElement("li");
-      newAddIcon.innerHTML = `
-      <p class="list__mycafe__add">&#43;</p>
-      <input class="list__mycafe__input" type="text" />
-      `;
-      e.target.parentNode.parentNode.appendChild(newAddIcon);
-      e.target.remove();
-    }
-  }
-};
-
-//https://stackoverflow.com/questions/67104192/how-to-update-created-elements
-//참고하자
-
-// aside 바 메뉴에서 카테고리를 추가할 때
-const addAsideMyCafeList = (e) => {
-  asideInputIcon[0].style.display = "block";
-  addAsideIcon[0].style.display = "none";
-};
-
-let asideInputIcon = document.getElementsByClassName("list__mycafe__input");
-let addAsideIcon = document.getElementsByClassName("list__mycafe__add");
-
-addAsideIcon[0].addEventListener("click", addAsideMyCafeList);
-
-asideInputIcon[0].addEventListener("keyup", addListIfTyped);
-
-//login 체크, local memory 가져와서 확인
-isLogin();
 
 //contentsNav 항상 표시되도록
 var headerHeight = document.querySelector(".forHeight").offsetHeight;
@@ -117,6 +22,7 @@ var rinsightLocation = document.querySelector(
 var tinsightLocation = document.querySelector(
   ".todays__insight__container"
 ).offsetTop;
+
 const contentsNav = document.querySelectorAll(".Contents__btn");
 
 const alwaysredNav = () => {
@@ -226,10 +132,10 @@ const hashtagNames = document.querySelectorAll(".hashtag__btn");
 const hashtagLeft = document.querySelector(".collection__post__left");
 const hashtagRight = document.querySelector(".collection__post__right");
 
-if (hashtagSpace.innerHTML == "") {
-  hashtagSpace.innerHTML =
-    hashtagNames[Math.floor(Math.random() * 4)].innerHTML;
-}
+// if (hashtagSpace.innerHTML == "") {
+//   hashtagSpace.innerHTML =
+//     hashtagNames[Math.floor(Math.random() * 4)].innerHTML;
+// }
 
 const hashtagChoose = (e) => {
   hashtagSpace.innerHTML = e.target.innerHTML;
@@ -284,6 +190,7 @@ hashtagRight.addEventListener("click", righty);
 //오늘의 인사이트 카테고리 선택
 
 const insightCategory = document.querySelectorAll(".todays__insight__hashtag");
+insightCategory[0].style.color = "#d97a7a";
 const selectCategory = (e) => {
   for (let i = 0; i < insightCategory.length; i++) {
     if (insightCategory[i].innerHTML !== e.target.innerHTML) {
@@ -357,3 +264,197 @@ const chooseSaved = (e) => {
 
 choosebtwnSaved[0].addEventListener("click", chooseSaved);
 choosebtwnSaved[1].addEventListener("click", chooseSaved);
+
+function getCookie(name) {
+  var cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    var cookies = document.cookie.split(";");
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim();
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+
+var csrftoken = getCookie("csrftoken");
+
+function csrfSafeMethod(method) {
+  // these HTTP methods do not require CSRF protection
+  return /^(GET|HEAD|OPTIONS|TRACE)$/.test(method);
+}
+$.ajaxSetup({
+  beforeSend: function (xhr, settings) {
+    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+    }
+  },
+});
+
+function renewThumbsUp(id) {
+  const targetThumb = document.getElementById(`${id}`);
+  const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g, ""));
+  targetThumb.innerText = `👍(${countNum + 1})`;
+}
+
+function thumup(id) {
+  // 좋아요 누르면 개수 늘어나도록.
+  //그런데 한사람당 하나씩만 높일 수 있도록
+  //우선 인사이트 id 보내기
+  // console.log(id)
+
+  $.post(
+    "/ui/" + id + "/likes", //post 방식으로 서버에 요청을 보낸다.
+    {
+      csrfmiddlewaretoken: csrftoken,
+      post_id: id, //서버에 필요한 정보를 같이 보냄.
+    },
+    function (data, status) {
+      //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
+      // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
+      // console.log(insightPostLike)
+      // console.log(data['result'])
+    }
+  );
+}
+
+// 해쉬태그에 따라 컬렉션 달라지게
+
+const hashTagList = [
+  ...document.querySelector(".hashtag__list").getElementsByTagName("button"),
+];
+
+const collectionPosts = [
+  ...document.getElementsByClassName("collection__post__container"),
+];
+
+function showEachCollection(collection) {
+  let max = collection.length < 4 ? collection.length : 4;
+  for (let i = 0; i < max; i++) {
+    const targetCollection = collectionPosts[i];
+    const currentCollection = collection[i];
+    targetCollection.querySelector(".collection__post__title").innerText =
+      currentCollection.title;
+
+    targetCollection.querySelector(".collection__post__author").innerText =
+      currentCollection.author_id;
+
+    targetCollection.querySelector(
+      ".post__like"
+    ).innerText = `👍(${currentCollection.likes})`;
+
+    targetCollection.querySelector(
+      ".post__market"
+    ).innerText = `🛒(${currentCollection.refCount})`;
+  }
+}
+
+async function filterCollection(event) {
+  const targetName = event.target.innerText.replace("#", "");
+  $.get("/collection?category=" + targetName, function (data, status) {
+    showEachCollection(data);
+  });
+}
+
+$.get("/collection?category=정치", function (data, status) {
+  showEachCollection(data);
+  document.querySelector(".sentence__namespace").innerText = "#정치";
+});
+
+hashTagList.forEach((hashTag) => {
+  hashTag.addEventListener("click", filterCollection);
+});
+
+// 컬렉션
+
+// 오늘의 인사이트 필터링
+
+function showInsight(data) {
+  console.log(data);
+  let max = data.length < 4 ? data.length : 4;
+  for (let i = 0; i < max; i++) {
+    const targetInsight = data[i];
+    const currentInsight = todaysInsights[i];
+
+    currentInsight.querySelector(
+      ".todays__insight__post__hashtag"
+    ).innerText = `#${targetInsight.category}`;
+
+    currentInsight.querySelector(
+      ".todays__insight__post__title"
+    ).childNodes[0].innerText = targetInsight.title;
+
+    currentInsight.querySelector(
+      ".todays__insight__post__body"
+    ).childNodes[1].innerText = targetInsight.content.replace(
+      /[^ㄱ-ㅎ|^ㅏ-ㅣ|^가-힣]/g,
+      " "
+    );
+
+    currentInsight.querySelector(
+      ".post__like"
+    ).innerText = `👍(${targetInsight.likes})`;
+
+    currentInsight.querySelector(
+      ".post__market"
+    ).innerText = `🛒(${targetInsight.refCount})`;
+
+    currentInsight.querySelector(".written__by").innerText = targetInsight.id;
+  }
+}
+
+async function filterInsights(event) {
+  const targetNode = event.target;
+  console.log(targetNode.innerText);
+  $.get("post?category=" + targetNode.innerText, function (data, status) {
+    showInsight(data);
+  });
+}
+
+const insightHashTags = [
+  ...document.getElementsByClassName("todays__insight__hashtag"),
+];
+
+const todaysInsights = [
+  ...document.getElementsByClassName("todays__insight__post__container"),
+];
+
+insightHashTags.forEach((insight) => {
+  insight.addEventListener("click", filterInsights);
+});
+// 추천은 한번까지만
+
+const insight__post__like = [
+  ...document.getElementsByClassName("insight__post__like"),
+];
+
+function limitThumbsUp(id) {
+  if (localStorage.getItem(id)) {
+    return;
+  } else {
+    localStorage.setItem(id, true);
+    renewThumbsUp(id);
+    thumup(id);
+  }
+}
+
+// 게시글 클릭할 때 이동
+
+function moveEachArticle(event) {
+  let targetArticle = event.target.parentNode;
+  let post_id = targetArticle.querySelector(".written__by").innerText;
+  console.log(post_id);
+  location.href = `../post/page/${post_id}`;
+}
+
+const todayInsightsTitle = [
+  ...document.getElementsByClassName("todays__insight__post__img"),
+];
+
+todayInsightsTitle.forEach((insight) => {
+  insight.addEventListener("click", moveEachArticle);
+});

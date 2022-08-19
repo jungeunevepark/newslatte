@@ -1,574 +1,656 @@
+
 {% load static %}
 
 <!DOCTYPE html>
 <html lang="Ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEWSLATTE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+      integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{% static '/ui/css/style.css'%}" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-  <title>NEWSLATTE</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
-    integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{% static '/ui/css/style.css'%}" />
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-  crossorigin="anonymous"></script>
-</head>
-
-<body>
-  <div class="bg__dark"></div>
-  <div class="header__container">
-    <header>
-      <nav>
-        <div class="forHeight">
-          <div class="navBar__trash">
-            <div class="navBar__container">
-              <div class="navBar__left">
-                <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
-                <div class="navBar__name">
-                  <h1 class="navBar__name__h1">NEWSLATTE</h1>
+  <body>
+    <div class="bg__dark"></div>
+    <div class="header__container">
+      <header>
+        <nav>
+          <div class="forHeight">
+            <div class="navBar__trash">
+              <div class="navBar__container">
+                <div class="navBar__left">
+                  <i id="navBar__toggle__icon" class="fa-solid fa-bars"></i>
+                  <div class="navBar__name">
+                    <h1 class="navBar__name__h1">NEWSLATTE</h1>
+                  </div>
                 </div>
-              </div>
-              <div class="navBar__right">
-                <div class="navBar__searchLogin">
-                  <i class="fa-solid fa-magnifying-glass"></i>
-                  {% if user.is_authenticated %}
-                  <a href="{% url 'login' %}"><button class="navBar__login__btn">로그인</button></a>
-                  {% else %}
-                  <a href="{% url 'logout' %}"><button class="navBar__login__btn">로그아웃</button></a>
-                  {% endif %}
-                  <a href="../myPage/mypage.html"><img class="navBar__profile__img" src="" alt="" /></a>
+                <div class="navBar__right">
+                  <div class="navBar__searchLogin">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <!-- {{user}} -->
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}"
+                      ><button class="navBar__login__btn">로그아웃</button></a
+                    >
+                    {% else %}
+                    <a href="{% url 'login' %}"
+                      ><button class="navBar__login__btn">로그인</button></a
+                    >
+                    {% endif %}
+                    <a href="../myPage/mypage.html"
+                      ><img class="navBar__profile__img" src="" alt=""
+                    /></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div class="Contents__nav__trash">
-            <div class="Contents__nav">
-              <button class="Contents__btn">뉴스라떼</button>
-              <button class="Contents__btn">추천 컬렉션</button>
-              <button class="Contents__btn">추천 인사이트</button>
-              <button class="Contents__btn">오늘의 인사이트</button>
+            <div class="Contents__nav__trash">
+              <div class="Contents__nav">
+                <button class="Contents__btn">뉴스라떼</button>
+                <button class="Contents__btn">추천 컬렉션</button>
+                <button class="Contents__btn">추천 인사이트</button>
+                <button class="Contents__btn">오늘의 인사이트</button>
+              </div>
             </div>
           </div>
+        </nav>
+      </header>
+    </div>
+    <aside>
+      <div class="aside__top">
+        <i id="aside__top__icon" class="fa-solid fa-angles-left"></i>
+      </div>
+      <div class="aside__main">
+        <div class="aside__main__profile">
+          <img
+            class="main__profile__img"
+            src="{% static 'ui/img/coffee_icon.png' %}"
+            alt=""
+          />
+          <p id="profile__userName">user name</p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
+            ratione architecto, nulla id repellat assumenda. Atque, consectetur
+            id quam doloribus, eveniet numquam assumenda, animi tempora facilis
+            non tempore optio. Earum?
+          </p>
         </div>
-      </nav>
-    </header>
-  </div>
-  <aside>
-    <div class="aside__top">
-      <i id="aside__top__icon" class="fa-solid fa-angles-left"></i>
-    </div>
-    <div class="aside__main">
-      <div class="aside__main__profile">
-        <img class="main__profile__img" src="{% static 'ui/img/coffee_icon.png' %}" alt="" />
-        <p id="profile__userName">user name</p>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-          ratione architecto, nulla id repellat assumenda. Atque, consectetur
-          id quam doloribus, eveniet numquam assumenda, animi tempora facilis
-          non tempore optio. Earum?
-        </p>
-      </div>
-      <div class="main__profile__write">
-        <button class="profile__write__btn">글 작성하기</button>
-      </div>
-    </div>
-    <div class="aside__list">
-      <ul>
-        <li>
-          <p class="dropDn">&#9749; 내 컬렉션</p>
-        </li>
-        <li>
-          <p class="dropDn">&#9749; 내 카페</p>
-          <ul class="aside__list__myCafe">
-            <li>
-              <p class="dropDn">시사</p>
-            </li>
-            <li>
-              <p class="dropDn">경제</p>
-            </li>
-            <li>
-              <p class="list__mycafe__add">&#43;</p>
-              <input class="list__mycafe__input" type="text" />
-            </li>
-          </ul>
-        </li>
-        <li>
-          <p class="dropDn">&#9749; 오늘의 컬렉션</p>
-        </li>
-        <li>
-          <p class="dropDn">&#9749; organization</p>
-        </li>
-        <li>
-          <p class="dropDn">&#9749; 문의사항 및 질문</p>
-        </li>
-      </ul>
-    </div>
-  </aside>
-  <div class="main__container">
-    <main>
-      <section class="main__slide">
-        <img id="main__bgImg" src="{% static '/ui/img/main_background.PNG'%}" alt="" />
-      </section>
-      <section id="recommend__collection">
-        <div class="recommend__collection__container">
-          <div class="collection__hashtag">
-            <div class="collection__container__name">추천 컬렉션</div>
-            <div class="collection__hashtag__choose">
-              <div class="hashtag__choose__sentence">
-                <div class="sentence__upper">
-                  <span>'</span>
-                  <span class="sentence__namespace"></span>
-                  <span>'에 대해<br></span>
-                </div>
-                <div class="sentence__lower">관심이 있다면...</div>
-              </div>
-              <input class="hashtag__search" type="text" value="">
-              <div class="hashtag__list">
-                <button class="hashtag__btn">#과학</button>
-                <span class="btn__wall">|</span>
-                <button class="hashtag__btn">#환경</button>
-                <span class="btn__wall">|</span>
-                <button class="hashtag__btn">#정치</button>
-                <span class="btn__wall">|</span>
-                <button class="hashtag__btn">#문화</button>
-              </div>
-            </div>
-            <span class="comment"><br>원하는 관심사를 입력해보세요!</span>
-          </div>
-          <div class="collection__post">
-            <div class="button__trash">
-              <button class="collection__post__left"></button>
-            </div>
-            <div class="collection__post__list">
-              <div class="collection__post__container">
-                <div class="first__img">
-                  <div class="second__img">
-                    <div class="third__img">
-                    </div>
-                  </div>
-                </div>
-                <p class="collection__post__title">title title</p>
-                <p class="collection__post__author">author author</p>
-                <div class="collection__post__likeandmarket">
-                  <div class="post__like">👍(10)</div>
-                  <div class="post__market">🛒(10)</div>
-                </div>
-              </div>
-              <div class="collection__post__container">
-                <div class="first__img">
-                  <div class="second__img">
-                    <div class="third__img">
-                    </div>
-                  </div>
-                </div>
-                <p class="collection__post__title">title title</p>
-                <p class="collection__post__author">author author</p>
-                <div class="collection__post__likeandmarket">
-                  <div class="post__like">👍(10)</div>
-                  <div class="post__market">🛒(10)</div>
-                </div>
-              </div>
-              <div class="collection__post__container">
-                <div class="first__img">
-                  <div class="second__img">
-                    <div class="third__img">
-                    </div>
-                  </div>
-                </div>
-                <p class="collection__post__title">title title</p>
-                <p class="collection__post__author">author author</p>
-                <div class="collection__post__likeandmarket">
-                  <div class="post__like">👍(10)</div>
-                  <div class="post__market">🛒(10)</div>
-                </div>
-              </div>
-              <div class="collection__post__container">
-                <div class="first__img">
-                  <div class="second__img">
-                    <div class="third__img">
-                    </div>
-                  </div>
-                </div>
-                <p class="collection__post__title">title title</p>
-                <p class="collection__post__author">author author</p>
-                <div class="collection__post__likeandmarket">
-                  <div class="post__like">👍(10)</div>
-                  <div class="post__market">🛒(10)</div>
-                </div>
-              </div>
-            </div>
-            <div class="button__trash">
-              <button class="collection__post__right"></button>
-            </div>
-          </div>
+        <div class="main__profile__write">
+          <button class="profile__write__btn">글 작성하기</button>
         </div>
-        <hr class="onlyHR">
-      </section>
-      <div class="down__all">
-        <section id="recommend__and__todays__insight">
-          <div class="recommend__insight__container">
-            <div class="recommend__insight__title">추천 인사이트</div>
-            <div class="recommend__insight__post__list">
-              <div class="recommend__insight__post__container">
-                <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post1.title}}</a>
-                <a href="" class="recommend__insight__post__body">
-                  {{post1.subhead}}
-                </a>
-                <p class="recommend__insight__post__author">written by {{post1.author}}</p>
-                <div class="recommend__insight__post__others">
-                  <div id="{{post1.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post1.likes}})</div>
-                  <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post1.refCount}})</div>
-                  <div class="recommend__post__hashtag">
-                    {% for tag in post1.tag.all %}
-                    <span>#{{ tag }}</span>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-              <div class="recommend__insight__post__container">
-                <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post2.title}}</a>
-                <a href="" class="recommend__insight__post__body">
-                  {{post2.subhead}}
-                </a>
-                <p class="recommend__insight__post__author">written by {{post2.author}}</p>
-                <div class="recommend__insight__post__others">
-                  <div id="{{post2.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post2.likes}})</div>
-                  <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post2.refCount}})</div>
-                  <div class="recommend__post__hashtag">
-
-                    {% for tag in post2.tag.all %}
-                    <span>#{{ tag }}</span>
-                    {% endfor %}
-
-
-                  </div>
-                </div>
-              </div>
-              <div class="recommend__insight__post__container">
-                <div class="recommend__insight__post__image"></div>
-                <a href="" class="recommend__insight__post__title">{{post3.title}}</a>
-                <a href="" class="recommend__insight__post__body">
-                  {{post3.subhead}}
-                </a>
-                <p class="recommend__insight__post__author">written by {{post3.author}}</p>
-                <div class="recommend__insight__post__others">
-                  <div id="{{post3.id}}" class="insight__post__like" onclick="limitThumbsUp(id)">👍({{post3.likes}})</div>
-                  <div class="insight__post__comment">🗨(10)</div>
-                  <div class="insight__post__market">🛒({{post3.refCount}})</div>
-                  <div class="recommend__post__hashtag">
-                    {% for tag in post3.tag.all %}
-                    <span>#{{ tag }}</span>
-                    {% endfor %}
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="recommend__insight__post__pagination">
-            </div>
-          </div>
-          <div class="todays__insight__container">
-            <div class="todays__insight__title">오늘의 인사이트</div>
-            <div class="todays__insight__navigator">
-              <button class="todays__insight__hashtag">정치</button>
-              <button class="todays__insight__hashtag">경제</button>
-              <button class="todays__insight__hashtag">사회</button>
-              <button class="todays__insight__hashtag">생활/문화</button>
-              <button class="todays__insight__hashtag">IT/과학</button>
-              <button class="todays__insight__hashtag">세계</button>
-            </div>
-            <div class="todays__insight__post__list">
-              <div class="todays__insight__post__container">
-                <div class="todays__insight__post__img"></div>
-                <div class="todays__insight__post__letters">
-                  <div class="todays__insight__post__hashtag">
-                    <p>#경제 </p>
-                  </div>
-                  <div class="todays__insight__post__title"><a href="" style="color: #656565;">여기는 인사이트 제목입니다.</a></div>
-                  <div class="todays__insight__post__body">
-                    <a href="" style="color: #656565;">여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
-                      이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다. 여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은
-                      얼마나 그들은 할지라도 열락의 심장의 약동하다.</a>
-                  </div>
-                  <div class="todays__insight__post__others">
-                    <div class="post__like">👍(10)</div>
-                    <div class="post__comment">🗨(10)</div>
-                    <div class="post__market">🛒(10)</div>
-                    <div class="written__by">written by 작성자</div>
-                  </div>
-                </div>
-              </div>
-              <div class="todays__insight__post__container">
-                <div class="todays__insight__post__img"></div>
-                <div class="todays__insight__post__letters">
-                  <div class="todays__insight__post__hashtag">
-                    <p>#경제 </p>
-                    <p>#경제 </p>
-                  </div>
-                  <div class="todays__insight__post__title"><a href="" style="color: #656565;">여기는 인사이트 제목입니다.</a></div>
-                  <div class="todays__insight__post__body">
-                    <a href="" style="color: #656565;">여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
-                      이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다. 여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은
-                      얼마나 그들은 할지라도 열락의 심장의 약동하다.</a>
-                  </div>
-                  <div class="todays__insight__post__others">
-                    <div class="post__like">👍(10)</div>
-                    <div class="post__comment">🗨(10)</div>
-                    <div class="post__market">🛒(10)</div>
-                    <div class="written__by">written by 작성자</div>
-                  </div>
-                </div>
-              </div>
-              <div class="todays__insight__post__container">
-                <div class="todays__insight__post__img"></div>
-                <div class="todays__insight__post__letters">
-                  <div class="todays__insight__post__hashtag">
-                    <p>#경제 </p>
-                    <p>#경제 </p>
-                  </div>
-                  <div class="todays__insight__post__title"><a href="" style="color: #656565;">여기는 인사이트 제목입니다.</a></div>
-                  <div class="todays__insight__post__body">
-                    <a href="" style="color: #656565;">여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
-                      이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다. 여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은
-                      얼마나 그들은 할지라도 열락의 심장의 약동하다.</a>
-                  </div>
-                  <div class="todays__insight__post__others">
-                    <div class="post__like">👍(10)</div>
-                    <div class="post__comment">🗨(10)</div>
-                    <div class="post__market">🛒(10)</div>
-                    <div class="written__by">written by 작성자</div>
-                  </div>
-                </div>
-              </div>
-              <div class="todays__insight__post__container">
-                <div class="todays__insight__post__img"></div>
-                <div class="todays__insight__post__letters">
-                  <div class="todays__insight__post__hashtag">
-                    <p>#경제 </p>
-                    <p>#경제 </p>
-                  </div>
-                  <div class="todays__insight__post__title"><a href="" style="color: #656565;">여기는 인사이트 제목입니다.</a></div>
-                  <div class="todays__insight__post__body">
-                    <a href="" style="color: #656565;">여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
-                      이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다. 여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라. 청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의 이상은
-                      얼마나 그들은 할지라도 열락의 심장의 약동하다.</a>
-                  </div>
-                  <div class="todays__insight__post__others">
-                    <div class="post__like">👍(10)</div>
-                    <div class="post__comment">🗨(10)</div>
-                    <div class="post__market">🛒(10)</div>
-                    <div class="written__by">written by 작성자</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="recommend__insight__post__pagination">
-            </div>
-          </div>
-        </section>
-        <section id="article__list__container">
-          <div class="navbar__trash"></div>
-          <div class="aritcle__list__popUp">
-            <div class="popUp__toggle">
-              <i id="popUp__toggle__btn" class="fa-solid fa-bars"></i>
-            </div>
-            <div class="popUp__profile">
-              <div class="popUp__profile__img">
-                <img src="{% static 'ui/img/dummy.png'%}" alt="">
-              </div>
-              <div class="popUp__profile__names">
-                <p class="profile__id">아이디(이름)</p>
-                <p class="profile__pos">초보 바리스타</p>
-              </div>
-            </div>
-            <div class="popUp__myCart">
-              <p class="popUP__myCart__Btn">내 카페</p>
-              <p class="Btn__divider">|</p>
-              <p class="popUP__myCart__Btn">저장한 글</p>
-            </div>
-            <div class="choose__between__saved">
-              <p class="choose__saved__Btn">인사이트</p>
-              <p class="Btn__divider" style="color: transparent;">|</p>
-              <p class="choose__saved__Btn">컬렉션</p>
-            </div>
-            <div class="popUp__myCart__list">
-              <div class="collection__whole">
-                <div class="myCart__each__list">
-                  <div class="collection__container">
-                    <div class="collection__template first"></div>
-                    <div class="collection__template second"></div>
-                    <div class="collection__template third"></div>
-                  </div>
-                  <div class="each__list__container">
-                    <div class="list__main__title">
-                      <h3>솔방울의 영양학적 가치</h3>
-                    </div>
-                    <div class="list__main__author">
-                      <p>솔방울맨 한우석</p>
-                    </div>
-                    <div class="list__main__hashtags">
-                      <p>#경제학</p>
-                      <p>#경제학</p>
-                    </div>
-                  </div>
-                  <div class="each__list__trash">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </div>
-                </div>
-                <div class="myCart__each__list">
-                  <div class="collection__container">
-                    <div class="collection__template first"></div>
-                    <div class="collection__template second"></div>
-                    <div class="collection__template third"></div>
-                  </div>
-                  <div class="each__list__container">
-                    <div class="list__main__title">
-                      <h3>솔방울의 영양학적 가치</h3>
-                    </div>
-                    <div class="list__main__author">
-                      <p>솔방울맨 한우석</p>
-                    </div>
-                    <div class="list__main__hashtags">
-                      <p>#경제학</p>
-                      <p>#경제학</p>
-                    </div>
-                  </div>
-                  <div class="each__list__trash">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </div>
-                </div>
-                <div class="myCart__each__list">
-                  <div class="collection__container">
-                    <div class="collection__template first"></div>
-                    <div class="collection__template second"></div>
-                    <div class="collection__template third"></div>
-                  </div>
-                  <div class="each__list__container">
-                    <div class="list__main__title">
-                      <h3>솔방울의 영양학적 가치</h3>
-                    </div>
-                    <div class="list__main__author">
-                      <p>솔방울맨 한우석</p>
-                    </div>
-                    <div class="list__main__hashtags">
-                      <p>#경제학</p>
-                      <p>#경제학</p>
-                    </div>
-                  </div>
-                  <div class="each__list__trash">
-                    <i class="fa-solid fa-trash-can"></i>
-                  </div>
-                </div>
-              </div>
-              <div class="insights__whole">
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="written__insights__whole">
-                <!-- 여기가 내 카페 글 목록 -->
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      {{blog1.title}}
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-                <div class="insights__each__list">
-                  <div class="insights__img"></div>
-                  <div class="insights__others">
-                    <div class="insights__title">
-                      인사이트 제목인사이트 제목인사이트 제목 ...
-                    </div>
-                    <div class="insights__wrapping">
-                      <div class="insights__hashtags">
-                        <p>#경제학</p>
-                        <p>#경제학</p>
-                      </div>
-                      <i class="fa-solid fa-trash-can"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="popUp__pagination">
-            </div>
-            <div class="write__btn">글쓰기 +</div>
-          </div>
-        </section>
       </div>
-      <!-- <section id="modal">
+      <div class="aside__list">
+        <ul>
+          <li>
+            <p class="dropDn">&#9749; 내 컬렉션</p>
+          </li>
+          <li>
+            <p class="dropDn">&#9749; 내 카페</p>
+            <ul class="aside__list__myCafe">
+              <li>
+                <p class="dropDn">시사</p>
+              </li>
+              <li>
+                <p class="dropDn">경제</p>
+              </li>
+              <li>
+                <p class="list__mycafe__add">&#43;</p>
+                <input class="list__mycafe__input" type="text" />
+              </li>
+            </ul>
+          </li>
+          <li>
+            <p class="dropDn">&#9749; 오늘의 컬렉션</p>
+          </li>
+          <li>
+            <p class="dropDn">&#9749; organization</p>
+          </li>
+          <li>
+            <p class="dropDn">&#9749; 문의사항 및 질문</p>
+          </li>
+        </ul>
+      </div>
+    </aside>
+    <div class="main__container">
+      <main>
+        <section class="main__slide">
+          <img
+            id="main__bgImg"
+            src="{% static '/ui/img/main_background.PNG'%}"
+            alt=""
+          />
+        </section>
+        <section id="recommend__collection">
+          <div class="recommend__collection__container">
+            <div class="collection__hashtag">
+              <div class="collection__container__name">추천 컬렉션</div>
+              <div class="collection__hashtag__choose">
+                <div class="hashtag__choose__sentence">
+                  <div class="sentence__upper">
+                    <span>'</span>
+                    <span class="sentence__namespace"></span>
+                    <span>'에 대해<br /></span>
+                  </div>
+                  <div class="sentence__lower">관심이 있다면...</div>
+                </div>
+                <input class="hashtag__search" type="text" value="" />
+                <div class="hashtag__list">
+                  <button class="hashtag__btn">#과학</button>
+                  <span class="btn__wall">|</span>
+                  <button class="hashtag__btn">#환경</button>
+                  <span class="btn__wall">|</span>
+                  <button class="hashtag__btn">#정치</button>
+                  <span class="btn__wall">|</span>
+                  <button class="hashtag__btn">#문화</button>
+                </div>
+              </div>
+              <span class="comment"><br />원하는 관심사를 입력해보세요!</span>
+            </div>
+            <div class="collection__post">
+              <div class="button__trash">
+                <button class="collection__post__left"></button>
+              </div>
+              <div class="collection__post__list">
+                <div class="collection__post__container">
+                  <div class="first__img">
+                    <div class="second__img">
+                      <div class="third__img"></div>
+                    </div>
+                  </div>
+                  <p class="collection__post__title">title title</p>
+                  <p class="collection__post__author">author author</p>
+                  <div class="collection__post__likeandmarket">
+                    <div class="post__like">👍(10)</div>
+                    <div class="post__market">🛒(10)</div>
+                  </div>
+                </div>
+                <div class="collection__post__container">
+                  <div class="first__img">
+                    <div class="second__img">
+                      <div class="third__img"></div>
+                    </div>
+                  </div>
+                  <p class="collection__post__title">title title</p>
+                  <p class="collection__post__author">author author</p>
+                  <div class="collection__post__likeandmarket">
+                    <div class="post__like">👍(10)</div>
+                    <div class="post__market">🛒(10)</div>
+                  </div>
+                </div>
+                <div class="collection__post__container">
+                  <div class="first__img">
+                    <div class="second__img">
+                      <div class="third__img"></div>
+                    </div>
+                  </div>
+                  <p class="collection__post__title">title title</p>
+                  <p class="collection__post__author">author author</p>
+                  <div class="collection__post__likeandmarket">
+                    <div class="post__like">👍(10)</div>
+                    <div class="post__market">🛒(10)</div>
+                  </div>
+                </div>
+                <div class="collection__post__container">
+                  <div class="first__img">
+                    <div class="second__img">
+                      <div class="third__img"></div>
+                    </div>
+                  </div>
+                  <p class="collection__post__title">title title</p>
+                  <p class="collection__post__author">author author</p>
+                  <div class="collection__post__likeandmarket">
+                    <div class="post__like">👍(10)</div>
+                    <div class="post__market">🛒(10)</div>
+                  </div>
+                </div>
+              </div>
+              <div class="button__trash">
+                <button class="collection__post__right"></button>
+              </div>
+            </div>
+          </div>
+          <hr class="onlyHR" />
+        </section>
+        <div class="down__all">
+          <section id="recommend__and__todays__insight">
+            <div class="recommend__insight__container">
+              <div class="recommend__insight__title">추천 인사이트</div>
+              <div class="recommend__insight__post__list">
+                <div class="recommend__insight__post__container">
+                  <div class="recommend__insight__post__image"></div>
+                  <a href="" class="recommend__insight__post__title"
+                    >{{post1.title}}</a
+                  >
+                  <a href="" class="recommend__insight__post__body">
+                    {{post1.subhead}}
+                  </a>
+                  <p class="recommend__insight__post__author">
+                    written by {{post1.author}}
+                  </p>
+                  <div class="recommend__insight__post__others">
+                    <div
+                      id="{{post1.id}}"
+                      class="insight__post__like"
+                      onclick="limitThumbsUp(id)"
+                    >
+                      👍({{post1.likes}})
+                    </div>
+                    <div class="insight__post__comment">🗨(10)</div>
+                    <div class="insight__post__market">
+                      🛒({{post1.refCount}})
+                    </div>
+                    <div class="recommend__post__hashtag">
+                      {% for tag in post1.tag.all %}
+                      <span>#{{ tag }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="recommend__insight__post__container">
+                  <div class="recommend__insight__post__image"></div>
+                  <a href="" class="recommend__insight__post__title"
+                    >{{post2.title}}</a
+                  >
+                  <a href="" class="recommend__insight__post__body">
+                    {{post2.subhead}}
+                  </a>
+                  <p class="recommend__insight__post__author">
+                    written by {{post2.author}}
+                  </p>
+                  <div class="recommend__insight__post__others">
+                    <div
+                      id="{{post2.id}}"
+                      class="insight__post__like"
+                      onclick="limitThumbsUp(id)"
+                    >
+                      👍({{post2.likes}})
+                    </div>
+                    <div class="insight__post__comment">🗨(10)</div>
+                    <div class="insight__post__market">
+                      🛒({{post2.refCount}})
+                    </div>
+                    <div class="recommend__post__hashtag">
+                      {% for tag in post2.tag.all %}
+                      <span>#{{ tag }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+                <div class="recommend__insight__post__container">
+                  <div class="recommend__insight__post__image"></div>
+                  <a href="" class="recommend__insight__post__title"
+                    >{{post3.title}}</a
+                  >
+                  <a href="" class="recommend__insight__post__body">
+                    {{post3.subhead}}
+                  </a>
+                  <p class="recommend__insight__post__author">
+                    written by {{post3.author}}
+                  </p>
+                  <div class="recommend__insight__post__others">
+                    <div
+                      id="{{post3.id}}"
+                      class="insight__post__like"
+                      onclick="limitThumbsUp(id)"
+                    >
+                      👍({{post3.likes}})
+                    </div>
+                    <div class="insight__post__comment">🗨(10)</div>
+                    <div class="insight__post__market">
+                      🛒({{post3.refCount}})
+                    </div>
+                    <div class="recommend__post__hashtag">
+                      {% for tag in post3.tag.all %}
+                      <span>#{{ tag }}</span>
+                      {% endfor %}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="recommend__insight__post__pagination"></div>
+            </div>
+            <div class="todays__insight__container">
+              <div class="todays__insight__title">오늘의 인사이트</div>
+              <div class="todays__insight__navigator">
+                <button class="todays__insight__hashtag">정치</button>
+                <button class="todays__insight__hashtag">경제</button>
+                <button class="todays__insight__hashtag">사회</button>
+                <button class="todays__insight__hashtag">생활/문화</button>
+                <button class="todays__insight__hashtag">IT/과학</button>
+                <button class="todays__insight__hashtag">세계</button>
+              </div>
+              <div class="todays__insight__post__list">
+                <div class="todays__insight__post__container">
+                  <div class="todays__insight__post__img"></div>
+                  <div class="todays__insight__post__letters">
+                    <div class="todays__insight__post__hashtag">
+                      <p>#경제</p>
+                    </div>
+                    <div class="todays__insight__post__title">
+                      <a href="" style="color: #656565"
+                        >여기는 인사이트 제목입니다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__body">
+                      <a href="" style="color: #656565"
+                        >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                        여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__others">
+                      <div class="post__like">👍(10)</div>
+                      <div class="post__comment">🗨(10)</div>
+                      <div class="post__market">🛒(10)</div>
+                      <div class="written__by">written by 작성자</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="todays__insight__post__container">
+                  <div class="todays__insight__post__img"></div>
+                  <div class="todays__insight__post__letters">
+                    <div class="todays__insight__post__hashtag">
+                      <p>#경제</p>
+                      <p>#경제</p>
+                    </div>
+                    <div class="todays__insight__post__title">
+                      <a href="" style="color: #656565"
+                        >여기는 인사이트 제목입니다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__body">
+                      <a href="" style="color: #656565"
+                        >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                        여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__others">
+                      <div class="post__like">👍(10)</div>
+                      <div class="post__comment">🗨(10)</div>
+                      <div class="post__market">🛒(10)</div>
+                      <div class="written__by">written by 작성자</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="todays__insight__post__container">
+                  <div class="todays__insight__post__img"></div>
+                  <div class="todays__insight__post__letters">
+                    <div class="todays__insight__post__hashtag">
+                      <p>#경제</p>
+                      <p>#경제</p>
+                    </div>
+                    <div class="todays__insight__post__title">
+                      <a href="" style="color: #656565"
+                        >여기는 인사이트 제목입니다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__body">
+                      <a href="" style="color: #656565"
+                        >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                        여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__others">
+                      <div class="post__like">👍(10)</div>
+                      <div class="post__comment">🗨(10)</div>
+                      <div class="post__market">🛒(10)</div>
+                      <div class="written__by">written by 작성자</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="todays__insight__post__container">
+                  <div class="todays__insight__post__img"></div>
+                  <div class="todays__insight__post__letters">
+                    <div class="todays__insight__post__hashtag">
+                      <p>#경제</p>
+                      <p>#경제</p>
+                    </div>
+                    <div class="todays__insight__post__title">
+                      <a href="" style="color: #656565"
+                        >여기는 인사이트 제목입니다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__body">
+                      <a href="" style="color: #656565"
+                        >여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.
+                        여기는 요약부분 어디 힘차게 동산에는 바로 온갖 보라.
+                        청춘 피고, 대중을 하여도 열매를 힘있다. 힘차게 그들의
+                        이상은 얼마나 그들은 할지라도 열락의 심장의 약동하다.</a
+                      >
+                    </div>
+                    <div class="todays__insight__post__others">
+                      <div class="post__like">👍(10)</div>
+                      <div class="post__comment">🗨(10)</div>
+                      <div class="post__market">🛒(10)</div>
+                      <div class="written__by">written by 작성자</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="recommend__insight__post__pagination"></div>
+            </div>
+          </section>
+          <section id="article__list__container">
+            <div class="navbar__trash"></div>
+            <div class="aritcle__list__popUp">
+              <div class="popUp__toggle">
+                <i id="popUp__toggle__btn" class="fa-solid fa-bars"></i>
+              </div>
+              <div class="popUp__profile">
+                <div class="popUp__profile__img">
+                  <img src="{% static 'ui/img/dummy.png'%}" alt="" />
+                </div>
+                <div class="popUp__profile__names">
+                  <p class="profile__id">아이디(이름)</p>
+                  <p class="profile__pos">초보 바리스타</p>
+                </div>
+              </div>
+              <div class="popUp__myCart">
+                <p class="popUP__myCart__Btn">내 카페</p>
+                <p class="Btn__divider">|</p>
+                <p class="popUP__myCart__Btn">저장한 글</p>
+              </div>
+              <div class="choose__between__saved">
+                <p class="choose__saved__Btn">인사이트</p>
+                <p class="Btn__divider" style="color: transparent">|</p>
+                <p class="choose__saved__Btn">컬렉션</p>
+              </div>
+              <div class="popUp__myCart__list">
+                <div class="collection__whole">
+                  <div class="myCart__each__list">
+                    <div class="collection__container">
+                      <div class="collection__template first"></div>
+                      <div class="collection__template second"></div>
+                      <div class="collection__template third"></div>
+                    </div>
+                    <div class="each__list__container">
+                      <div class="list__main__title">
+                        <h3>솔방울의 영양학적 가치</h3>
+                      </div>
+                      <div class="list__main__author">
+                        <p>솔방울맨 한우석</p>
+                      </div>
+                      <div class="list__main__hashtags">
+                        <p>#경제학</p>
+                        <p>#경제학</p>
+                      </div>
+                    </div>
+                    <div class="each__list__trash">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </div>
+                  <div class="myCart__each__list">
+                    <div class="collection__container">
+                      <div class="collection__template first"></div>
+                      <div class="collection__template second"></div>
+                      <div class="collection__template third"></div>
+                    </div>
+                    <div class="each__list__container">
+                      <div class="list__main__title">
+                        <h3>솔방울의 영양학적 가치</h3>
+                      </div>
+                      <div class="list__main__author">
+                        <p>솔방울맨 한우석</p>
+                      </div>
+                      <div class="list__main__hashtags">
+                        <p>#경제학</p>
+                        <p>#경제학</p>
+                      </div>
+                    </div>
+                    <div class="each__list__trash">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </div>
+                  <div class="myCart__each__list">
+                    <div class="collection__container">
+                      <div class="collection__template first"></div>
+                      <div class="collection__template second"></div>
+                      <div class="collection__template third"></div>
+                    </div>
+                    <div class="each__list__container">
+                      <div class="list__main__title">
+                        <h3>솔방울의 영양학적 가치</h3>
+                      </div>
+                      <div class="list__main__author">
+                        <p>솔방울맨 한우석</p>
+                      </div>
+                      <div class="list__main__hashtags">
+                        <p>#경제학</p>
+                        <p>#경제학</p>
+                      </div>
+                    </div>
+                    <div class="each__list__trash">
+                      <i class="fa-solid fa-trash-can"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="insights__whole">
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">
+                        인사이트 제목인사이트 제목인사이트 제목 ...
+                      </div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">
+                        인사이트 제목인사이트 제목인사이트 제목 ...
+                      </div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">
+                        인사이트 제목인사이트 제목인사이트 제목 ...
+                      </div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="written__insights__whole">
+                  <!-- 여기가 내 카페 글 목록 -->
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">{{blog1.title}}</div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">
+                        인사이트 제목인사이트 제목인사이트 제목 ...
+                      </div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="insights__each__list">
+                    <div class="insights__img"></div>
+                    <div class="insights__others">
+                      <div class="insights__title">
+                        인사이트 제목인사이트 제목인사이트 제목 ...
+                      </div>
+                      <div class="insights__wrapping">
+                        <div class="insights__hashtags">
+                          <p>#경제학</p>
+                          <p>#경제학</p>
+                        </div>
+                        <i class="fa-solid fa-trash-can"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="popUp__pagination"></div>
+              <div class="write__btn">글쓰기 +</div>
+            </div>
+          </section>
+        </div>
+        <!-- <section id="modal">
         <div class="modal__wrap">
           <div class="modal__top">
             뉴스와 커피 한 모금<br /><b>NEWSLATTE</b>☕
@@ -593,60 +675,10 @@
           </p>
           <i id="modal__close" class="fa-solid fa-xmark"></i>
       </section> -->
-    </main>
-    <footer></footer>
-  </div>
-  <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
-    <!-- // function getCookie(name) {
-    //   var cookieValue = null;
-    //   if (document.cookie && document.cookie !== '') {
-    //     var cookies = document.cookie.split(';');
-    //     for (var i = 0; i < cookies.length; i++) {
-    //       var cookie = cookies[i].trim();
-    //       // Does this cookie string begin with the name we want?
-    //       if (cookie.substring(0, name.length + 1) === (name + '=')) {
-    //         cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-    //         break;
-    //       }
-    //     }
-    //   }
-    //   return cookieValue;
-    // }
-    // var csrftoken = getCookie('csrftoken');
-    // function csrfSafeMethod(method) {
-    //   // these HTTP methods do not require CSRF protection
-    //   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-    // }
-    // $.ajaxSetup({
-    //   beforeSend: function (xhr, settings) {
-    //     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-    //       xhr.setRequestHeader("X-CSRFToken", csrftoken);
-    //     }
-    //   }
-    // });
-    // function renewThumbsUp(id) {
-    //   const targetThumb = document.getElementById(`${id}`)
-    //   const countNum = parseInt(targetThumb.innerHTML.replace(/[^0-9]/g,""))
-    //   targetThumb.innerText = `👍(${countNum+1})`
-    // }
-    // function thumup(id) {
-    //   renewThumbsUp(id)
-    //   // 좋아요 누르면 개수 늘어나도록. 
-    //   //그런데 한사람당 하나씩만 높일 수 있도록
-    //   //우선 인사이트 id 보내기 
-    //   var CollectionId = id
-    //   // console.log(id)
-    //   $.post('/ui/' + id + '/likes', //post 방식으로 서버에 요청을 보낸다.
-    //     {
-    //       'csrfmiddlewaretoken': csrftoken,
-    //       'post_id': id  //서버에 필요한 정보를 같이 보냄.
-    //     },
-    //     function (data, status) { //서버에서 받은 데이터와 전송 성공 여부를 보여준다.(미완성)
-    //       // const insightPostLike = [...document.getElementsByClassName("recommend__insight__post__others")]("id");
-    //       // console.log(insightPostLike)
-    //       // console.log(data['result'])
-    //     })
-    // } -->
-</body>
-
+      </main>
+      <footer></footer>
+    </div>
+    <script type="text/javascript" src="{% static '/ui/js/index.js'%}"></script>
+  </body>
 </html>
+

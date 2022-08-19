@@ -85,7 +85,7 @@ let isTrue = false;
 function checkIfPwIsSame() {
   let password = document.getElementById("signUp__password");
   if (password.value == passwordCheck.value) {
-    passwordAlert.innerText = "비밀번호가 일치합니다.";
+    passwordAlert.innerText = "";
     isTrue = true;
   } else {
     passwordAlert.innerText = "비밀번호가 불일치합니다.";
